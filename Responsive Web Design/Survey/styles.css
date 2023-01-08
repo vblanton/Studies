@@ -1,0 +1,23 @@
+h1 {
+    margin: 5px;
+    text-align: center;
+}
+p {
+    margin: 2px;
+    text-align: center;
+}
+fieldset {
+  margin: 5%;
+}
+label {
+  display: block;
+  margin: 10px 0px;
+}
+textarea {
+  display: block;
+  margin: 10px 0px;
+}
+
+#submit {
+  width: 70px;
+}

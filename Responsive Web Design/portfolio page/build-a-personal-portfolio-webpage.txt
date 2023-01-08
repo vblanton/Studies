@@ -1,0 +1,111 @@
+** start of undefined **
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Personal Portfolio</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css">
+  </head>  
+  <body>
+    <nav id="navbar">
+      <div class="spacer"></div>
+      <div class="links">
+        <a href="#welcome-section">Welcome</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      </div>
+    </nav>
+    <main>
+      <div id="welcome-section" class="welcome-section">
+        <h1>Behold, My Portfolio</h1>
+        <p>A collection of projects I've worked on.</p> 
+        <p>Some links:<br>
+        <a id="profile-link" href="#" target="_blank">my freeCodeCamp profile</a></p>
+      </div>
+      <div id="projects" class="projects section">
+        <h1>Projects</h1>
+        <div class="project-tile">
+          <h1><a href="">Project Name</a></h2>
+          <img src="">
+
+        </div>
+        <div class="project-tile"></div>
+        <div class="project-tile"></div>
+        <div class="project-tile"></div>
+      </div>
+      <div id="contact" class="contact section">
+        <h1>Contact</h1>
+        <p>vlad@email.com</p>
+      </div>
+    </main>
+  </body>
+</html>
+
+** end of undefined **
+
+** start of undefined **
+
+:root {
+  --highlight-color: rgb(0,102,204);
+}
+* {
+  box-sizing:border-box;
+}
+body {
+  text-align: center;
+  max-width: 1024px;
+  margin: 0;
+  padding: 0;
+}
+nav {
+  position: fixed;
+  width: 100vw;
+  height: 52px;
+  top: 0;
+  border-bottom: 2px dashed grey;
+  background-color: black;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.5rem;
+  margin: 0 10px;
+  padding: 5px 9px;
+  display: inline-block;
+}
+nav a:hover {
+  border: 1px solid white;
+  padding: 4px 8px;
+}
+.navigation-text{
+  font-size: 24px;
+  color: var(--highlight-color);
+}
+.links {
+  margin: 8px auto;
+}
+.spacer {
+}
+main {
+}
+.welcome-section {
+  padding-top: 100px;
+  width: 100vw;
+  height: 100vh;
+  background-color: #d2fadf;
+}
+.section {
+  margin: 50px;
+}
+
+@media (max-width: 768px){
+ nav a{
+   font-size: 1.4rem;
+ }
+}
+
+** end of undefined **
+

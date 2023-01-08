@@ -1,0 +1,160 @@
+** start of undefined **
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="./styles.css">
+    <title>Hello, World! - The Rust Programming Language</title>
+  </head>
+  <body>
+    <nav id="navbar">
+      <header>Hello, World!</header>
+      <a class="nav-link" href="#hello,_world!">Hello, World!</a>
+      <a class="nav-link" href="#creating_a_project_directory">Creating a Project Directory</a>
+      <a class="nav-link" href="#writing_and_running_a_rust_program">Writing and Running a Rust Program</a>
+      <a class="nav-link" href="#anatomy_of_a_rust_program">Anatomy of a Rust Program</a>
+      <a class="nav-link" href="#last_section">Last Section</a>
+      </nav>
+    <main id="main-doc">
+      <h1>Hello, World!</h1>
+      <section class="main-section" id="hello,_world!">
+        <header >Hello, World!</header>
+        <p>Now that you’ve installed Rust, let’s write your first Rust program. It’s traditional when learning a new language to write a little program that prints the text <code class="inline">Hello, world!</code> to the screen, so we’ll do the same here!</p>
+        <p class="note">Note: This book assumes basic familiarity with the command line. Rust makes no specific demands about your editing or tooling or where your code lives, so if you prefer to use an integrated development environment (IDE) instead of the command line, feel free to use your favorite IDE. Many IDEs now have some degree of Rust support; check the IDE’s documentation for details. Recently, the Rust team has been focusing on enabling great IDE support, and progress has been made rapidly on that front!</p>
+      </section>
+      <section class="main-section" id="creating_a_project_directory">
+        <header>Creating a Project Directory</header>
+        <p>You’ll start by making a directory to store your Rust code. It doesn’t matter to Rust where your code lives, but for the exercises and projects in this book, we suggest making a projects directory in your home directory and keeping all your projects there.</p>
+<p>
+Open a terminal and enter the following commands to make a projects directory and a directory for the “Hello, world!” project within the projects directory.</p>
+<p>
+For Linux, macOS, and PowerShell on Windows, enter this:</p>
+<code>
+$ mkdir ~/projects<br>
+$ cd ~/projects<br>
+$ mkdir hello_world<br>
+$ cd hello_world</code>
+<p>For Windows CMD, enter this:</p>
+<code>> mkdir "%USERPROFILE%\projects"<br>
+> cd /d "%USERPROFILE%\projects"<br>
+> mkdir hello_world<br>
+> cd hello_world</code>
+      </section>
+      <section class="main-section" id="writing_and_running_a_rust_program">
+        <header>Writing and Running a Rust Program</header>
+        <p>Next, make a new source file and call it main.rs. Rust files always end with the .rs extension. If you’re using more than one word in your filename, the convention is to use an underscore to separate them. For example, use hello_world.rs rather than helloworld.rs.</p>
+<p>
+Now open the main.rs file you just created and enter the code in Listing 1-1.</p>
+<p>
+Filename: main.rs</p>
+
+<code>fn main() {
+    println!("Hello, world!");
+}
+</code>
+<p>
+Listing 1-1: A program that prints Hello, world!
+</p>
+<p>
+Save the file and go back to your terminal window in the ~/projects/hello_world directory. On Linux or macOS, enter the following commands to compile and run the file:
+</p>
+<code>
+$ rustc main.rs
+$ ./main
+Hello, world!
+</code>
+<p>
+On Windows, enter the command .\main.exe instead of ./main:
+</p>
+<code>
+> rustc main.rs
+> .\main.exe
+Hello, world!
+</code>
+<p>
+Regardless of your operating system, the string Hello, world! should print to the terminal. If you don’t see this output, refer back to the “Troubleshooting” part of the Installation section for ways to get help.
+</p>
+<p>
+If Hello, world! did print, congratulations! You’ve officially written a Rust program. That makes you a Rust programmer—welcome!
+</p>
+      </section>
+      <section class="main-section" id="anatomy_of_a_rust_program">
+        <header>Anatomy of a Rust Program</header>
+        <ul>
+          <li>List Item 1</li>
+          <li>List Item 2</li>
+          <li>List Item 3</li>
+          <li>List Item 4</li>
+          <li>List Item 5</li>
+        </ul>
+      </section>
+      <section class="main-section" id="last_section">
+        <header>Last Section</header>
+        </section
+    </main>
+  </body>
+  </html>
+
+** end of undefined **
+
+** start of undefined **
+
+
+p.note {
+  border: 1px dashed #444;
+  padding: 15px 20px;
+  color: #333;
+}
+code {
+  background-color: #eee;
+  padding: 2px 4px;
+  display: block;
+}
+
+.inline {
+  display: inline-block;
+}
+
+#navbar {
+  padding: 5px 0px 5px 0;
+  border-right: 1px solid black;
+}
+
+#navbar header {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px dashed black;
+}
+
+#navbar a{
+  display: block;
+  padding: 20px 10px;
+  color: black;
+  text-decoration: none;
+}
+#navbar a:hover {
+  background-color: #ddd;
+}
+
+@media (min-width: 766px) {
+  
+  body {
+  }
+
+  #navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100%;
+  }
+  main {
+    margin-left: 200px;
+  }
+
+}
+
+** end of undefined **
+

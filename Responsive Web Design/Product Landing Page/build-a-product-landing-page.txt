@@ -1,0 +1,132 @@
+** start of undefined **
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Fresh Music Podcast</title>
+        <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header id="header">
+      <nav id="nav-bar">
+        <img id="header-img" src="https://antiquesdiva.com/wp-content/uploads/2019/10/Podcast-icon.png">
+        <div class="spacer"></div>
+        <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" href="#sign-up">Sign Up!</a>
+        <a class="nav-link" href="#donate">Donate</a>
+      </nav>
+    </header>
+    <main>
+      <h1>The Fresh Music Review Podcast.</h1>
+      <div id="sign-up">
+        <p></p>
+        <form id="form" action="https://www.freecodecamp.com/email-submit">
+          <input id="email" name="email" type="email" placeholder="email@...">
+          <input id="submit" type="submit">
+        </form>
+      </div>
+      <div id="about">
+        <video id="video" src="">
+        </video>
+      </div>
+      <div id="testimonies">
+        <p>"We're loving it. I love Fresh Music and Reviews Podcast."
+<i>- Lissa H.</i></p>
+        <p>"Not able to tell you how happy I am with Fresh Music and Reviews Podcast. It's incredible. They are killing it." <i>- Aurore F.</i></p>
+      </div>
+      <div id="donate"> 
+        <a href=""><button>Donate!</button></a>
+      </div>
+    </main>
+    <footer>
+      <p>Copyright - Fresh Music Podcast 2022</p>
+    </footer>
+  </body>
+  </html>
+
+** end of undefined **
+
+** start of undefined **
+
+html {
+  box-sizing: border-box;
+  max-width: 1280px;
+v
+}
+
+nav {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 59px;
+  background-color: white;
+  border-bottom: 1px dotted black;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  transition: 1s;
+    
+
+}
+nav a{
+  text-decoration: none;
+  color: black;
+  padding: 20px 30px;
+  margin: 0;
+  width: 200px;
+  text-align: center;
+  font-size: 18px;
+  transition: 1s;
+}
+
+nav a:hover {
+  background-color: darkgrey;
+}
+
+nav img {
+  width: 50px;
+  margin-left: 15px;
+  transition: 1s;
+}
+
+.spacer {
+  width: 100%;
+}
+
+main {
+  margin-top: 75px;
+  text-align: center;
+  transition: 1s;
+}
+
+footer {
+  margin-top: 50px;
+  width: 100%;
+  height: 40px;
+  border-top: 1px dotted black;
+}
+
+@media (min-width: 765px) {
+  nav {
+    height: 79px;
+      transition: 1s;
+  }
+  nav img {
+    width: 75px;
+      transition: 1s;
+  }
+  nav a {
+    font-size: 20px;
+      transition: 1s;
+  }
+  
+  main {
+    margin-top: 100px;
+    transition: 1s;
+  }
+}
+
+** end of undefined **
+

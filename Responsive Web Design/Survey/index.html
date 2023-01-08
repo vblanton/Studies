@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <h1 id="title">freeCodeCamp Survey Form</h1>
+    <p id="description">Thank you for taking the time to help us improve the platform</p>
+    <form id="survey-form">
+      <fieldset>
+        <label id="name-label">Name <input id="name" type="text" required placeholder="Enter your name" /></label>
+        <label id="email-label">Email <input id="email" type="email" required placeholder="Enter your email" /></label>
+        <label id="number-label">Age (optional) <input id="number" type="number" placeholder="Enter your age" min="10" max="110" /></label>
+        <label>Which option best describes your current role?
+          <select id="dropdown" name="referrer">
+            <option value="">(select one)</option>
+            <option value="1">selection 1</option>
+            <option value="2">selection 2</option>
+          </select></label>
+          <label><input type="radio" name="account-type" class="inline" value="pancakes" /> Pancakes</label>
+        <label><input type="radio" name="account-type" class="inline" value="dumplings" /> Dumplings</label>
+        <label>
+          <input type="checkbox" name="terms" class="inline" value="0" /> I accept no terms</a>
+        </label>
+        <label>
+          <input type="checkbox" name="terms" class="inline" value="1" /> I accept some terms</a>
+        </label>
+        <label>
+          <input type="checkbox" name="terms" class="inline" value="2" /> I accept all terms</a>
+        </label>
+        <label>Provide a bio:
+          <textarea name="bio" rows="3" cols="30" placeholder="Comments/Suggestions..."></textarea>
+        </label>
+        <input type="submit" id="submit" value="Submit" />
+      </fieldset>
+      </form>
+  </body>
+</html>

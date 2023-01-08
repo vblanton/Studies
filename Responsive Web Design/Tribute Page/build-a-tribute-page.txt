@@ -1,0 +1,77 @@
+** start of undefined **
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title id="title">Viktor Tsoi</title>
+  <link rel="stylesheet" href="./styles.css"
+</head>
+<body>
+  <header></header>
+  <main id="main">
+    <h1>Viktor Tsoi</h1>
+    <h2>Tribute Page</h2>
+    <div id="tribute-info"><p>
+      Tsoi a Soviet singer and songwriter of mix Russian and Kazakstanian heritage who co-founded Kino, one of the most popular and musically influential bands in the history of Russian-language music.</p> 
+    </div>
+    <div id="img-div">
+      <img id="image" src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Victor_Tsoi_1986_cropped.jpg" />
+      <div id="img-caption">Tsoi in 1986</div>
+    </div>
+    <div><p><a id="tribute-link" target="_blank" href="https://en.wikipedia.org/wiki/Viktor_Tsoi">read more about Tsoi on wikipedia >>></a><p></div>
+  </main>
+  <footer></footer>
+<body>
+</html>
+
+** end of undefined **
+
+** start of undefined **
+
+body {
+  background-color: #dddddd;
+  
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+h1 {
+  margin: 30px 0 0 0;
+}
+
+h2 {
+  margin: 10px 0 30px 0;
+}
+
+p {
+  margin: 20px 10px;
+  text-align: justify;
+  font-size: 1.3rem;
+}
+
+#img-div {
+  max-width: 288px;
+  margin: auto;
+}
+
+#img-div > img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  display: Block;
+}
+#image {
+  margin: 20px auto;  
+}
+
+#img-caption {
+  text-align: center;
+}
+#tribute-info {
+  
+}
+
+** end of undefined **
+
