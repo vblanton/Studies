@@ -1,0 +1,207 @@
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.7.0/d3.min.js" integrity="sha512-7RUyhA5mpSkxSGGdw1vL6ZLL2GzWPvf/aQ4M8cpXkZiSpCvWb5rgygK+VzUpyXx4vPc0ahrS53nymFbGOQ7ubg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <style>
+    body {
+    background: #eee;
+  }
+  
+  #title {
+    width: 600px;
+    margin: auto;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  #title h1 {
+    font-size: 32px;
+    font-weight: 100;
+    padding: 0;
+    margin-bottom: 0;
+  }
+
+  #title h2 {
+    font-size: 24px;
+    font-weight: 100;
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+
+  #title img {
+    border: 1px solid black;
+    width: 100px;
+  }
+
+  /* scatterplot graph css */
+  #d3graph {
+    width: 950px;
+    height: 600px;
+    background: rgba(255, 255, 255, 80%);
+    margin: auto;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+
+  /* tooltip css */
+  div.tooltip {
+    position: absolute;
+    width: 160px;
+    height: 88px;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    pointer-events: none;
+  }
+  </style>
+  <script>
+        /**
+    Simple data visualization scatterplot graph using D3.js v7 and data from here:
+    https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/cyclist-data.json
+    using this as an example:
+    https://scatterplot-graph.freecodecamp.rocks/
+
+    Optional Todo:
+     - replace all hardcoded padding with variables and move y axis text to left side of axis
+     - make tooltip prettier
+     - use .timeParse() for all Date objects (https://github.com/d3/d3/blob/main/API.md#time-formats-d3-time-format)
+     -
+    **/
+
+    // Code
+    // use d3.json to grab the json file and use the JS promise framework to use it.
+
+    d3.json ('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/cyclist-data.json')
+      .then(data => {
+
+      // width/height for svg canvas
+
+      const w = 850,
+            h = 550,
+            paddingw = 40,
+            paddingh = 40;
+
+      // Parent/main graph SVG
+
+      let graphSVG = d3.select('#d3graph')
+        .append('svg')
+        .attr('width', w)
+        .attr('height', h);
+
+      // Tooltip
+      let tooltip = d3.select("body").append("div")
+        .attr("class", "tooltip")
+        .style("opacity", 0);
+
+      // Axis
+      // range is the size of the axis in pixels
+      // domain is the range of data plotted to the axis
+
+      let yScale = d3.scaleTime()
+        .domain([d3.min(data, d => new Date(`2000 01 01 00:${d.Time}`)), d3.max(data, d => new Date(`2000 01 01 00:${d.Time}`))])
+        .range([0, h - paddingh]);
+
+      let yAxis = d3.axisLeft(yScale).tickFormat(d3.timeFormat('%M:%S')).ticks(10);
+
+      graphSVG.append('g')
+        .attr("transform", "translate(40, 20)") // where to begin the y axis
+        .call(yAxis);
+
+      let xScale = d3.scaleLinear()
+      .domain([d3.min(data, (d) => d.Year), 1 + d3.max(data, (d) => d.Year)])
+      .range([0, w - paddingw]);
+
+      // format the xAxis to be dates so it doesn't put an apostrophe in as a number
+      let xAxis = d3.axisBottom(xScale).tickFormat(d3.format('d')).ticks(20);
+
+      graphSVG.append('g')
+        // position the x axis 40 pixels right and height - 20 pixels down so you can still see it
+        .attr("transform", "translate(40," + (h - 20) + ")")
+        .call(xAxis);
+
+
+
+      // scatter plot
+
+    graphSVG.append('g')
+      .selectAll('circle')
+      .data(data)
+      .enter()
+      .append('circle')
+      .attr("cx", d => paddingw + xScale(d.Year))
+      .attr("cy", d => 20 + yScale(new Date(`2000 01 01 00:${d.Time}`)))
+      .attr("r", 8)
+      .attr("stroke", "black")
+      .attr("stroke-width", "1px")
+      .attr("fill", (d, i) => {
+        if (d["Doping"] == "") {
+          return "rgba(255, 127, 14, 80%)"
+        } else { return "rgba(31, 119, 180, 80%)"}
+      })
+      // add tooltip on mouseover
+      .on("mouseover", function(event, d) {
+       tooltip.transition()
+         .duration(100)
+         .style("opacity", .9);
+       tooltip.html("<strong>" + d["Name"] + ":</strong> " + d["Nationality"] + "<br />" + "Year: " + d["Year"] + "<br />" + "Time: " + d["Time"] + "<br />" + "<em>" + d["Doping"] + "</em>")
+         .style("left", (event.pageX + 10) + "px")
+         .style("top", (event.pageY - 30) + "px");
+      })
+      .on("mouseout", function(d) {
+      tooltip.transition()
+        .duration(250)
+        .style("opacity", 0);
+      });
+
+        // Text
+
+      graphSVG.append("text")
+          .attr("transform", "rotate(-90)")
+          .attr("x", -200)
+          .attr("y", 135)
+          .attr("dy", "-5.1em")
+          .attr("text-anchor", "end")
+          .style("font-size", "15px")
+          .style("font-weight", "bold")
+          .text("Time in Minutes");
+
+      const legend=graphSVG.append("g")
+                        .attr("id", "legend")
+                        .attr("style","font-size:15px; text-anchor:end")
+
+      legend.append("text")
+        .attr("x", 820)
+        .attr("y", 250)
+        .text("No doping allegations")
+      legend.append("rect")
+        .attr("fill", "orange")
+        .attr("x", 825)
+        .attr("y", 237)
+        .attr("width", 16)
+        .attr("height", 16)
+
+      legend.append("text")
+         .attr("id", "legend")
+         .attr("x", 820)
+         .attr("y", 270)
+         .text("Riders with doping allegations")
+      legend.append("rect")
+         .attr("fill","dodgerblue")
+         .attr("x", 825)
+         .attr("y", 258)
+         .attr("width", 16)
+         .attr("height", 16)
+
+              })
+      .catch(e => console.log(e));
+    </script>
+  </head>
+  <body>
+    <div id="title">
+      <h1>Doping in Professional Bicycle Racing</h1>
+      <h2>35 Fastest times up the Alpe d'Huez</h2>
+    </div>
+    <div id="d3graph"></div>
+   </body>
+</html>

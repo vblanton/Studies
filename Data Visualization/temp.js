@@ -1,202 +1,410 @@
+// example code for heat map project
+
 /* global d3 */
 /* eslint-disable max-len */
 
 // eslint-disable-next-line no-unused-vars
-var projectName = 'scatter-plot';
+const projectName = 'heat-map';
 
-// RETURN TO GIDCDN link once chances propogate
-
-// coded by @paycoguy
+// coded by @paycoguy & @ChristianPaul (github)
 
 var url =
-  'https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceData/master/cyclist-data.json';
-var margin = {
-    top: 100,
-    right: 20,
-    bottom: 30,
-    left: 60
+  'https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceData/master/global-temperature.json';
+
+// colors from colorbrewer
+// http://colorbrewer2.org/
+
+var colorbrewer = {
+  RdYlBu: {
+    3: ['#fc8d59', '#ffffbf', '#91bfdb'],
+    4: ['#d7191c', '#fdae61', '#abd9e9', '#2c7bb6'],
+    5: ['#d7191c', '#fdae61', '#ffffbf', '#abd9e9', '#2c7bb6'],
+    6: ['#d73027', '#fc8d59', '#fee090', '#e0f3f8', '#91bfdb', '#4575b4'],
+    7: [
+      '#d73027',
+      '#fc8d59',
+      '#fee090',
+      '#ffffbf',
+      '#e0f3f8',
+      '#91bfdb',
+      '#4575b4'
+    ],
+    8: [
+      '#d73027',
+      '#f46d43',
+      '#fdae61',
+      '#fee090',
+      '#e0f3f8',
+      '#abd9e9',
+      '#74add1',
+      '#4575b4'
+    ],
+    9: [
+      '#d73027',
+      '#f46d43',
+      '#fdae61',
+      '#fee090',
+      '#ffffbf',
+      '#e0f3f8',
+      '#abd9e9',
+      '#74add1',
+      '#4575b4'
+    ],
+    10: [
+      '#a50026',
+      '#d73027',
+      '#f46d43',
+      '#fdae61',
+      '#fee090',
+      '#e0f3f8',
+      '#abd9e9',
+      '#74add1',
+      '#4575b4',
+      '#313695'
+    ],
+    11: [
+      '#a50026',
+      '#d73027',
+      '#f46d43',
+      '#fdae61',
+      '#fee090',
+      '#ffffbf',
+      '#e0f3f8',
+      '#abd9e9',
+      '#74add1',
+      '#4575b4',
+      '#313695'
+    ]
   },
-  width = 920 - margin.left - margin.right,
-  height = 630 - margin.top - margin.bottom;
-
-var x = d3.scaleLinear().range([0, width]);
-
-var y = d3.scaleTime().range([0, height]);
-
-var color = d3.scaleOrdinal(d3.schemeCategory10);
-
-var timeFormat = d3.timeFormat('%M:%S');
-var xAxis = d3.axisBottom(x).tickFormat(d3.format('d'));
-
-var yAxis = d3.axisLeft(y).tickFormat(timeFormat);
-
-// Define the div for the tooltip
-var div = d3
-  .select('body')
-  .append('div')
-  .attr('class', 'tooltip')
-  .attr('id', 'tooltip')
-  .style('opacity', 0);
-
-var svg = d3
-  .select('body')
-  .append('svg')
-  .attr('width', width + margin.left + margin.right)
-  .attr('height', height + margin.top + margin.bottom)
-  .attr('class', 'graph')
-  .append('g')
-  .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+  RdBu: {
+    3: ['#ef8a62', '#f7f7f7', '#67a9cf'],
+    4: ['#ca0020', '#f4a582', '#92c5de', '#0571b0'],
+    5: ['#ca0020', '#f4a582', '#f7f7f7', '#92c5de', '#0571b0'],
+    6: ['#b2182b', '#ef8a62', '#fddbc7', '#d1e5f0', '#67a9cf', '#2166ac'],
+    7: [
+      '#b2182b',
+      '#ef8a62',
+      '#fddbc7',
+      '#f7f7f7',
+      '#d1e5f0',
+      '#67a9cf',
+      '#2166ac'
+    ],
+    8: [
+      '#b2182b',
+      '#d6604d',
+      '#f4a582',
+      '#fddbc7',
+      '#d1e5f0',
+      '#92c5de',
+      '#4393c3',
+      '#2166ac'
+    ],
+    9: [
+      '#b2182b',
+      '#d6604d',
+      '#f4a582',
+      '#fddbc7',
+      '#f7f7f7',
+      '#d1e5f0',
+      '#92c5de',
+      '#4393c3',
+      '#2166ac'
+    ],
+    10: [
+      '#67001f',
+      '#b2182b',
+      '#d6604d',
+      '#f4a582',
+      '#fddbc7',
+      '#d1e5f0',
+      '#92c5de',
+      '#4393c3',
+      '#2166ac',
+      '#053061'
+    ],
+    11: [
+      '#67001f',
+      '#b2182b',
+      '#d6604d',
+      '#f4a582',
+      '#fddbc7',
+      '#f7f7f7',
+      '#d1e5f0',
+      '#92c5de',
+      '#4393c3',
+      '#2166ac',
+      '#053061'
+    ]
+  }
+};
 
 d3.json(url)
-  .then(data => {
-    data.forEach(function (d) {
-      d.Place = +d.Place;
-      var parsedTime = d.Time.split(':');
-      d.Time = new Date(1970, 0, 1, 0, parsedTime[0], parsedTime[1]);
-    });
+  .then(data => callback(data))
+  .catch(err => console.log(err));
 
-    x.domain([
-      d3.min(data, function (d) {
-        return d.Year - 1;
-      }),
-      d3.max(data, function (d) {
-        return d.Year + 1;
-      })
-    ]);
-    y.domain(
-      d3.extent(data, function (d) {
-        return d.Time;
-      })
+function callback(data) {
+  console.log('data: ', data);
+
+  data.monthlyVariance.forEach(function (val) {
+    val.month -= 1;
+  });
+
+  var section = d3.select('body').append('section');
+
+  // heading
+  var heading = section.append('heading');
+  heading
+    .append('h1')
+    .attr('id', 'title')
+    .text('Monthly Global Land-Surface Temperature');
+  heading
+    .append('h3')
+    .attr('id', 'description')
+    .html(
+      data.monthlyVariance[0].year +
+        ' - ' +
+        data.monthlyVariance[data.monthlyVariance.length - 1].year +
+        ': base temperature ' +
+        data.baseTemperature +
+        '&#8451;'
     );
 
-    svg
-      .append('g')
-      .attr('class', 'x axis')
-      .attr('id', 'x-axis')
-      .attr('transform', 'translate(0,' + height + ')')
-      .call(xAxis)
-      .append('text')
-      .attr('class', 'x-axis-label')
-      .attr('x', width)
-      .attr('y', -6)
-      .style('text-anchor', 'end')
-      .text('Year');
+  var fontSize = 16;
+  var width = 5 * Math.ceil(data.monthlyVariance.length / 12);
+  var height = 33 * 12;
+  var padding = {
+    left: 9 * fontSize,
+    right: 9 * fontSize,
+    top: 1 * fontSize,
+    bottom: 8 * fontSize
+  };
+  var tip = d3
+    .tip()
+    .attr('class', 'd3-tip')
+    .attr('id', 'tooltip')
+    .html(function (d) {
+      return d;
+    })
+    .direction('n')
+    .offset([-10, 0]);
 
-    svg
-      .append('g')
-      .attr('class', 'y axis')
-      .attr('id', 'y-axis')
-      .call(yAxis)
-      .append('text')
-      .attr('class', 'label')
-      .attr('transform', 'rotate(-90)')
-      .attr('y', 6)
-      .attr('dy', '.71em')
-      .style('text-anchor', 'end')
-      .text('Best Time (minutes)');
+  var svg = section
+    .append('svg')
+    .attr('width', width + padding.left + padding.right)
+    .attr('height', height + padding.top + padding.bottom)
+    .call(tip);
 
-    svg
-      .append('text')
-      .attr('transform', 'rotate(-90)')
-      .attr('x', -160)
-      .attr('y', -44)
-      .style('font-size', 18)
-      .text('Time in Minutes');
+  // yaxis
+  var yScale = d3
+    .scaleBand()
+    // months
+    .domain([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])
+    .rangeRound([0, height])
+    .padding(0);
 
-    svg
-      .selectAll('.dot')
-      .data(data)
-      .enter()
-      .append('circle')
-      .attr('class', 'dot')
-      .attr('r', 6)
-      .attr('cx', function (d) {
-        return x(d.Year);
+  var yAxis = d3
+    .axisLeft()
+    .scale(yScale)
+    .tickValues(yScale.domain())
+    .tickFormat(function (month) {
+      var date = new Date(0);
+      date.setUTCMonth(month);
+      var format = d3.utcFormat('%B');
+      return format(date);
+    })
+    .tickSize(10, 1);
+
+  svg
+    .append('g')
+    .classed('y-axis', true)
+    .attr('id', 'y-axis')
+    .attr('transform', 'translate(' + padding.left + ',' + padding.top + ')')
+    .call(yAxis)
+    .append('text')
+    .text('Months')
+    .style('text-anchor', 'middle')
+    .attr(
+      'transform',
+      'translate(' + -7 * fontSize + ',' + height / 2 + ')' + 'rotate(-90)'
+    )
+    .attr('fill', 'black');
+
+  // xaxis
+
+  // ordinal scale
+  var xScale = d3
+    .scaleBand()
+    .domain(
+      data.monthlyVariance.map(function (val) {
+        return val.year;
       })
-      .attr('cy', function (d) {
-        return y(d.Time);
+    )
+    .range([0, width])
+    .padding(0);
+
+  var xAxis = d3
+    .axisBottom()
+    .scale(xScale)
+    .tickValues(
+      xScale.domain().filter(function (year) {
+        // set ticks to years divisible by 10
+        return year % 10 === 0;
       })
-      .attr('data-xvalue', function (d) {
-        return d.Year;
-      })
-      .attr('data-yvalue', function (d) {
-        return d.Time.toISOString();
-      })
-      .style('fill', function (d) {
-        return color(d.Doping !== '');
-      })
-      .on('mouseover', function (event, d) {
-        div.style('opacity', 0.9);
-        div.attr('data-year', d.Year);
-        div
-          .html(
-            d.Name +
-              ': ' +
-              d.Nationality +
-              '<br/>' +
-              'Year: ' +
-              d.Year +
-              ', Time: ' +
-              timeFormat(d.Time) +
-              (d.Doping ? '<br/><br/>' + d.Doping : '')
-          )
-          .style('left', event.pageX + 'px')
-          .style('top', event.pageY - 28 + 'px');
-      })
-      .on('mouseout', function () {
-        div.style('opacity', 0);
-      });
+    )
+    .tickFormat(function (year) {
+      var date = new Date(0);
+      date.setUTCFullYear(year);
+      var format = d3.utcFormat('%Y');
+      return format(date);
+    })
+    .tickSize(10, 1);
 
-    // title
-    svg
-      .append('text')
-      .attr('id', 'title')
-      .attr('x', width / 2)
-      .attr('y', 0 - margin.top / 2)
-      .attr('text-anchor', 'middle')
-      .style('font-size', '30px')
-      .text('Doping in Professional Bicycle Racing');
+  svg
+    .append('g')
+    .classed('x-axis', true)
+    .attr('id', 'x-axis')
+    .attr(
+      'transform',
+      'translate(' + padding.left + ',' + (height + padding.top) + ')'
+    )
+    .call(xAxis)
+    .append('text')
+    .text('Years')
+    .style('text-anchor', 'middle')
+    .attr('transform', 'translate(' + width / 2 + ',' + 3 * fontSize + ')')
+    .attr('fill', 'black');
 
-    // subtitle
-    svg
-      .append('text')
-      .attr('x', width / 2)
-      .attr('y', 0 - margin.top / 2 + 25)
-      .attr('text-anchor', 'middle')
-      .style('font-size', '20px')
-      .text("35 Fastest times up Alpe d'Huez");
+  // legend
+  // Follow example from https://bl.ocks.org/mbostock/4573883
+  // to draw the legend
 
-    var legendContainer = svg.append('g').attr('id', 'legend');
+  var legendColors = colorbrewer.RdYlBu[11].reverse();
+  var legendWidth = 400;
+  var legendHeight = 300 / legendColors.length;
 
-    var legend = legendContainer
-      .selectAll('#legend')
-      .data(color.domain())
-      .enter()
-      .append('g')
-      .attr('class', 'legend-label')
-      .attr('transform', function (d, i) {
-        return 'translate(0,' + (height / 2 - i * 20) + ')';
-      });
+  var variance = data.monthlyVariance.map(function (val) {
+    return val.variance;
+  });
+  var minTemp = data.baseTemperature + Math.min.apply(null, variance);
+  var maxTemp = data.baseTemperature + Math.max.apply(null, variance);
 
-    legend
-      .append('rect')
-      .attr('x', width - 18)
-      .attr('width', 18)
-      .attr('height', 18)
-      .style('fill', color);
-
-    legend
-      .append('text')
-      .attr('x', width - 24)
-      .attr('y', 9)
-      .attr('dy', '.35em')
-      .style('text-anchor', 'end')
-      .text(function (d) {
-        if (d) {
-          return 'Riders with doping allegations';
-        } else {
-          return 'No doping allegations';
+  var legendThreshold = d3
+    .scaleThreshold()
+    .domain(
+      (function (min, max, count) {
+        var array = [];
+        var step = (max - min) / count;
+        var base = min;
+        for (var i = 1; i < count; i++) {
+          array.push(base + i * step);
         }
-      });
-  })
-  .catch(err => console.log(err));
+        return array;
+      })(minTemp, maxTemp, legendColors.length)
+    )
+    .range(legendColors);
+
+  var legendX = d3
+    .scaleLinear()
+    .domain([minTemp, maxTemp])
+    .range([0, legendWidth]);
+
+  var legendXAxis = d3
+    .axisBottom()
+    .scale(legendX)
+    .tickSize(10, 0)
+    .tickValues(legendThreshold.domain())
+    .tickFormat(d3.format('.1f'));
+
+  var legend = svg
+    .append('g')
+    .classed('legend', true)
+    .attr('id', 'legend')
+    .attr(
+      'transform',
+      'translate(' +
+        padding.left +
+        ',' +
+        (padding.top + height + padding.bottom - 2 * legendHeight) +
+        ')'
+    );
+
+  legend
+    .append('g')
+    .selectAll('rect')
+    .data(
+      legendThreshold.range().map(function (color) {
+        var d = legendThreshold.invertExtent(color);
+        if (d[0] === null) {
+          d[0] = legendX.domain()[0];
+        }
+        if (d[1] === null) {
+          d[1] = legendX.domain()[1];
+        }
+        return d;
+      })
+    )
+    .enter()
+    .append('rect')
+    .style('fill', function (d) {
+      return legendThreshold(d[0]);
+    })
+    .attr('x', d => legendX(d[0]))
+    .attr('y', 0)
+    .attr('width', d =>
+      d[0] && d[1] ? legendX(d[1]) - legendX(d[0]) : legendX(null)
+    )
+    .attr('height', legendHeight);
+
+  legend
+    .append('g')
+    .attr('transform', 'translate(' + 0 + ',' + legendHeight + ')')
+    .call(legendXAxis);
+
+  // map
+  svg
+    .append('g')
+    .classed('map', true)
+    .attr('transform', 'translate(' + padding.left + ',' + padding.top + ')')
+    .selectAll('rect')
+    .data(data.monthlyVariance)
+    .enter()
+    .append('rect')
+    .attr('class', 'cell')
+    .attr('data-month', function (d) {
+      return d.month;
+    })
+    .attr('data-year', function (d) {
+      return d.year;
+    })
+    .attr('data-temp', function (d) {
+      return data.baseTemperature + d.variance;
+    })
+    .attr('x', d => xScale(d.year))
+    .attr('y', d => yScale(d.month))
+    .attr('width', d => xScale.bandwidth(d.year))
+    .attr('height', d => yScale.bandwidth(d.month))
+    .attr('fill', function (d) {
+      return legendThreshold(data.baseTemperature + d.variance);
+    })
+    .on('mouseover', function (event, d) {
+      var date = new Date(d.year, d.month);
+      var str =
+        "<span class='date'>" +
+        d3.utcFormat('%Y - %B')(date) +
+        '</span>' +
+        '<br />' +
+        "<span class='temperature'>" +
+        d3.format('.1f')(data.baseTemperature + d.variance) +
+        '&#8451;' +
+        '</span>' +
+        '<br />' +
+        "<span class='variance'>" +
+        d3.format('+.1f')(d.variance) +
+        '&#8451;' +
+        '</span>';
+      tip.attr('data-year', d.year);
+      tip.show(str, this);
+    })
+    .on('mouseout', tip.hide);
+}

@@ -105,7 +105,7 @@ chartSVG.append('g')
   .catch(e => console.log(e));
 
 
-// html and css
+// HTML
 
 <html>
 
@@ -122,6 +122,8 @@ chartSVG.append('g')
 </body>
 
 </html>
+
+// CSS
 
 body {
   background: #708090;
