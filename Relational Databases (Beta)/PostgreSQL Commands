@@ -1,0 +1,138 @@
+psql // login / interact with PostgreSQL
++ // example
+psql -X --username=freecodecamp --dbname=students
+// -c flag means run and exit
+// https://www.freecodecamp.org/news/manage-postgresql-with-psql/
+// save a postgres database for later use
+pg_dump -U postgres database_name > path_to_file/filename.sql
+// (from the class)
+pg_dump --clean --create --inserts --username=freecodecamp students > students.sql
+// reload it:
+psql -U username -d database_name -f filename.sql
+// or using pg_restore:
+pg_restore -U username -d database_name path_to_file/filename.tar
+
+
+datatypes:
+INT
+VARCHAR(num) // string of characters max length num, use single quotes when adding data to a column using VARCHAR
+TEXT // characters of any length. performance same as varchar(num)
+SERIAL // an INT with a NOT NULL constraint, and automatically increment the integer when a new row is added.
+DATE // must be a string in format 'YYYY-MM-DD'
+NUMERIC(4, 1) // decimals has up to four digits and one of them has to be to the right of the decimal
+BOOLEAN // true/yes/on/1 or false/no/off/0
+
+Constraints:
+NULL // empty/nothing
+NOT NULL
+UNIQUE
+PRIMARY KEY
+
+
+\l // list databases
+\c database_name // connect to a database to add information
+\d // display tables that contain data
+\d table_name // show details of a table
+
+
+CREATE DATABASE database_name; // semicolon required for PostgreSQL commands
+DROP DATABASE // delete a database
+ALTER DATABASE database_name RENAME TO new_database_name; // rename
+
+CREATE TABLE table_name();
+CREATE TABLE table_name(column_name DATATYPE CONSTRAINTS); // create a table with columns
+DROP TABLE table_name; // delete a table
+
+ALTER TABLE table_name ADD COLUMN column_name DATATYPE CONSTRAINT(optional); // add a column
+ALTER TABLE table_name DROP COLUMN column_name; // remove a column
+ALTER TABLE table_name RENAME COLUMN column_name TO new_name; // rename a column
+ALTER TABLE table_name ALTER COLUMN column_name SET NOT NULL; // set column to NOT NULL
+ALTER TABLE table_name ALTER COLUMN column_name TYPE TEXT; // set column to a new type
+ALTER TABLE table_name ADD UNIQUE (column_name); // set a column as unique. paranthesis required
+ALTER TABLE table_name DROP CONSTRAINT constraint_name; // remove a constraint, like UNIQUE
+
+// USING SELECT. NOTE: order matters. WHERE comes before any ORDER BY, which comes before any LIMIT...
+SELECT columns FROM table_name; // view data in a table, use * instead of columns to view all
+SELECT column1, column2 FROM table_name // view 2 columns in a table
+SELECT columns FROM table_name WHERE condition AND condition OR condition; // use a WHERE condition to narrow things down, stating <column operator value> like: gpa < 2.5 or major = 'Game Design'. you can group conditions with parenthesis ()
+SELECT * FROM students WHERE last_name < 'M' AND (gpa = 3.9 OR gpa < 2.3); // example using grouping, AND, OR
+...WHERE <column> LIKE '<pattern' // find pattern in text
+...WHERE <column> NOT LIKE '<pattern'
+...WHERE <column> ILIKE 'pattern' // case insensitive LIKE
+...WHERE <column> NOT ILIKE 'pattern' //
+...WHERE <column> IS NULL // if nothing is in the column
+... IS NOT NULL
+... ORDER BY <column_name> // defaults to ASC ascending
+... ORDER BY <column> DESC // to show descending order
+... ORDER BY <column1>, <column2> // order any matching rows in column1 by column 2 additionally
+... LIMIT <number> // limit the amount of rows shown
+... GROUP BY <column>  // like distinct but you can add MIN, MAX, COUNT, etc
+SELECT major_id FROM students GROUP BY major_id // will also show distinct values but you can add MIN, MAX, COUNT, etc
+SELECT major_id,MIN(gpa),MAX(gpa) FROM students GROUP BY major_id // show unique major_id's and the minimum  and max gpa in each one as well
+... GROUP BY <column> HAVING COUNT(*) > 0 // additional parameter to further narrow things down to show what has at least one row
+SELECT <column> AS <new_column_name> // rename a column when displaying it
+... FROM <table> AS <new_table_name> // rename a table in the same way, remember to reference it as it's new name in the query (like in a full join)
+SELECT * FROM <table_1> FULL JOIN <table_2> ON <table_1>.<foreign_key_column> = <table_2>.<foreign_key_column>; // use JOIN to see data from two tables with a shared foreign key, showing all data, even if they dont have all values
+... LEFT JOIN ... // only shows rows from right side of join that match left side
+... RIGHT JOIN ... // opposite
+... INNER JOIN ... // shows only rows that match on both sides
+SELECT * FROM <table_1> FULL JOIN <table_2> USING(<column>); // shortcut full join, both shared foreign key columns will be shown as one in the output
+SELECT * FROM <table_1> FULL JOIN <table_2> USING(<column>) FULL JOIN <table_3> USING(<column>) // add a third table to a join
+SELECT DISTINCT(course) FROM students FULL JOIN majors_courses USING(major_id) FULL JOIN courses USING(course_id) WHERE student_id IS NULL OR (first_name LIKE 'Obie' AND last_name LIKE 'Hilpert') ORDER BY course DESC") // complex example
+
+// LIKE search patterns:
+_ // return rows that have any character in that spot (_lgorithms)
+% // any number of things can be there ex: W% searches for words that start with W
+
+//SELECT math and aggregate functions
+SELECT MIN(<column>) FROM <table> // will find the lowest value in the column
+SELECT MAX(<column>) FROM <table>
+SELECT SUM(<column>) FROM <table> // sum of all values in the column
+SELECT AVG...
+SELECT CEIL(<number to round>)... // round up
+SELECT FLOOR(<number to round>)... // round down
+SELECT ROUND(<number>)... // round to nearest whole number
+SELECT ROUND(<number>, <decimals>)... // specify number of decimals to round to
+SELECT COUNT(<column>)... // will tell you how many entries (rows) are in a table for the column (or use * for total entries in the table)
+DISTINCT(<column>) // shows only unique values, or use GROUP BY and also add MIN, MAX, COUNT, etc
+
+// rows
+// make sure any strings are in single qoutes ''
+INSERT INTO table_name(column_1, column_2) VALUES(value1, value2); // one line
+INSERT INTO table_Name(column1, column2, column3)  // add multiple rows in one command
+VALUES('Mario', 'Mushroom Kingdom', 'Red'),
+('Luigi', 'Mushroom Kingdom', 'Green'),
+('Peach', 'Mushroom Kingdom', 'Pink');
+
+DELETE FROM table_name WHERE condition; // delete a record/value // example condition is username='Luigi'
+UPDATE table_name SET column_name=new_value WHERE condition; // change a record/value in a row
+
+SELECT columns FROM table_name ORDER BY column_name; // organize data in an order
+ALTER TABLE table_name ADD PRIMARY KEY(column_name); // set a column that uniquely identifies each row in table
+ALTER TABLE table_name DROP CONSTRAINT constraint_name; // drop a constraint, such as a primary key
+
+// foreign key to relate rows from one table to another
+ALTER TABLE table_name ADD COLUMN column_name DATATYPE CONSTRAINTS REFERENCES referenced_table_name(referenced_column_name);
+// enforce a one to one relationship between linked/foreign key row
+ALTER TABLE table_name ADD FOREIGN KEY(column_name) REFERENCES referenced_table(referenced_column); // set an existing column as a foreign key
+ALTER TABLE table_name ADD UNIQUE(column_name);
+
+// a Junction table helps create a many to many relationship. it has two one to many relationships
+// basically, link to two foreign keys (columns) that are primary keys
+
+// composite primary key
+// every table should have a primary key, a composite primary key is a primary key from two columns
+// therefore if two columns together create a unique id for the row, that will be it's id, like "course number" and "department"
+// every row will have a unique id from both columns, but they will always be different, making each row unique
+// it is a b-tree structure where each level is a doubley linked list of pages
+ALTER TABLE table_name ADD PRIMARY KEY(column1, column2); // composite primary key
+
+// use join to view all the data from two tables with correlated keys (one to one or one to many relationship)
+SELECT columns FROM table_1 FULL JOIN table_2 ON table_1.primary_key_column = table_2.foreign_key_column; // use * to see all columns
+// many to many relationship, or join three tables:
+SELECT columns FROM junction_table
+FULL JOIN table_1 ON junction_table.foreign_key_column = table_1.primary_key_column
+FULL JOIN table_2 ON junction_table.foreign_key_column = table_2.primary_key_column;
+
+// remove all data from a table (in the rows)
+TRUNCATE table_name1, table_name2;

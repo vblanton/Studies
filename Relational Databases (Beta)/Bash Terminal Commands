@@ -1,0 +1,142 @@
+. // this folder
+.. // previous folder
+echo // print to the terminal
+echo text >> filename // print to a file
+pwd // show the full path of the directory you are currently in
+ls // list current folder
+ls -l // long list format
+ls -a // don't ignore . files
+cd
+cd ..
+cd ../.. // go back two folders
+more <filename> // print a file to the terminal
+less <filename> // read the file in the terminal (quit with Ctrl+Z)
+clear
+mkdir
+touch // make a new file
+cp <file> <destination>
+cp -r // copy a folder and all files within it recursively
+rm
+rm -r // remove folder and everything in it recursively [dangerous]
+rmdir // remove directory
+mv <original> <destination> // move, or rename
+find <folder> // view the file tree
+find -name <file/folder> // find where a file is in a folder tree
+cat // print the contents of a file
+fg // resume a command after pausing it with Ctrl + Z
+
+sh <script.sh> // short for shell, to run a shell script (script.sh)
+bash <script.sh> // bash shell interpreter (bourne-again shell)
+which <program> // find out where a program is installed/located
+chmod // change permissions
+chmod +x <filename> // make a file executable for everyone
+man <command>
+
+// scripting with bash:
+help // see all bash commands
+help <command> // more info about a specific command (if it doesn't have a man page)
+#!/bin/bash // include at the top to automatically run with a specific shell interpreter when executed directly
+VARIABLE_NAME=VALUE // variable. if a variable has any spaces, place double quotes around it: "What's you name?"
+$VARIABLE_NAME // to use a variable
+read VARIABLE_NAME // get input from a user and store it in a variable
+# <comment>
+// multi line comment
+: '
+  comment here
+  more comment here
+'
+$<number> // access an argument added to the program execution
+
+// if statement:
+if [[ CONDITION ]] // or use (( CONDITION )) for mathematical comparisons
+then
+  STATEMENTS
+else
+  STATEMENTS
+elif [[ CONDITION ]]
+then
+  STATEMENTS
+fi
+
+// for loop:
+for (( i = 10; i > 0; i-- ))
+do
+  echo $i
+done
+
+// Conditions, expressions, operators
+help test
+help let
+help [[ expression ]] // or just help [[
+-eq (equal)
+-ne (not equal)
+-lt (less than)
+-le (less than or equal),
+-gt (greater than),
+-ge (greater than or equal)
+== // equal to
+&& // and
+! // false
+|| // or
+>
+<
+==
+=~ // pattern matching using regular expressions or literal string match
+-a // True if file exists
+-x // True if file is executable by you.
+
+echo $? // view exit status of last command. 0 == true (or zero errors)
+; // separate commands on a single line with a semicolon
+
+ls /bin // other binaries, or available commands/programs
+
+//arithmetic
+help let // show all operators to use within double parenthesis
+(( VARIABLE-- )) // perform calculation, output nothing
+echo $(( VAR-- )) // replace calculation witht he result and print the result
+$(( VAR-- )) // replace calculation with the result, but don't actually perform the calculation on the variable permanently
+
+// environmental variables
+printenv // show environmental variables predefined with the shell
+declare // create or show variables
+declare -p // show all environmental variables, included ones created in the current shell
+declare -p VARIABLE // check if the variable exists and what it contains
+RANDOM // variable that gives a random number between 0 and 32767. add modulus operator to range it (( $RANDOM % 75 )) == 0 to 74)
+
+// Arrays
+ARR=("a" "b" "c")
+echo ${ARR[0]}
+echo ${ARR[*]} // print all items
+
+// Functions
+
+FUNCTION_NAME() {
+  STATEMENTS
+}
+
+FUNCTION_NAME // call the function simply by typing the name (without a $)
+
+// until loop (execute a command until the result passes as true)
+until [[ CONDITION ]]
+do
+  STATEMENTS
+done
+
+// commands
+type <command> // show the type of command it is (built in, keyword, etc) or location
+
+// piping output(like grep) to another command:
+// each new line is read into var1 and var2, the first and second word
+// IFS determines word boundaries, so separates by a comma in this case
+cat test.csv | while IFS="," read ITEMVAR1 ITEMVAR2
+do
+  echo $VAR1
+done
+
+// calling PostgreSQL with a PSQL variable
+// -c is to run a single command and exit
+// no align and tuples is for formatting
+PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only -c"
+
+// call it like this:
+$($PSQL "<query_here>")
