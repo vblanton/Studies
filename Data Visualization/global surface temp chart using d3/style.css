@@ -1,0 +1,13 @@
+#title {
+  text-align: center;
+  font-size: 85%;
+}
+
+#svg {
+  border: 1px dashed black;
+  width: 1500px;
+  margin: auto;
+}
+
+.cell {
+}

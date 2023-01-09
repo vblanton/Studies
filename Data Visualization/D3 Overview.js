@@ -34,6 +34,8 @@ d3.selectAll('circle')
 // note you can chain scale methods
 
 const scale = d3.scaleLinear(); // linear scale / quantitative data
+d3.scaleBand() // ordinal or categorical charts (centering the chart on the data point)
+d3.scaleTime() // scale using Dates like: new Date("2000 01 01")
 scale.domain([x, y]); // the input information/values, takes an array of at least two elements as an argument
 scale.range([x, y]); // shown x axis lowest to highest, which domain is plotted to fit, takes an array of at least two elments as an argument
 
