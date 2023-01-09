@@ -1,4 +1,6 @@
-/* Monthly Global Land Surface Temperature Chart (1753-2015) using D3.js and Javascript.
+/*
+
+Monthly Global Land Surface Temperature Chart (1753-2015) using D3.js and Javascript.
 
 Coded to pass the freeCodeCamp class project:
 https://www.freecodecamp.org/learn/data-visualization/data-visualization-projects/visualize-data-with-a-heat-map
@@ -12,7 +14,7 @@ legend
 calculate color of cell via a function
 
 Todo Optional:
-yaxis: Calculate the month name via a function call to reduce code?
+yaxis: Calculate the yaxis month name via a function call to reduce duplicity
 */
 
 d3.json ('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/global-temperature.json')
@@ -20,8 +22,8 @@ d3.json ('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/ma
 
   // variables
 
-  const w = 1500,
-        h = 600,
+  const w = 1200,
+        h = 500,
         paddingLeft = 100,
         paddingRight = 50,
         paddingTop = 10,
@@ -40,13 +42,14 @@ d3.json ('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/ma
   let xDomainArray = [];
   for (let i = 1753; i <= 2015; i++) {
     xDomainArray.push(i);
-  };
+  }
+  xDomainArray = xDomainArray.filter((d,i) => !(i%15));  // filter to only show 1 in every 15 ticks
 
+  // scaleBand() requires for the domain to be an array
   let xScale = d3.scaleBand()
-  //.domain(data.monthlyVariance.map( (d) => d.year)) // shows all data points + duplicates
-  .domain(xDomainArray.filter((d,i) => !(i%15))) // filter custom data to only show 1 in every 15
-  .range([0, w - paddingLeft - paddingRight])
-  ;
+  //.domain(data.monthlyVariance.map( (d) => d.year)) // shows all years including duplicates, would need to be filtered
+  .domain(xDomainArray)
+  .range([0, w - paddingLeft - paddingRight]);
 
   let xAxis = d3
     .axisBottom(xScale)
@@ -64,7 +67,7 @@ d3.json ('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/ma
     .text("Years");
 
   // y axis
-  // using .scaleBand() to divide the range evenly (centering the data points)
+
   let yScale = d3
     .scaleBand()
     .domain([new Date("2001 12 01"), new Date("2001 11 01"), new Date("2001 10 01"), new Date("2001 09 01"), new Date("2001 08 01"), new Date("2001 07 01"), new Date("2001 06 01"), new Date("2001 05 01"), new Date("2001 04 01"), new Date("2001 03 01"), new Date("2001 02 01"), new Date("2001 01 01")])
@@ -85,6 +88,7 @@ d3.json ('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/ma
     .text("Months");
 
   // chart
+
   svg.append("g")
     .selectAll("rect")
     .data(data.monthlyVariance)
