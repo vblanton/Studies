@@ -1,2 +1,2 @@
 # freeCodeCamp
-files from freeCodeCamp courses
+work/projects from my freeCodeCamp courses
