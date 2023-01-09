@@ -16,5 +16,6 @@ body {
   margin: auto;
 }
 
-.cell {
+.cell:hover {
+  color: black;
 }

@@ -38,28 +38,39 @@ d3.json ('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/ma
 
   // x axis
 
-  // create an array for the x scale domain to use
-  let xDomainArray = [];
-  for (let i = 1753; i <= 2015; i++) {
-    xDomainArray.push(i);
-  }
-  xDomainArray = xDomainArray.filter((d,i) => !(i%15));  // filter to only show 1 in every 15 ticks
+  // OLD: create an array for the x scale domain to use
+  // let xDomainArray = [];
+  // for (let i = 1753; i <= 2015; i++) {
+  //   xDomainArray.push(i);
+  // }
+  // xDomainArray = xDomainArray.filter((d,i) => !(i%15));  // filter to only show 1 in every 15 ticks
 
   // scaleBand() requires for the domain to be an array
   let xScale = d3.scaleBand()
-  //.domain(data.monthlyVariance.map( (d) => d.year)) // shows all years including duplicates, would need to be filtered
-  .domain(xDomainArray)
-  .range([0, w - paddingLeft - paddingRight]);
-
+    .domain(data.monthlyVariance.map((d) => d.year)) // needs to be filtered
+    //.domain(xDomainArray)
+    .range([0, w - paddingLeft - paddingRight]);
   let xAxis = d3
     .axisBottom(xScale)
-    .ticks(30); // format x axis as "d" so it doesn't read as numbers with an apostrophe
-
-  svg.append("g")
+    .tickValues(
+      xScale.domain().filter(function (year) {
+        // return only years that are divisible by 10
+        return year % 10 === 0;
+      })
+    )
+    .tickFormat(function (year) {
+      var date = new Date(0);
+      date.setUTCFullYear(year);
+      var format = d3.utcFormat('%Y');
+      return format(date);
+    })
+    .tickSize(10, 1);
+  svg
+    .append("g")
     .attr("transform", "translate(" + paddingLeft + "," + (h - paddingBottom) + ")")
     .call(xAxis);
-
-  svg.append("g")
+  svg
+    .append("g")
     .append("text")
     .attr("text-anchor", "end")
     .attr("x", w * .5 + paddingLeft - paddingRight)
@@ -70,16 +81,24 @@ d3.json ('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/ma
 
   let yScale = d3
     .scaleBand()
-    .domain([new Date("2001 12 01"), new Date("2001 11 01"), new Date("2001 10 01"), new Date("2001 09 01"), new Date("2001 08 01"), new Date("2001 07 01"), new Date("2001 06 01"), new Date("2001 05 01"), new Date("2001 04 01"), new Date("2001 03 01"), new Date("2001 02 01"), new Date("2001 01 01")])
+    .domain([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
     .range([h - paddingBottom - paddingTop, 0]);
   let yAxis = d3
     .axisLeft(yScale)
-    .tickFormat(d3.timeFormat("%B"));
-  svg.append("g")
+    .tickValues(yScale.domain())
+    .tickFormat(function (month) {
+      var date = new Date(0);
+      date.setUTCMonth(month);
+      var format = d3.utcFormat('%B');
+      return format(date);
+    })
+    .tickSize(10, 1);;
+  svg
+    .append("g")
     .attr("transform", "translate(" + paddingLeft + "," + paddingTop + ")")
     .call(yAxis);
-
-  svg.append("g")
+  svg
+    .append("g")
     .append("text")
     .attr("transform", "rotate(-90)")
     .attr("text-anchor", "end")
@@ -89,17 +108,19 @@ d3.json ('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/ma
 
   // chart
 
-  svg.append("g")
+  svg
+    .append("g")
+    .attr('transform', 'translate(' + paddingLeft + ',' + paddingTop + ')')
     .selectAll("rect")
     .data(data.monthlyVariance)
     .enter()
     .append("rect")
-    .attr("class", "cell")
-    .attr("x", 100)
-    .attr("y", (d, i) => yScale(d.month))
-    .attr("width", 9)
-    .attr("height", 15)
-    .attr("fill", "blue");
+    .attr('x', d => xScale(d.year))
+    .attr('y', d => yScale(d.month))
+    .attr('width', d => xScale.bandwidth(d.year))
+    .attr('height', d => yScale.bandwidth(d.month))
+    .attr("fill", "grey")
+    ;
 
 
 
