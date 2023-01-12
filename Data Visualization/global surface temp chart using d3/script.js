@@ -12,6 +12,8 @@ Todo:
 legend
   finish implementation
   use color function
+tooltips
+  ...
 debug
   why are my data points mapped upside down on the y axis
 
@@ -26,7 +28,7 @@ d3.json ('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/ma
 
   const w = 1200,
         h = 500,
-        paddingLeft = 100,
+        paddingLeft = 75,
         paddingRight = 10,
         paddingTop = 10,
         paddingBottom = 100;
@@ -60,6 +62,7 @@ d3.json ('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/ma
 
   // FUNCTIONS
 
+  // calculte the color of the cell
   function colorCalc (value) {
     if (value < 3.9) {
       return colors[0];
@@ -77,10 +80,12 @@ d3.json ('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/ma
       return colors[6];
     } else if (value >= 10.6 && value < 11.7) {
       return colors[7];
-    } else if (value >= 11.7) {
+    } else {
       return colors[8];
     }
   }
+
+
 
   // SVG D3 CONTAINER
 
@@ -89,7 +94,26 @@ d3.json ('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/ma
     .attr('width', w)
     .attr('height', h);
 
-  // x axis
+  // TOOLTIP
+  // let tip = d3
+  //   .tip()
+  //   .attr('class', 'd3-tip')
+  //   .attr('id', 'tooltip')
+  //   .html(function (d) {
+  //     return d;
+  //   });
+
+  // https://d3-graph-gallery.com/graph/interactivity_tooltip.html:
+  //   var Tooltip = d3.select("#div_template")
+  //       .append("div")
+  //       .style("opacity", 0)
+  //       .attr("class", "tooltip")
+  //       .style("background-color", "white")
+  //       .style("border", "solid")
+  //       .style("border-width", "2px")
+  //       .style("border-radius", "5px")
+  //       .style("padding", "5px")
+  // X AXIS
   // scaleBand() requires for the domain to be an array
 
   let xScale = d3.scaleBand()
@@ -123,19 +147,18 @@ d3.json ('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/ma
     .attr("y", h - paddingBottom + paddingTop + 40)
     .text("Years");
 
-  // y axis
+  // Y AXIS
 
   let yScale = d3
     .scaleBand()
-    .domain([12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])
+    .domain([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
     .range([h - paddingBottom - paddingTop, 0]);
   let yAxis = d3
     .axisLeft(yScale)
-    .tickValues(yScale.domain())
     .tickFormat(function (month) {
-      var date = new Date(0);
-      date.setUTCMonth(month);
-      var format = d3.utcFormat('%B');
+      let date = new Date("2000 01 01");
+      date.setUTCMonth(month - 1);
+      let format = d3.utcFormat("%b");
       return format(date);
     })
     .tickSize(10, 1);
@@ -156,7 +179,7 @@ d3.json ('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/ma
 
   svg
     .append("g")
-    .attr('transform', 'translate(' + paddingLeft + ',' + paddingTop + ')')
+    .attr('transform', 'translate(' + (paddingLeft + 1) + ',' + paddingTop + ')')
     .selectAll("rect")
     .data(data.monthlyVariance)
     .enter()
@@ -165,7 +188,27 @@ d3.json ('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/ma
     .attr('y', d => yScale(d.month))
     .attr('width', d => xScale.bandwidth(d.year))
     .attr('height', d => yScale.bandwidth(d.month))
-    .attr("fill", d => colorCalc(d.variance + 8.66));
+    .attr("fill", d => colorCalc(d.variance + 8.66))
+    .on('mouseover', function (event, d) {
+      let date = new Date(d.year, d.month);
+      let str =
+        "<span class='date'>" +
+        d3.utcFormat('%Y - %B')(date) +
+        '</span>' +
+        '<br />' +
+        "<span class='temperature'>" +
+        d3.format('.1f')(data.baseTemperature + d.variance) +
+        '&#8451;' +
+        '</span>' +
+        '<br />' +
+        "<span class='variance'>" +
+        d3.format('+.1f')(d.variance) +
+        '&#8451;' +
+        '</span>';
+      tip.attr('data-year', d.year);
+      tip.show(str, this);
+    })
+    .on('mouseout', tip.hide);;
 
   // legend
 
