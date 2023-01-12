@@ -9,9 +9,8 @@ using this JSON file for the data:
 https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/global-temperature.json
 
 Todo:
-Cells
-  function to calculate color of cell
 legend
+  finish implementation
   use color function
 debug
   why are my data points mapped upside down on the y axis
@@ -32,8 +31,8 @@ d3.json ('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/ma
         paddingTop = 10,
         paddingBottom = 100;
 
-// temperature ranges for colors:
-// 2.8-3.9, 3.9-5.0, 5.0-6.1, 6.1-7.2, 7.2-8.3, 8.3-9.5, 9.5-10.6, 10.6-11.7, 11.7-12.8
+// colors for temperature ranges:
+
   let colors = [
     "#4575b4",
     "#74add1",
@@ -44,6 +43,19 @@ d3.json ('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/ma
     "#fdae61",
     "#f46d43",
     "#d73027"
+  ]
+
+  let legend = [
+    2.8,
+    3.9,
+    5.0,
+    6.1,
+    7.2,
+    8.3,
+    9.5,
+    10.6,
+    11.7,
+    12.8
   ]
 
   // FUNCTIONS
@@ -126,7 +138,7 @@ d3.json ('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/ma
       var format = d3.utcFormat('%B');
       return format(date);
     })
-    .tickSize(10, 1);;
+    .tickSize(10, 1);
   svg
     .append("g")
     .attr("transform", "translate(" + paddingLeft + "," + paddingTop + ")")
@@ -153,8 +165,36 @@ d3.json ('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/ma
     .attr('y', d => yScale(d.month))
     .attr('width', d => xScale.bandwidth(d.year))
     .attr('height', d => yScale.bandwidth(d.month))
-    .attr("fill", d => colorCalc(d.variance + 8.66))
-    ;
+    .attr("fill", d => colorCalc(d.variance + 8.66));
+
+  // legend
+
+  let legendScale = d3
+    .scaleBand()
+    .domain([2.8, 3.9, 5.0, 6.1, 7.2, 8.3, 9.5, 10.6, 11.7, 12.8])
+    .range([0, 400]);
+  let legendAxis = d3
+    .axisBottom(legendScale)
+    .tickValues(legendScale.domain())
+    .tickSize(10, 1);
+  svg
+    .append("g")
+    .attr("transform", "translate(" + paddingLeft + ", 465)")
+    .call(legendAxis);
+    // TODO BELOW
+  svg
+    .append("g")
+    .attr("transform", "translate(" + paddingLeft + 20 + ", 450)")
+    .selectAll("rect")
+    .data(legend)
+    .enter()
+    .append("rect")
+    .attr('x', 0)
+    .attr('y', 0)
+    .attr("width", 30)
+    .attr("height", 20)
+    .attr("fill", "blue");
+
 
 
 
