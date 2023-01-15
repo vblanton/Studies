@@ -1,0 +1,55 @@
+body {
+    background: #708090;
+  }
+  #container {
+    width: 950px;
+    height: 600px;
+    background: white;
+    margin: auto;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+  #title {
+    margin: auto;
+    width: 350px;
+    height: 100px;
+  }
+  #title h1 {
+    font-size: 40px;
+    font-weight: 100;
+    padding: 20px 0;
+  }
+  #chart {
+    margin: auto;
+    width: 850px;
+    height: 450px;
+  }
+  #url {
+    text-align: right;
+    margin-right: 80px;
+    font-size: 14px;
+  }
+  
+  .bar {
+    fill: #58bcff;
+  }
+  .bar:hover {
+    fill: white;
+  }
+  
+  title {
+    background-color: white;
+  }
+  
+  div.tooltip {
+    position: absolute;
+    text-align: center;
+    width: 100px;
+    height: 30px;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: white;
+    border: 0px;
+    border-radius: 5px;
+    pointer-events: none;
+  }
+  

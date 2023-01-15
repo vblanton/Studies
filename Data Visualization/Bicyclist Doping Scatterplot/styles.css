@@ -1,0 +1,52 @@
+body {
+    background: #eee;
+  }
+  
+  #title {
+    width: 600px;
+    margin: auto;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  #title h1 {
+    font-size: 32px;
+    font-weight: 100;
+    padding: 0;
+    margin-bottom: 0;
+  }
+
+  #title h2 {
+    font-size: 24px;
+    font-weight: 100;
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+
+  #title img {
+    border: 1px solid black;
+    width: 100px;
+  }
+
+  /* scatterplot graph css */
+  #d3graph {
+    width: 950px;
+    height: 600px;
+    background: rgba(255, 255, 255, 80%);
+    margin: auto;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+
+  /* tooltip css */
+  div.tooltip {
+    position: absolute;
+    width: 160px;
+    height: 88px;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    pointer-events: none;
+  }

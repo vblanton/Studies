@@ -1,62 +1,4 @@
-<html>
-  <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.7.0/d3.min.js" integrity="sha512-7RUyhA5mpSkxSGGdw1vL6ZLL2GzWPvf/aQ4M8cpXkZiSpCvWb5rgygK+VzUpyXx4vPc0ahrS53nymFbGOQ7ubg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <style>
-    body {
-    background: #eee;
-  }
-  
-  #title {
-    width: 600px;
-    margin: auto;
-    margin-bottom: 10px;
-    text-align: center;
-  }
-
-  #title h1 {
-    font-size: 32px;
-    font-weight: 100;
-    padding: 0;
-    margin-bottom: 0;
-  }
-
-  #title h2 {
-    font-size: 24px;
-    font-weight: 100;
-    padding: 0;
-    margin-top: 0;
-    margin-bottom: 10px;
-  }
-
-  #title img {
-    border: 1px solid black;
-    width: 100px;
-  }
-
-  /* scatterplot graph css */
-  #d3graph {
-    width: 950px;
-    height: 600px;
-    background: rgba(255, 255, 255, 80%);
-    margin: auto;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  }
-
-  /* tooltip css */
-  div.tooltip {
-    position: absolute;
-    width: 160px;
-    height: 88px;
-    padding: 2px;
-    font: 12px sans-serif;
-    background: white;
-    border: 1px solid black;
-    border-radius: 5px;
-    pointer-events: none;
-  }
-  </style>
-  <script>
-        /**
+     /**
     Simple data visualization scatterplot graph using D3.js v7 and data from here:
     https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/cyclist-data.json
     using this as an example:
@@ -195,13 +137,3 @@
 
               })
       .catch(e => console.log(e));
-    </script>
-  </head>
-  <body>
-    <div id="title">
-      <h1>Doping in Professional Bicycle Racing</h1>
-      <h2>35 Fastest times up the Alpe d'Huez</h2>
-    </div>
-    <div id="d3graph"></div>
-   </body>
-</html>
