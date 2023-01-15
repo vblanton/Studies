@@ -85,9 +85,7 @@ d3.json ('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/ma
     }
   }
 
-
-
-  // SVG D3 CONTAINER
+  // SVG CONTAINER
 
   let svg = d3.select('#svg')
     .append('svg')
@@ -95,37 +93,20 @@ d3.json ('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/ma
     .attr('height', h);
 
   // TOOLTIP
-  // let tip = d3
-  //   .tip()
-  //   .attr('class', 'd3-tip')
-  //   .attr('id', 'tooltip')
-  //   .html(function (d) {
-  //     return d;
-  //   });
 
-  // https://d3-graph-gallery.com/graph/interactivity_tooltip.html:
-  //   var Tooltip = d3.select("#div_template")
-  //       .append("div")
-  //       .style("opacity", 0)
-  //       .attr("class", "tooltip")
-  //       .style("background-color", "white")
-  //       .style("border", "solid")
-  //       .style("border-width", "2px")
-  //       .style("border-radius", "5px")
-  //       .style("padding", "5px")
+
+
   // X AXIS
-  // scaleBand() requires for the domain to be an array
+  
 
-  let xScale = d3.scaleBand()
+  let xScale = d3.scaleBand() // scaleBand() requires for the domain to be an array
     .domain(data.monthlyVariance.map((d) => d.year)) // filtered below in .tickValues()
-    //.domain(xDomainArray)
     .range([0, w - paddingLeft - paddingRight]);
   let xAxis = d3
     .axisBottom(xScale)
     .tickValues(
       xScale.domain().filter(function (year) {
-        // return only years that are divisible by 10
-        return year % 10 === 0;
+        return year % 10 === 0; // return only years that are divisible by 10
       })
     )
     .tickFormat(function (year) {
@@ -175,11 +156,11 @@ d3.json ('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/ma
     .attr("y", 20)
     .text("Months");
 
-  // chart cells
+  // CHART CELLS
 
   svg
     .append("g")
-    .attr('transform', 'translate(' + (paddingLeft + 1) + ',' + paddingTop + ')')
+    .attr('transform', 'translate(' + (paddingLeft) + ',' + (paddingTop) + ')')
     .selectAll("rect")
     .data(data.monthlyVariance)
     .enter()
@@ -188,30 +169,10 @@ d3.json ('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/ma
     .attr('y', d => yScale(d.month))
     .attr('width', d => xScale.bandwidth(d.year))
     .attr('height', d => yScale.bandwidth(d.month))
-    .attr("fill", d => colorCalc(d.variance + 8.66))
-    .on('mouseover', function (event, d) {
-      let date = new Date(d.year, d.month);
-      let str =
-        "<span class='date'>" +
-        d3.utcFormat('%Y - %B')(date) +
-        '</span>' +
-        '<br />' +
-        "<span class='temperature'>" +
-        d3.format('.1f')(data.baseTemperature + d.variance) +
-        '&#8451;' +
-        '</span>' +
-        '<br />' +
-        "<span class='variance'>" +
-        d3.format('+.1f')(d.variance) +
-        '&#8451;' +
-        '</span>';
-      tip.attr('data-year', d.year);
-      tip.show(str, this);
-    })
-    .on('mouseout', tip.hide);;
+    .attr("fill", d => colorCalc(d.variance + 8.66));
 
-  // legend
-
+  // LEGEND
+    
   let legendScale = d3
     .scaleBand()
     .domain([2.8, 3.9, 5.0, 6.1, 7.2, 8.3, 9.5, 10.6, 11.7, 12.8])
@@ -224,6 +185,19 @@ d3.json ('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/ma
     .append("g")
     .attr("transform", "translate(" + paddingLeft + ", 465)")
     .call(legendAxis);
+  svg
+    .append("g")
+    .attr("transform", "translate(" + paddingLeft + ", 445)")
+    .selectAll("rect")
+    .data(legend)
+    .enter()
+    .append("rect")
+    .attr('x', d => legendScale(d))
+    .attr('y', 0)
+    .attr('width', d => legendScale.bandwidth(d))
+    .attr('height', 20)
+    .attr("fill", d => colorCalc(d));
+    
     // TODO BELOW
   svg
     .append("g")
