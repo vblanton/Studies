@@ -16,6 +16,21 @@ body {
   margin: 0 auto;
 }
 
+/* TOOLTIP */
+
 .cell:hover {
-  color: black;
+  fill: black;
+}
+
+div.tooltip {
+  position: absolute;
+  text-align: center;
+  width: 100px;
+  height: 30px;
+  padding: 2px;
+  font: 12px sans-serif;
+  background: white;
+  border: 0px;
+  border-radius: 5px;
+  pointer-events: none;
 }

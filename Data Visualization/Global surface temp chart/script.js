@@ -27,7 +27,7 @@ d3.json ('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/ma
   // VARIABLES
 
   const w = 1200,
-        h = 500,
+        h = 525,
         paddingLeft = 75,
         paddingRight = 10,
         paddingTop = 10,
@@ -85,6 +85,14 @@ d3.json ('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/ma
     }
   }
 
+  // calculate month name from month number
+  function monthCalc (month) {
+    let date = new Date("2000 01 01");
+    date.setUTCMonth(month - 1);
+    let format = d3.utcFormat("%b");
+    return format(date);
+  };
+
   // SVG CONTAINER
 
   let svg = d3.select('#svg')
@@ -92,7 +100,6 @@ d3.json ('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/ma
     .attr('width', w)
     .attr('height', h);
 
-  // TOOLTIP
 
 
 
@@ -124,6 +131,7 @@ d3.json ('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/ma
     .append("g")
     .append("text")
     .attr("text-anchor", "end")
+    //.attr("font-weight", 600)
     .attr("x", w * .5 + paddingLeft - paddingRight)
     .attr("y", h - paddingBottom + paddingTop + 40)
     .text("Years");
@@ -158,6 +166,12 @@ d3.json ('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/ma
 
   // CHART CELLS
 
+  let tooltip = d3
+    .select("body")
+    .append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
+
   svg
     .append("g")
     .attr('transform', 'translate(' + (paddingLeft) + ',' + (paddingTop) + ')')
@@ -165,11 +179,26 @@ d3.json ('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/ma
     .data(data.monthlyVariance)
     .enter()
     .append("rect")
+    .attr("class", "cell")
     .attr('x', d => xScale(d.year))
     .attr('y', d => yScale(d.month))
     .attr('width', d => xScale.bandwidth(d.year))
     .attr('height', d => yScale.bandwidth(d.month))
-    .attr("fill", d => colorCalc(d.variance + 8.66));
+    .attr("fill", d => colorCalc(d.variance + 8.66))
+    // add tooltip on mouseover
+    .on("mouseover", function(event, d) {
+      tooltip.transition()
+        .duration(100)
+        .style("opacity", .9);
+      tooltip.html("<strong>" + monthCalc(d.month) + " " + d.year + "</strong><br>" + (Math.round((data.baseTemperature + d.variance) * 10) / 10) + "℃")
+        .style("left", (event.pageX + 20) + "px")
+        .style("top", (event.pageY - 24) + "px");
+   })
+   .on("mouseout", function(d) {
+     tooltip.transition()
+       .duration(250)
+       .style("opacity", 0);
+   });
 
   // LEGEND
     
@@ -183,11 +212,11 @@ d3.json ('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/ma
     .tickSize(10, 1);
   svg
     .append("g")
-    .attr("transform", "translate(" + paddingLeft + ", 465)")
+    .attr("transform", "translate(" + paddingLeft + ", 480)")
     .call(legendAxis);
   svg
     .append("g")
-    .attr("transform", "translate(" + paddingLeft + ", 445)")
+    .attr("transform", "translate(" + paddingLeft + ", 460)")
     .selectAll("rect")
     .data(legend)
     .enter()
@@ -197,6 +226,16 @@ d3.json ('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/ma
     .attr('width', d => legendScale.bandwidth(d))
     .attr('height', 20)
     .attr("fill", d => (d < 12.8) ? colorCalc(d) : "white"); // hackish fix to align colors correctly
+    //.attr("style", "outline: thin solid black;")
+    
+/*  // Optional heading for legend, removed to not clutter the view  
+     svg
+    .append("g")
+    .append("text")
+    .attr("text-anchor", "end")
+    .attr("x", 300)
+    .attr("y", 520)
+    .text("Legend"); */
     
     // TODO BELOW
   svg
