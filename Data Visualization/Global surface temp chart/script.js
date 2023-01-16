@@ -192,11 +192,11 @@ d3.json ('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/ma
     .data(legend)
     .enter()
     .append("rect")
-    .attr('x', d => legendScale(d))
+    .attr('x', d => legendScale(d) + 20) // hackish fix to align colors correctly
     .attr('y', 0)
     .attr('width', d => legendScale.bandwidth(d))
     .attr('height', 20)
-    .attr("fill", d => colorCalc(d));
+    .attr("fill", d => (d < 12.8) ? colorCalc(d) : "white"); // hackish fix to align colors correctly
     
     // TODO BELOW
   svg
