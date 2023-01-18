@@ -99,6 +99,7 @@ arr.split(" ") // seperate by spaces
 arr.join() // return an array joined into a string
 arr.some() // check if at least one element in the array passes the provided function and returns a boolean
 [arr1].concat([arr2]) // add an array to another arry
+Array.prototype.sort() // modifies the original array, and by default will order the items alphanumerically. returns -1, 0, or 1 through callback function to sort before, keep untouched, or after current item.
 
 Array.isArray(obj) // check if "obj" is an array boolean
 
@@ -222,6 +223,7 @@ Function() // use in place of eval() for safer conversion of string to number
   function parse(str) {
     return Function(`'use strict'; return (${str})`)()
   };
+
 
 
 // Regex
