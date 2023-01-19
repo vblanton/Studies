@@ -1,0 +1,4 @@
+<!-- remotely include html -->
+<!-- iframe, which injects the code into the parent element prior to the iframe, and removes the iframe. requires a web server running -->
+<iframe src="about.html" onload="this.before(...(this.contentWindow.document.body||this.contentWindow.document).children);this.remove()"></iframe>
+
