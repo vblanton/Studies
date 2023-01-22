@@ -68,17 +68,17 @@ SELECT * FROM students WHERE last_name < 'M' AND (gpa = 3.9 OR gpa < 2.3); // ex
 ... LIMIT <number> // limit the amount of rows shown
 ... GROUP BY <column>  // like distinct but you can add MIN, MAX, COUNT, etc
 SELECT major_id FROM students GROUP BY major_id // will also show distinct values but you can add MIN, MAX, COUNT, etc
-SELECT major_id,MIN(gpa),MAX(gpa) FROM students GROUP BY major_id // show unique major_id's and the minimum  and max gpa in each one as well
+SELECT major_id,MIN(gpa),MAX(gpa) FROM students GROUP BY major_id // show unique major_ids and the minimum  and max gpa in each one as well
 ... GROUP BY <column> HAVING COUNT(*) > 0 // additional parameter to further narrow things down to show what has at least one row
 SELECT <column> AS <new_column_name> // rename a column when displaying it
-... FROM <table> AS <new_table_name> // rename a table in the same way, remember to reference it as it's new name in the query (like in a full join)
+... FROM <table> AS <new_table_name> // rename a table in the same way, remember to reference it as its new name in the query (like in a full join)
 SELECT * FROM <table_1> FULL JOIN <table_2> ON <table_1>.<foreign_key_column> = <table_2>.<foreign_key_column>; // use JOIN to see data from two tables with a shared foreign key, showing all data, even if they dont have all values
 ... LEFT JOIN ... // only shows rows from right side of join that match left side
 ... RIGHT JOIN ... // opposite
 ... INNER JOIN ... // shows only rows that match on both sides
 SELECT * FROM <table_1> FULL JOIN <table_2> USING(<column>); // shortcut full join, both shared foreign key columns will be shown as one in the output
 SELECT * FROM <table_1> FULL JOIN <table_2> USING(<column>) FULL JOIN <table_3> USING(<column>) // add a third table to a join
-SELECT DISTINCT(course) FROM students FULL JOIN majors_courses USING(major_id) FULL JOIN courses USING(course_id) WHERE student_id IS NULL OR (first_name LIKE 'Obie' AND last_name LIKE 'Hilpert') ORDER BY course DESC") // complex example
+SELECT DISTINCT(course) FROM students FULL JOIN majors_courses USING(major_id) FULL JOIN courses USING(course_id) WHERE student_id IS NULL OR (first_name LIKE 'Obie' AND last_name LIKE 'Hilpert') ORDER BY course DESC // complex example
 
 // LIKE search patterns:
 _ // return rows that have any character in that spot (_lgorithms)
@@ -122,7 +122,7 @@ ALTER TABLE table_name ADD UNIQUE(column_name);
 
 // composite primary key
 // every table should have a primary key, a composite primary key is a primary key from two columns
-// therefore if two columns together create a unique id for the row, that will be it's id, like "course number" and "department"
+// therefore if two columns together create a unique id for the row, that will be its id, like "course number" and "department"
 // every row will have a unique id from both columns, but they will always be different, making each row unique
 // it is a b-tree structure where each level is a doubley linked list of pages
 ALTER TABLE table_name ADD PRIMARY KEY(column1, column2); // composite primary key
