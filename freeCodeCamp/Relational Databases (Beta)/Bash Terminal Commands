@@ -140,3 +140,21 @@ PSQL="psql -X --username=freecodecamp --dbname=students --no-align --tuples-only
 
 # call it like this:
 $($PSQL "<query_here>")
+
+
+#
+# Advanced Bash Scripting
+#
+
+<command> > <filename> # redirect bash script / command output (errors and success) to a file, will overwrite
+<command> >> <file> # append to file
+stdout # just succesfull command, use 1> to redirect justt that
+stderr # just error, use 2> to redirect just that
+command 2> stderr.txt # redirect error output to another file using 2>
+command 1> stdout.txt # redirect success output to file
+stdin # for getting input. default is the keyboard
+<command> < <filename_for_stdin> # redirect stdin, or in other words, use the file as input to the command
+
+cat # print input file or anything
+
+<command_1> | <command_2> # pipe method to redirect stdout from first command to second command as stdin (input). the second command occurs in a seperate shell process
