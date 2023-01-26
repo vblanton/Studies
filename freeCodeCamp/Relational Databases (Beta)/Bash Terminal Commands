@@ -1,3 +1,7 @@
+#
+# some commands
+#
+
 . # this folder
 .. # previous folder
 echo # print to the terminal
@@ -32,7 +36,10 @@ chmod # change permissions
 chmod +x <filename> # make a file executable for everyone
 man <command>
 
+#
 # scripting with bash:
+#
+
 help # see all bash commands
 help <command> # more info about a specific command (if it doesnt have a man page)
 #!/bin/bash # include at the top to automatically run with a specific shell interpreter when executed directly
@@ -64,7 +71,10 @@ do
   echo $i
 done
 
+#
 # Conditions, expressions, operators
+#
+
 help test
 help let
 help [[ expression ]] # or just help [[
@@ -90,25 +100,36 @@ echo $? # view exit status of last command. 0 == true (or zero errors)
 
 ls /bin # other binaries, or available commands/programs
 
+#
 #arithmetic
+#
+
 help let # show all operators to use within double parenthesis
 (( VARIABLE-- )) # perform calculation, output nothing
 echo $(( VAR-- )) # replace calculation witht he result and print the result
 $(( VAR-- )) # replace calculation with the result, but dont actually perform the calculation on the variable permanently
 
+#
 # environmental variables
+#
+
 printenv # show environmental variables predefined with the shell
 declare # create or show variables
 declare -p # show all environmental variables, included ones created in the current shell
 declare -p VARIABLE # check if the variable exists and what it contains
 RANDOM # variable that gives a random number between 0 and 32767. add modulus operator to range it (( $RANDOM % 75 )) == 0 to 74)
 
+#
 # Arrays
+#
+
 ARR=("a" "b" "c")
 echo ${ARR[0]}
 echo ${ARR[*]} # print all items
 
+#
 # Functions
+#
 
 FUNCTION_NAME() {
   STATEMENTS
@@ -158,3 +179,29 @@ stdin # for getting input. default is the keyboard
 cat # print input file or anything
 
 <command_1> | <command_2> # pipe method to redirect stdout from first command to second command as stdin (input). the second command occurs in a seperate shell process
+
+wc # word count, print new line, word count, byte count for file
+wc -l # just line count
+wc -w # word count
+wc -m # character count
+
+wc -l < kitty_ipsum_1.txt >> kitty_info.txt # example. check how many lines in file, then append to another file
+
+grep # search for patterns in text, use regexs or strings with correct flag
+grep '<pattern>' <filename>
+grep --color # highlight the found pattern
+grep -n # show line numbers
+grep -c # count, or show how many times grep finds a match
+grep -o # outputs match on it's own line
+grep meow[a-z]* file.txt # example that looks for meow* to capture any text starting with meow
+grep -E # add extended regular expressions
+grep -E 'searchterm1|andsearchtermtwo' # example using two search terms (and/or)
+
+sed # replace patterns in text, by default just to stdout
+sed 's/<pattern_to_replace>/<text_to_replace_it_with>/' <filename> # place regex flags after the last "/", like an i (case insenstive) or g (global)
+sed -E ... # extended regular expressions (more support)
+sed -E 's/([0-9]+).*/\1/' # example that replaces anything after two numbers and text with just the two numbers
+sed 's/<pattern_1>/<replacement_1>/; s/<pattern_2>/<replacement_2>/' # replaced multiple patterns in a text 
+
+diff <file_1> <file_2> # look at the difference between two files
+diff --color # show the two files in separate colors
