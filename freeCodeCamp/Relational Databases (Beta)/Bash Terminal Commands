@@ -143,6 +143,14 @@ do
   STATEMENTS
 done
 
+# CASE statements
+case EXPRESSION in # expression could be a variable recieved from the user through READ
+  PATTERN) STATEMENTS ;; #example: 1) FUNCTION_CALL ;;
+  PATTERN) STATEMENTS ;;
+  PATTERN) STATEMENTS ;;
+  *) STATEMENTS "argument" ;; #pass an argument to the statement if it's a function call and refernce it as $1 somewhere else
+esac
+
 # commands
 type <command> # show the type of command it is (built in, keyword, etc) or location
 
