@@ -1,6 +1,6 @@
-psql -- login / interact with PostgreSQL
-+ -- example
-psql -X --username=freecodecamp --dbname=students
+"psql -- login" / interact with PostgreSQL
+-- example
+"psql -X --username=freecodecamp --dbname=students"
 -- -c flag means run and exit
 -- www.freecodecamp.org/news/manage-postgresql-with-psql/
 -- save a postgres database for later use

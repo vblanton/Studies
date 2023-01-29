@@ -56,6 +56,7 @@ read VARIABLE_NAME # get input from a user and store it in a variable
 '
 $<number> # access an argument added to the program execution
 
+
 # if statement:
 if [[ CONDITION ]] # or use (( CONDITION )) for mathematical comparisons
 then
@@ -68,6 +69,12 @@ then
 fi
 
 if [[ -z $VARIABLE ]] # check if a variable is empty
+
+# example conditions
+# check variables and regex in the terminal:
+[[ $a =~ ^[0-9]$ ]]; echo $? # check if variable a is a number that begins and ends as one digit and print the exit code (0 or 1, 1 being false)
+[[ ! $a =~ ^[0-9]+$ ]]; echo $? # check if it is NOT (!) a number of any length
+
 
 # for loop:
 for (( i = 10; i > 0; i-- ))
