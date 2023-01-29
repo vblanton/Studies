@@ -66,6 +66,11 @@ VALUES('Mario', 'Mushroom Kingdom', 'Red'),
 ('Luigi', 'Mushroom Kingdom', 'Green'),
 ('Peach', 'Mushroom Kingdom', 'Pink');
 
+-- REMOVE, CHANGE
+DELETE FROM table_name WHERE condition; -- delete a record/value -- example condition is username='Luigi'
+UPDATE table_name SET column_name=new_value WHERE condition; -- change a record/value in a row
+
+
 -- USING SELECT. NOTE: order matters. WHERE comes before any ORDER BY, which comes before any LIMIT...
 SELECT columns FROM table_name; -- view data in a table, use * instead of columns to view all
 SELECT column1, column2 FROM table_name -- view 2 columns in a table
@@ -111,8 +116,6 @@ SELECT ROUND(<number>, <decimals>)... -- specify number of decimals to round to
 SELECT COUNT(<column>)... -- will tell you how many entries (rows) are in a table for the column (or use * for total entries in the table)
 DISTINCT(<column>) -- shows only unique values, or use GROUP BY and also add MIN, MAX, COUNT, etc
 
-DELETE FROM table_name WHERE condition; -- delete a record/value -- example condition is username='Luigi'
-UPDATE table_name SET column_name=new_value WHERE condition; -- change a record/value in a row
 
 SELECT columns FROM table_name ORDER BY column_name; -- organize data in an order
 ALTER TABLE table_name ADD PRIMARY KEY(column_name); -- set a column that uniquely identifies each row in table

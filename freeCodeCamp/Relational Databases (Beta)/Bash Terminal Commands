@@ -6,6 +6,8 @@
 .. # previous folder
 echo # print to the terminal
 echo text >> filename # print to a file
+echo -e "\ntext\n" # extend echo, allow for new lines
+echo "$VARIABLE" # use quotes so it print new lines if the variable has multiple lines
 pwd # show the full path of the directory you are currently in
 ls # list current folder
 ls -l # long list format
@@ -65,11 +67,58 @@ then
   STATEMENTS
 fi
 
+if [[ -z $VARIABLE ]] # check if a variable is empty
+
 # for loop:
 for (( i = 10; i > 0; i-- ))
 do
   echo $i
 done
+
+#while loop:
+while
+do
+done
+
+#example:
+echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+do
+  echo $BIKE_ID $TYPE $SIZE
+done
+
+
+#
+# Functions
+#
+
+FUNCTION_NAME() {
+  STATEMENTS
+}
+
+FUNCTION_NAME # call the function simply by typing the name (without a $)
+
+# until loop (execute a command until the result passes as true)
+until [[ CONDITION ]]
+do
+  STATEMENTS
+done
+
+# CASE statements
+case EXPRESSION in # expression could be a variable recieved from the user through READ
+  PATTERN) STATEMENTS ;; #example: 1) FUNCTION_CALL ;;
+  PATTERN) STATEMENTS ;;
+  PATTERN) STATEMENTS ;;
+  *) STATEMENTS "argument" ;; #pass an argument to the statement if it's a function call and refernce it as $1 somewhere else
+esac
+
+
+#
+# Arrays
+#
+
+ARR=("a" "b" "c")
+echo ${ARR[0]}
+echo ${ARR[*]} # print all items
 
 #
 # Conditions, expressions, operators
@@ -119,37 +168,8 @@ declare -p # show all environmental variables, included ones created in the curr
 declare -p VARIABLE # check if the variable exists and what it contains
 RANDOM # variable that gives a random number between 0 and 32767. add modulus operator to range it (( $RANDOM % 75 )) == 0 to 74)
 
-#
-# Arrays
-#
 
-ARR=("a" "b" "c")
-echo ${ARR[0]}
-echo ${ARR[*]} # print all items
 
-#
-# Functions
-#
-
-FUNCTION_NAME() {
-  STATEMENTS
-}
-
-FUNCTION_NAME # call the function simply by typing the name (without a $)
-
-# until loop (execute a command until the result passes as true)
-until [[ CONDITION ]]
-do
-  STATEMENTS
-done
-
-# CASE statements
-case EXPRESSION in # expression could be a variable recieved from the user through READ
-  PATTERN) STATEMENTS ;; #example: 1) FUNCTION_CALL ;;
-  PATTERN) STATEMENTS ;;
-  PATTERN) STATEMENTS ;;
-  *) STATEMENTS "argument" ;; #pass an argument to the statement if it's a function call and refernce it as $1 somewhere else
-esac
 
 # commands
 type <command> # show the type of command it is (built in, keyword, etc) or location
