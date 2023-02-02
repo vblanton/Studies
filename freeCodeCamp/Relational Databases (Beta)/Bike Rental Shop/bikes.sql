@@ -16,29 +16,6 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
-DROP DATABASE bikes;
---
--- Name: bikes; Type: DATABASE; Schema: -; Owner: freecodecamp
---
-
-CREATE DATABASE bikes WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'C.UTF-8' LC_CTYPE = 'C.UTF-8';
-
-
-ALTER DATABASE bikes OWNER TO freecodecamp;
-
-\connect bikes
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
-
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
@@ -176,28 +153,42 @@ ALTER TABLE ONLY public.rentals ALTER COLUMN rental_id SET DEFAULT nextval('publ
 -- Data for Name: bikes; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
-INSERT INTO public.bikes VALUES (7, 'BMX', 19, true);
-INSERT INTO public.bikes VALUES (8, 'BMX', 20, true);
-INSERT INTO public.bikes VALUES (9, 'BMX', 21, true);
-INSERT INTO public.bikes VALUES (2, 'Mountain', 28, true);
-INSERT INTO public.bikes VALUES (3, 'Mountain', 29, true);
-INSERT INTO public.bikes VALUES (4, 'Road', 27, true);
-INSERT INTO public.bikes VALUES (5, 'Road', 28, true);
-INSERT INTO public.bikes VALUES (6, 'Road', 29, true);
-INSERT INTO public.bikes VALUES (1, 'Mountain', 27, false);
+COPY public.bikes (bike_id, type, size, available) FROM stdin;
+8	BMX	20	t
+9	BMX	21	t
+1	Mountain	27	t
+2	Mountain	28	t
+3	Mountain	29	t
+4	Road	27	t
+5	Road	28	t
+6	Road	29	t
+7	BMX	19	t
+\.
 
 
 --
 -- Data for Name: customers; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
-INSERT INTO public.customers VALUES (1, '555-5555', 'Me');
+COPY public.customers (customer_id, phone, name) FROM stdin;
+1	555-5555	Me
+2	000-0000	Test
+\.
 
 
 --
 -- Data for Name: rentals; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
+COPY public.rentals (rental_id, customer_id, bike_id, date_rented, date_returned) FROM stdin;
+1	1	1	2021-05-25	2023-02-02
+2	1	2	2021-05-25	2023-02-02
+3	1	3	2021-05-27	2023-02-02
+4	1	4	2021-05-27	2023-02-02
+5	1	5	2021-05-27	2023-02-02
+6	2	6	2021-05-27	2023-02-02
+7	2	7	2021-05-27	2023-02-02
+\.
 
 
 --
@@ -211,14 +202,14 @@ SELECT pg_catalog.setval('public.bikes_bike_id_seq', 9, true);
 -- Name: customers_customer_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.customers_customer_id_seq', 1, true);
+SELECT pg_catalog.setval('public.customers_customer_id_seq', 2, true);
 
 
 --
 -- Name: rentals_rental_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
 
-SELECT pg_catalog.setval('public.rentals_rental_id_seq', 1, false);
+SELECT pg_catalog.setval('public.rentals_rental_id_seq', 7, true);
 
 
 --
