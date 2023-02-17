@@ -1,2 +1,2 @@
 # studies
-work/projects from my freeCodeCamp courses, 100Devs, GoMakeThings, etc
+projects and class notes from freeCodeCamp courses, 100Devs, GoMakeThings, documentation, etc
