@@ -115,6 +115,7 @@ str.substring(start, end) // start reading from start position, end position beg
 .toLowerCase() // convert something to lowercase
 .concat() // add a string to another string
 str.charCodeAt(x) // get unicode code of a character
+str.search(regexp) // returns index of the match and accepts or converts to a regexp
 
 // Objects
 const object = {
@@ -270,6 +271,13 @@ myString.replace(myRegex, "replacement text") // search and replace. does accept
 
 event.preventDefault() // how to prevent default event usage in javascipt
 EventTarget.addEventListener() // watch an event for changes replacing onXYZ
+
+document.getElementById('idname') // get the element by ID in the DOM
+getElementsByTagName("a") // get all elements by a tag in the DOM (usually called within a container)
+input.value // value of an input field
+.innerText
+.textContent
+.style.display = "none" // modify a style directly, in this case, display
 
 // variable naming conventions or requirements
 
