@@ -276,6 +276,7 @@ document.getElementById('idname') // get the element by ID in the DOM
 getElementsByTagName("a") // get all elements by a tag in the DOM (usually called within a container)
 input.value // value of an input field
 .innerText
+.innerHTML
 .textContent
 .style.display = "none" // modify a style directly, in this case, display
 
