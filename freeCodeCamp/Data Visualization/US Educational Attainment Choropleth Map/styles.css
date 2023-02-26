@@ -1,7 +1,3 @@
-body {
-  font-family: 'Red Hat Mono', 
-}
-
 #title {
     text-align: center;
     margin-top: 50px;
@@ -20,3 +16,14 @@ body {
     padding: 10px;
     border-radius: 3px;
   }
+
+.county:hover {
+    stroke: black;
+    stroke-width: 1px;
+    stroke-linejoin: round;
+  }
+
+.state {
+  stroke: white;
+  stroke-linejoin: round;
+}

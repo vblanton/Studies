@@ -9,7 +9,8 @@
  * Inspired by Van B-C's map: https://codepen.io/vanbc18/pen/gOoxrLK
  * 
  * 
- * Todo: clearer division between states (a border)
+ * Todo: 
+ * clearer division between states (a border)
  * Legend with more markers
  * responsive design
 **/
@@ -42,8 +43,7 @@ const colorScale = d3.scaleThreshold()
   .domain(domain)
   .range(d3.schemeBlues[8]); //d3.schemeColor just returns an array of colors
 
-// https://github.com/topojson/topojson, this is the data d3 needs to draw the map, converting TopoJSON to GeoJSON
-const data = topojson.feature(countyData, counties).features; 
+
 
 // the choropleth map container
 let svg = d3.select("#svg")
@@ -55,6 +55,22 @@ let svg = d3.select("#svg")
 let tooltip = d3.select("body")
   .append("div")
   .attr("id", "tooltip");
+
+// ATTEMPT AT ADDING BORDER AROUND STATES:
+
+// const dataStates = topojson.feature(countyData, states).features;
+
+// svg.append("g")
+//     .data(dataStates)
+//     .enter()
+//     .append("path")
+//     .attr("class", "state")
+//     .attr("d", path)
+    // .attr("fill" black);
+
+
+// converting TopoJSON to GeoJSON
+const data = topojson.feature(countyData, counties).features; 
 
 // the actual map
 svg.append("g")
@@ -68,6 +84,7 @@ svg.append("g")
   .attr("data-fips", (d) => d.id)
   .attr("data-education", (d) => eduData.find(item => item.fips == d.id).bachelorsOrHigher) //need find() to match countyData with eduData !
   .attr("fill", (d) => colorScale(eduData.find(item => item.fips == d.id).bachelorsOrHigher) || 0)
+  // .attr("stroke", white)
   .on("mouseover", (event, d) => {
     const education = eduData.find(item => item.fips == d.id);
     tooltip.style("visibility", "visible")
@@ -77,6 +94,7 @@ svg.append("g")
            .attr("data-education", education.bachelorsOrHigher)
            .text(() => "State: " + education.state + ",\n Area: " + education.area_name + ", " + education.bachelorsOrHigher + "%")})
  .on("mouseout", () => tooltip.style("visibility", "hidden"));
+
 
  // the legend part
  let legendBox = svg.append("g")
@@ -105,7 +123,9 @@ const yScale = d3.scaleLinear()
 const yAxis = d3.axisLeft(yScale)
 .tickValues(legendDomain)
 .tickFormat(d => d + " %")
-.tickSize(3); 
+.tickSize(10)
+// .ticks(5)
+; 
 
 svg.append("g")
 .call(yAxis)
