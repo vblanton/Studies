@@ -8,6 +8,10 @@
  * 
  * Inspired by Van B-C's map: https://codepen.io/vanbc18/pen/gOoxrLK
  * 
+ * 
+ * Todo: clearer division between states (a border)
+ * Legend with more markers
+ * responsive design
 **/
 
 // Global Variables
