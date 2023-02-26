@@ -8,17 +8,6 @@ https://www.freecodecamp.org/learn/data-visualization/data-visualization-project
 using this JSON file for the data:
 https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/global-temperature.json
 
-Todo:
-legend
-  finish implementation
-  use color function
-tooltips
-  ...
-debug
-  why are my data points mapped upside down on the y axis
-
-Todo Optional:
-
 */
 
 d3.json ('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/global-temperature.json')

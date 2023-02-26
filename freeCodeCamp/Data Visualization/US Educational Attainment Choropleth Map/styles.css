@@ -1,0 +1,22 @@
+body {
+  font-family: 'Red Hat Mono', 
+}
+
+#title {
+    text-align: center;
+    margin-top: 50px;
+  }
+
+#svg {
+    width: min-content;
+    margin: 0 auto;
+  }
+
+#tooltip {
+    position: absolute;
+    visibility: hidden;
+    border: solid 1px #000;
+    background-color: #ffeadc;
+    padding: 10px;
+    border-radius: 3px;
+  }
