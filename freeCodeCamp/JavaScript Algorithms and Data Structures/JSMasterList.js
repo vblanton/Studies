@@ -1,3 +1,6 @@
+// enable typescript like alerts in IDE
+@ts-check // add to top of the file
+
 // variables
 // data types: undefined, null, boolean, string, symbol, bigint, number, and object.
 let variable // create an ES6+ variable that is mutable
