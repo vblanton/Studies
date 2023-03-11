@@ -59,6 +59,13 @@ animation: 3s linear infinite wave;
 overflow: clip, hidden;
 cursor: not-allowed;
 
+/* lists */
+list-style-type:;
+list-style-position:;
+list-style: circle inside;
+list-style: number lower-roman;
+
+
 /*Animation*/
 
 @keyframes wave {
