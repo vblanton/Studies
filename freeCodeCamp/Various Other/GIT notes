@@ -46,3 +46,38 @@ git branch -d branch_name
 
 # merge main back into branches to keep them up to date from within the branch:
 git merge main
+
+# odin project:
+git clone git@github.com:vblanton/git_test.git
+# cloning my repo
+
+#see verions:
+git remote -v
+
+git status 
+
+# main worlflow:
+git add <file or directory>
+git status
+git commit -m "description of commit"
+git log
+git push (or git push origin main)
+
+# Commands related to a remote repository:
+git clone git@github.com:USER-NAME/REPOSITORY-NAME.git
+git push or git push origin main (Both accomplish the same goal in this context)
+# Commands related to the workflow:
+git add .
+git commit -m "A message describing what you have done to make this snapshot different"
+# Commands related to checking status or log history
+git status
+git log
+
+# Good Commit Messages:
+# Separate subject from body with a blank line
+# Limit the subject line to 50 characters
+# Capitalize the subject line
+# Do not end the subject line with a period
+# Use the imperative mood in the subject line
+# Wrap the body at 72 characters
+# Use the body to explain what and why vs. how
