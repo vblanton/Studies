@@ -1,12 +1,45 @@
 // enable typescript like alerts in IDE
 @ts-check // add to top of the file
 
-// variables
-// data types: undefined, null, boolean, string, symbol, bigint, number, and object.
-let variable // create an ES6+ variable that is mutable
+// DATA TYPES
+
+// Number 
+// limited in size to 2^53 -1 (or in the negative -2^53 -1)
+Infinity
+-Infinity
+NaN
+// BigInt 
+const bigInt = 1234567890123456789012345678901234567890n; // append n to the end of an integer to make it a BigInt
+// Strings
+const string = "hello" // surround by qoutes, single or double
+let phrase = `can embed another ${string}`; // note the use of backticks to embed variables or expressions in a string by wrapping in ${}
+// Boolean
+// Null
+// null is not a null pointer, it's just a reference to nothing, empty, or value unknown, usually assigned by you
+let bebop = null;
+// Undefined
+// meaning: “value is not assigned”, similar to null, but reserved for a defualt initial value
+let age; // the value will be undefined
+// Object
+// for more complex data structures
+// Symbol
+// for unique identifiers
+
+typeof 0 // returns the type of a variable, number, whatever.
+typeof(0) // also valid, it's just regular paranthesis grouping however
+
+
+
+// Variables
+// naming: letters, digits, $ and _ only, cannot start with a number, camelCase is commonly used, or all uppercase for consts, cast matters 
+var variable // pre ES6+ method, ignores block scopes, only function or global scope, tolerates re-declaration, processed at function start, old code may have used IIFE to emulate scope by wrapping a function in paranthesis and immediately calling a variable with an alert or something
+let variable // create an ES6+ variable that is mutable, limits to block scope, doesn't tolerate re-declaration
 const variable // create an ES6+ variable that is immutable
 
-// Operators
+// Maths + Operators
+// math operators have precedence, with unary + and - having highest, then division and multiplication, addition subtraction, etc, and finally the equals
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence
+
 ! // NOT operater, converts a value to boolean and then return false it is true and true if is false.
 !! // Double NOT operator, converts a value to boolean and return true if it is true and false if it is false.
 = // assignment operator
@@ -16,10 +49,83 @@ const variable // create an ES6+ variable that is immutable
 !=== // strict not equal
 && // and
 || // or
-% // gives remainder of division for instance to check if even or odd.
-** // exponentiation operator
 (true && expression) // evaluates to expression
 (false && expression) // evaluates to false or 0
+
++ // addition, concatanation of string, as a "unary" to convert a string to a number, or to increment by 1 
+-
+*
+/
+% // gives remainder of division for instance to check if even or odd.
+** // exponentiation operator
+
+++ // increment by one (only for variables)
+--
+++variable // prefix form, immediately adds 1 to variable
+variable++ // postfix form, returns original variable, then adds 1 to it for later use
+
++= // add to self
+-/
+*=
+/=
+
+// bitwise operators, operating on binary representation of operators. not used much for web development. used in cryptography
+& // and
+| // or
+^ // xor
+~ // not
+<< // left shift
+>> // right shift
+>>> // zero fill right shift
+
+, // used to evaluate and throw our everything but last expression. very low priority, needs paranthesis. example:
+for (a = 1, b = 3, c = a * b; a < 10; a++) {}
+
+// type conversion examples
+"" + 1 + 0 = "10"
+"" - 1 + 0 = -1
+true + false = 1
+6 / "3" = 2
+"2" * "3" = 6
+4 + 5 + "px" = "9px"
+"$" + 4 + 5 = "$45"
+"4" - 2 = 2
+"4px" - 2 = NaN
+"  -9  " + 5 = "  -9  5"
+"  -9  " - 5 = -14
+null + 1 = 1
+undefined + 1 = NaN
+" \t \n" - 2 = -2
+
+Math.max() // returns the highest number. expects comma seperated values, but not an array
+Math.min() // returns smallest number in comma seperated input
+Math.random() // function to return a random fraction between 0 and 1, but not including 1.
+Math.round() // returns number rounded to the nearest integer
+Math.ceil() // round up to the rearest whole number
+Math.floor() // round down to nearest whole number
+Math.sqrt() // square root a number
+Math.cbrt() // returns cube root of a number
+Math.pow(base, exponent) // value of a number to the power of another number
+Math.log() // returns natural log (base e) of a number
+Math.exp() // returns e (2.718281828459045) raised to the power of a number
+Math.PI // represents pi 3.141592653589793
+Math.E // represents e 2.718281828459045
+
+parseInt() // convert string into int
+parseInt(string, radix) // use radix to convert based on base number (2 for binary)
+parseFloat() // convert string into floating number, removing trailing zeros
+
+Number.isInteger()
+Number.isFinite()
+Number.isNaN()
+Number.isSafeInteger()
+Number("123"); // convert string to number, 123
+Number(""); // 0
+Number(null) // 0
+Number("0o11"); // 9 (hex)
+
+.toFixed(4) // fix to 4 decimal places
+.toString() // convert number to string
 
 // Escape character "\" allows for next character to not be interpreted
 \'	// single quote
@@ -108,17 +214,46 @@ Array.isArray(obj) // check if "obj" is an array boolean
 
 // Strings
 // note: you can read, but not write to a string using bracket notation introduced as of ES2015
-let str = ""; // define a string
+let str = "hello" + var // use a + to concatanate strings
+let str = ""; // define a string, also you can use single quotes ''
+let phrase = `can embed another ${str}`; // notice the use of backticks in this case, this is called using template literals and it is considered more readable
+let phrase = `or an expression ${1 + 2}`; // or embed an expression
+let str = 'I\'m happy!'; // backslash escape character
+
+// all string methods return a new value, they do not modify the original string
 str.length // calculate length of a string variable
-str[x] // get letter at position x starting from 0
 str[str.length - 1] // get last letter
-str.substring(start, end) // start reading from start position, end position beginning from 0
-.repeat() // repeat a string method
-.toUpperCase() // conver something to uppercase (return true if already uppercase)
-.toLowerCase() // convert something to lowercase
-.concat() // add a string to another string
+str.slice(start, end) // takes out a portion of a string from position start (0) to end (1) and returns the new value, end not necessary if using all of the rest. if parameter is negative, it is counted from the end, but then left to right
+str.substring(start, end) // start reading from start position, end position beginning from 0, but values less than zero are treated as zero
+str.substr() // deprecated
+str.replace("name", "vlad") // replace specified value in a string with another. returns a new string, only first match,
+str.repalce(/name/ig, "vlad") //  regex accepted and written without quotes
+str.replaceAll() // all matches, ES2021 feature
+str.trim() // remove whitespaces before and after
+str.trimStart()
+str.trimEnd()
+str.padStart() // as of ES2017, pads a string with another string: let padded = text.padStart(4,"x"); convert numbers to strings with quotes to pad numbers into a string
+str.padEnd()
+str.split(", ") // convert a string into an array, with seperation defined. if not seperator defined, will return the whole string
+str.repeat() // repeat a string method
+str.toUpperCase() // conver something to uppercase (return true if already uppercase)
+str.toLowerCase() // convert something to lowercase
+str.concat() // add a string to another string, or just use + operator
+str[x] // get letter at position x starting from 0, property code access, will return undefined if no string found, read only
+str.charAt() // like using [], will return an empty string if no string found
 str.charCodeAt(x) // get unicode code of a character
 str.search(regexp) // returns index of the match and accepts or converts to a regexp
+str.constructor() // returns the string's constructor function
+str.endsWith() // returns if string ends with a specified value
+str.startsWith()
+str.includes() // returns if string incudes a specified value
+str.indexOf() // returns first index of match
+str.lastIndexOf() // returns index of last match
+// more: https://www.w3schools.com/jsref/jsref_obj_string.asp
+// even more methods: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
+
+.toString() // converts number to a string
+
 
 // Objects
 const object = {
@@ -173,41 +308,12 @@ const myPromise = new Promise((resolve, reject) => {
 myPromise.then(result => { }); // Handle a Fulfilled Promise with then, which executes after resolve (fulfilled). placed below the resolve function
 myPromise.catch(error => { }); // Handle a rejected promise with catch, which executes after rejection, placed below rejection function
 
-// Math and Numbers
-
-Math.max() // returns the highest number. expects comma seperated values, but not an array
-Math.min() // returns smallest number in comma seperated input
-Math.random() // function to return a random fraction between 0 and 1, but not including 1.
-Math.round() // returns number rounded to the nearest integer
-Math.ceil() // round up to the rearest whole number
-Math.floor() // round down to nearest whole number
-Math.sqrt() // square root a number
-Math.cbrt() // returns cube root of a number
-Math.pow(base, exponent) // value of a number to the power of another number
-Math.log() // returns natural log (base e) of a number
-Math.exp() // returns e (2.718281828459045) raised to the power of a number
-Math.PI // represents pi 3.141592653589793
-Math.E // represents e 2.718281828459045
-
-parseInt() // convert string into int
-parseInt(string, radix) // use radix to convert based on base number (2 for binary)
-parseFloat() // convert string into floating number, removing trailing zeros
-
-Number.isInteger()
-Number.isFinite()
-Number.isNaN()
-Number.isSafeInteger()
-Number("123"); // 123
-Number(""); // 0
-Number(null) // 0
-Number("0o11"); // 9 (hex)
-
-.toFixed(4) // fix to 4 decimal places
-
 // Functions
 function functionName(param1, param2) {} // this is how to make a function
+function functionName(param1 = 1, param2) {} // setup a default parameter if none is provided
 function(); // this is how to call your function
 return var // returns the end result of the function and ends it
+
 
 // Built in Functions
 
@@ -227,7 +333,8 @@ Function() // use in place of eval() for safer conversion of string to number
   function parse(str) {
     return Function(`'use strict'; return (${str})`)()
   };
-
+let a = prompt("First Number?", 1); // prompt user for a number, defaulting to 1?
+alert(+a); // show result of prompt and convert a to a number
 
 
 // Regex
