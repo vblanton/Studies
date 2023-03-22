@@ -1,5 +1,8 @@
-// enable typescript like alerts in IDE
-@ts-check // add to top of the file
+// NOTES
+
+// transpiler turns new code into older style code for compatibility
+// polyfills provide the code for new methods and built in functions for older compatibility
+@ts-check // enable typescript like alerts in IDE, add to top of the file
 
 // DATA TYPES
 
@@ -21,7 +24,7 @@ let bebop = null;
 // meaning: “value is not assigned”, similar to null, but reserved for a defualt initial value
 let age; // the value will be undefined
 // Object
-// for more complex data structures
+// for more complex data structures (not primitive, because it can store more than one single thing)
 // Symbol
 // for unique identifiers
 
@@ -29,28 +32,47 @@ typeof 0 // returns the type of a variable, number, whatever.
 typeof(0) // also valid, it's just regular paranthesis grouping however
 
 
-
-// Variables
+// VARIABLES
 // naming: letters, digits, $ and _ only, cannot start with a number, camelCase is commonly used, or all uppercase for consts, cast matters 
+
+kebab-case // CSS style classes
+camelCase // javascript functions, variables
+ALLCAPS // javascript consts 
+CapitalizedCamelCase // React components
+snake_case // C, C++, Java, Python, Rust, and others but not so much javascript for variables, subroutines, filenames
+
 var variable // pre ES6+ method, ignores block scopes, only function or global scope, tolerates re-declaration, processed at function start, old code may have used IIFE to emulate scope by wrapping a function in paranthesis and immediately calling a variable with an alert or something
 let variable // create an ES6+ variable that is mutable, limits to block scope, doesn't tolerate re-declaration
 const variable // create an ES6+ variable that is immutable
 
-// Maths + Operators
+// a variable inherently returns true or false depending on whether it evaluates to a falsy or truthy value
+
+// MATHS OPERATORS COMPARISONS
 // math operators have precedence, with unary + and - having highest, then division and multiplication, addition subtraction, etc, and finally the equals
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence
 
-! // NOT operater, converts a value to boolean and then return false it is true and true if is false.
-!! // Double NOT operator, converts a value to boolean and return true if it is true and false if it is false.
+! // NOT operater, converts a value to boolean and then return the opposite value
+!! // Double NOT operator, converts a value to boolean, but the opposite, and then the opposite again, hence just turning a value to a boolean
+Boolean() // alternative to !!
 = // assignment operator
-== // Equal to, will do type conversion: converts types of vars
+== // Equal to, will do type conversion: converts types of vars, but will not convert some things to numbers
 === // Strict equality, no type conversion
 !== // not equal to
 !=== // strict not equal
-&& // and
-|| // or
+// precedence of && is higher than ||, so imagine && in parenthesis
+// dont use && for if. you can, but it isn't recommended. less readable.
+&& // and, will evaluate left to right and return the first falsy value or if all are truthy returns the last operand. 
+|| // or, will evaluate left to right until a truthy value is found and then return the first truthy value
+?? // nullish coalescing, returns the first defined value "a ?? b" (if not null or undefined, return what is on the left, otherwise the right). can be stacked (a || b || c || "Nope!")
+// equality checks will convert strings to numbers, and null/undefined to 0. for strings, it is the first letter, than the second, etc following unicode numbers for the letter
+> // greater than. 
+< // lesser
+>= // greater than or equal
+<= 
 (true && expression) // evaluates to expression
 (false && expression) // evaluates to false or 0
+0 == false / falsy
+1 == true / truthy
 
 + // addition, concatanation of string, as a "unary" to convert a string to a number, or to increment by 1 
 -
@@ -127,98 +149,24 @@ Number("0o11"); // 9 (hex)
 .toFixed(4) // fix to 4 decimal places
 .toString() // convert number to string
 
-// Escape character "\" allows for next character to not be interpreted
-\'	// single quote
-\"	// double quote
-\\	// backslash
-\n	// newline
-\r	// carriage return
-\t	// tab
-\b	// word boundary
-\f	// form feed
-
-
-// loops (and if statements)
-for (let x = 0; x <= something; x++) {}
-for (let obj in objArray) {} // a "for in" loop to iterate over objects in an array
-for (let key in obj) {} // iterate over keys in an object
-for (let value of obj) {} // iterates over values in an object
-for (let item in arr) {} // a for in loop over an array (order may not be preserved, try arr.forEach()) or for objects, iterates over keys
-break; // ends the loop
-continue; // skips to next iteration of the loop
-
-while (i <= 10) {i++;} // while loop
-
-do {ourArray.push(i); i++;} // do while loop
-while (i < 5);
-
-switch (aLetter) { // switch statment using a testing variable
-  case "a":  // possible equality test of the variable
-    console.log("A");
-    break; // stop executing statements
-  case "b":  // possible test of a value
-    console.log("B");
-    break;
-  case "v":
-  case "g":
-    console.log("V or G");
-    break;
-  default: // in case no cases match, like else statement
-    console.log("Something Else");
-}
-switch (true) {} // trick to just run a switch without input variable (possibly bad practice)
-
-// if/else statments
-if, else if, else // stacking if/else statements
-a ? b : d // if/else on one line using conditional operator or ternary operator. condition ? code to run if true : code to run if else
-
-return (a === b) ? "a and b are equal" // using multiple else if else
-  : (a > b) ? "a is greater"
-  : "b is greater";
-
-function sum(arr, n) { // recursion with base case at top
-    if (n <=0 ) {
-      return 0;
-    } else {
-      return sum(arr, n - 1) + arr[n - 1];
-    }
-  }
-
-// Arrays
-let arr = ['one', 2, 'three', true, false, undefined, null];  // array
-... // spread operator/syntax. for copying everything in an array
-let arr = [...otherArray, 'optional addition']; // copy array, but only one dimensional arrays
-let thatArray = ['basil', 'cilantro', ...thisArray, 'coriander']; // splice in another array
-
-arr.unshift() // add to beginning
-arr.shift() // remove from beginning
-arr.push() // add to end
-arr.pop() // remove from end and optionally add it to a new var
-arr.splice(startIndex, amountToDelete, whatToAdd) // remove or add any consecutive items from within the array, can take 3 variables, modifies original array
-arr.slice(indexToStart, indexToStopNotIncluding) // copy a section of a arr to another arr
-arr.indexOf('thing') // returns the first index in which an element appears in the array. will return -1 if not in the array
-arr.every() // method tests whether all elements in the array pass the test implemented by the provided function. It returns a Boolean value.
-arr.forEach() // executes a provided function once for each array element.
-arr.filter() // call a function returning true or false on every item in an array and assign it to a new array
-arr.map() // do something to each element in the array and output a new array
-arr.reduce() // call a function that calculates something off each element in an array and output a single answer (number, etc)
-arr.trim() // remove whitespaces in array
-arr.split() // seperate string into an array of strings
-arr.split(" ") // seperate by spaces
-arr.join() // return an array joined into a string
-arr.some() // check if at least one element in the array passes the provided function and returns a boolean
-[arr1].concat([arr2]) // add an array to another arry
-Array.prototype.sort() // modifies the original array, and by default will order the items alphanumerically. returns -1, 0, or 1 through callback function to sort before, keep untouched, or after current item.
-
-Array.isArray(obj) // check if "obj" is an array boolean
-
 // Strings
 // note: you can read, but not write to a string using bracket notation introduced as of ES2015
+
 let str = "hello" + var // use a + to concatanate strings
 let str = ""; // define a string, also you can use single quotes ''
 let phrase = `can embed another ${str}`; // notice the use of backticks in this case, this is called using template literals and it is considered more readable
 let phrase = `or an expression ${1 + 2}`; // or embed an expression
 let str = 'I\'m happy!'; // backslash escape character
+
+// Escape characters "\" allows for next character to not be interpreted
+"\'"	// single quote
+"\""	// double quote
+"\\"	// backslash
+"\n"	// newline
+"\r"	// carriage return
+"\t"	// tab
+"\b"	// word boundary
+"\f"	// form feed
 
 // all string methods return a new value, they do not modify the original string
 str.length // calculate length of a string variable
@@ -253,6 +201,83 @@ str.lastIndexOf() // returns index of last match
 // even more methods: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
 
 .toString() // converts number to a string
+
+// Arrays
+let arr = ['one', 2, 'three', true, false, undefined, null];  // array
+... // spread operator/syntax. for copying everything in an array
+let arr = [...otherArray, 'optional addition']; // copy array, but only one dimensional arrays
+let thatArray = ['basil', 'cilantro', ...thisArray, 'coriander']; // splice in another array
+
+arr.unshift() // add to beginning
+arr.shift() // remove from beginning
+arr.push() // add to end
+arr.pop() // remove from end and optionally add it to a new var
+arr.splice(startIndex, amountToDelete, whatToAdd) // remove or add any consecutive items from within the array, can take 3 variables, modifies original array
+arr.slice(indexToStart, indexToStopNotIncluding) // copy a section of a arr to another arr
+arr.indexOf('thing') // returns the first index in which an element appears in the array. will return -1 if not in the array
+arr.every() // method tests whether all elements in the array pass the test implemented by the provided function. It returns a Boolean value.
+arr.forEach() // executes a provided function once for each array element.
+arr.filter() // call a function returning true or false on every item in an array and assign it to a new array
+arr.map() // do something to each element in the array and output a new array
+arr.reduce() // call a function that calculates something off each element in an array and output a single answer (number, etc)
+arr.trim() // remove whitespaces in array
+arr.split() // seperate string into an array of strings
+arr.split(" ") // seperate by spaces
+arr.join() // return an array joined into a string
+arr.some() // check if at least one element in the array passes the provided function and returns a boolean
+[arr1].concat([arr2]) // add an array to another arry
+Array.prototype.sort() // modifies the original array, and by default will order the items alphanumerically. returns -1, 0, or 1 through callback function to sort before, keep untouched, or after current item.
+
+Array.isArray(obj) // check if "obj" is an array boolean
+
+
+// CONDITIONALS, LOOPS
+
+for (let x = 0; x <= something; x++) {}
+for (let obj in objArray) {} // a "for in" loop to iterate over objects in an array
+for (let key in obj) {} // iterate over keys in an object
+for (let value of obj) {} // iterates over values in an object
+for (let item in arr) {} // a for in loop over an array (order may not be preserved, try arr.forEach()) or for objects, iterates over keys
+break; // ends the loop
+continue; // skips to next iteration of the loop
+
+while (i <= 10) {i++;} // while loop
+
+do {ourArray.push(i); i++;} // do while loop
+while (i < 5);
+
+switch (expression) { // executes expression and test's it according to each case to see if true match
+  case x:  // possible equality test of the variable
+    console.log("x");
+    break; // stop executing statements if case x true
+  case y:  // possible test of a value
+    console.log("y");
+    break;
+  default: // in case no cases match, like else statement
+    console.log("Something Else");
+}
+switch (true) {} // trick to just run a switch without input variable (possibly bad practice)
+
+// if/else statments
+if, else if, else // stacking if/else statements
+a ? b : d // ternary operator. if/else on one line using conditional operator or ternary operator. condition ? code to run if true : code to run if else
+
+return (a === b)  // using multiple else if else
+  ? "a and b are equal"
+  : (a > b) ? "a is greater"
+  : "b is greater";
+
+const greeting = isBirthday
+  ? 'Happy birthday Mrs. Smith — we hope you have a great day!'
+  : 'Good morning Mrs. Smith.';
+
+function sum(arr, n) { // recursion with base case at top
+    if (n <=0 ) {
+      return 0;
+    } else {
+      return sum(arr, n - 1) + arr[n - 1];
+    }
+  }
 
 
 // Objects
@@ -315,7 +340,7 @@ function(); // this is how to call your function
 return var // returns the end result of the function and ends it
 
 
-// Built in Functions
+// Built in Functions or Methods
 
 Boolean() // checks if value is falsy or truthy, returns TRUE or FALSE
 .length // counting up from 1
@@ -385,13 +410,12 @@ EventTarget.addEventListener() // watch an event for changes replacing onXYZ
 document.getElementById('idname') // get the element by ID in the DOM
 getElementsByTagName("a") // get all elements by a tag in the DOM (usually called within a container)
 input.value // value of an input field
-.innerText
-.textContent
-.style.display = "none" // modify a style directly, in this case, display
+select.value // value of a var called select
+var.innerText
+var.textContent
+var.style.display = "none" // modify a style directly, in this case, display
 
-// variable naming conventions or requirements
+const select = document.querySelector('select'); // select a form or item
+document.body.style.padding = '10px'; // update CSS
+html.style.backgroundColor = black;
 
-kebab-case // CSS style classes
-snake_case // C, C++, Java, Python, Rust, and others but not so much javascript for variables, subroutines, filenames
-camelCase // javascript functions, variables
-CapitalizedCamelCase // React components

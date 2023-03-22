@@ -1,0 +1,33 @@
+Open Command Menu to access anything:
+Ctrl + Shift + P
+
+Search:
+String, CSS, or XPath selectors 
+or even the JavaScript console to find things
+
+Animations tab:
+adjust animations visually with a timeboard
+
+Rendering tab:
+Paint Flashing: If you are doing an animation and see that it is green, there is room for improvement to optimize it
+
+Screenshots
+Rulers (sizing in pixels)
+
+Console:
+console.table(obj); will show a table of the object
+step through the debugger and it will show the values of variables as you go through each step
+you can right click and add console log into the console rather then the code
+break points (orange)
+also a pause point (blue)
+DOM mutation break point
+reference a node with $0: select a node, and then type $0 to make it evaluate to that
+type in any new variable name when selecting a node to make it a global variable of that node
+copy Javascript Path: right click > copy > Copy JS Path (uses document.querySelector())
+
+Audits Panel
+tests the page for problems, SEO, accessibility, and more.
+
+HTML vs DOM
+HTML is the initial code on the page
+DOM is the current code on the page essentially
