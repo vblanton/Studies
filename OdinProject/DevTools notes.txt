@@ -14,8 +14,7 @@ Paint Flashing: If you are doing an animation and see that it is green, there is
 Screenshots
 Rulers (sizing in pixels)
 
-Console:
-console.table(obj); will show a table of the object
+Console / Console API :
 step through the debugger and it will show the values of variables as you go through each step
 you can right click and add console log into the console rather then the code
 break points (orange)
@@ -24,6 +23,21 @@ DOM mutation break point
 reference a node with $0: select a node, and then type $0 to make it evaluate to that
 type in any new variable name when selecting a node to make it a global variable of that node
 copy Javascript Path: right click > copy > Copy JS Path (uses document.querySelector())
+loggin supports all types of variables, or parts of the DOM:
+console.log()
+console.warn()
+console.error()
+console.clear()
+filter the console temporarirly
+console.table(obj); will show a table of the object
+console.groupEnd() // group is initially at the end
+console.groupCollapsed() // group is inititally collapsed
+console.count() // counts the number of times something has been invoked
+console.countReset()
+console.trace() // stack trace
+console.time() // time it takes to do something
+console.timeEnd()
+
 
 Audits Panel
 tests the page for problems, SEO, accessibility, and more.
