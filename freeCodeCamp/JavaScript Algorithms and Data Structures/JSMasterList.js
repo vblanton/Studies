@@ -17,6 +17,7 @@ const bigInt = 1234567890123456789012345678901234567890n; // append n to the end
 const string = "hello" // surround by qoutes, single or double
 let phrase = `can embed another ${string}`; // note the use of backticks to embed variables or expressions in a string by wrapping in ${}
 // Boolean
+let foo = true;
 // Null
 // null is not a null pointer, it's just a reference to nothing, empty, or value unknown, usually assigned by you
 let bebop = null;
@@ -24,9 +25,14 @@ let bebop = null;
 // meaning: “value is not assigned”, similar to null, but reserved for a defualt initial value
 let age; // the value will be undefined
 // Object
+let man = {
+  age: 29;
+  height: "6'2\""
+}
 // for more complex data structures (not primitive, because it can store more than one single thing)
-// Symbol
-// for unique identifiers
+// Symbol / Symbol value
+// for unique identifiers given to objects
+const sym1 = Symbol();
 
 typeof 0 // returns the type of a variable, number, whatever.
 typeof(0) // also valid, it's just regular paranthesis grouping however
@@ -280,7 +286,8 @@ function sum(arr, n) { // recursion with base case at top
   }
 
 
-// Objects
+// OBJECTS
+
 const object = {
   key: 'String Value',
   key: true
@@ -297,7 +304,42 @@ this. // reference the object itself within the object
 .forEach // loop throuhg all keys in an object
 .append(value) // add a value to a property? (stackoverflow)
 
-// ES6 Class (template for creating objects)
+Symbol() // returns an object's or key's unique symbol identifier, or creating it and then returning it
+Symbol.for("key")
+
+// SYMBOLS
+// for unique identifiers given to objects
+const sym1 = Symbol();
+// it is possible to create a specific symbol wrapper object if needed by creating a symbol var and then an Object(symbolVar)
+// it is possible to create a symbol that is available across files and even realms (global scopes) in the JavaScript sybmol registry.
+Symbol.keyFor(Symbol.for("tokenString")) === "tokenString"; // true
+
+// well-known symbols:
+// All static properties of the Symbol constructor are Symbols themselves, whose values are constant across realms. heir purpose is to serve as "protocols" for certain built-in JavaScript operations, allowing users to customize the language's behavior. For example, if a constructor function has a method with Symbol.hasInstance as its name, this method will encode its behavior with the instanceof operator.
+Object.getOwnPropertySymbols() // returns an array of symbols on a given object. it is empty by default
+
+// Static Properties
+
+Symbol.asyncIterator // used by "for await... of"
+Symbol.hasInstance // used by instanceof
+Symbol.isConcatSpreadable // a boolean used by array.prototype.concat()
+Symbol.iterator // used by for... of
+Symbol.match // using by String.prototype.match()
+SymbolmatchAll
+Symbol.replace
+Symbol.search
+Symbol.split
+Symbol.species
+Symbol.toPrimitive
+Symbol.toStringTag
+
+// Static methods
+
+Symbol.for(key) // searches and returns or otherwise creates a new symbol
+Symbol.keyFor(sym) // 
+
+
+// CLASS ES6 (template for creating objects)
 class Rectangle {
   constructor(height, width) {
     this.height = height;
@@ -317,15 +359,28 @@ class ChildClass extends ParentClass { /* … */ } // extends creates a class th
 
 super() // used to access properties on an object literal or class's [[Prototype]], or invoke a superclass's constructor.
 
-// Set
+// SET a keyed collection
 // Array or Object with only unique values
 new Set()
 
-// Map
+// MAP a keyed collection
 // remember order of objects added to it
 new Map()
 
-// Promise
+// STRUCTURED DATA / JSON
+
+ArrayBuffer
+SharedArrayBuffer
+DataView
+Atomics
+JSON
+
+// MEMORY MANAGEMENT
+
+WeakRef
+FinalizationRegistry
+
+// PROMISE
 const myPromise = new Promise((resolve, reject) => {
   if(condition here) { resolve("Promise was fulfilled");}
   else { reject("Promise was rejected"); }
@@ -333,14 +388,37 @@ const myPromise = new Promise((resolve, reject) => {
 myPromise.then(result => { }); // Handle a Fulfilled Promise with then, which executes after resolve (fulfilled). placed below the resolve function
 myPromise.catch(error => { }); // Handle a rejected promise with catch, which executes after rejection, placed below rejection function
 
-// Functions
+// GENERATOR, AYNC GENERATOR
+
+// FUNCTIONS
+// all functions are scanned for a created before code is run, unless it is a function expression (declared to a variable)
+// a function is a value stored in a variable which is the name of the function, and can be copied to a new variable or 
+// should be short and do one thing
 function functionName(param1, param2) {} // this is how to make a function
 function functionName(param1 = 1, param2) {} // setup a default parameter if none is provided
 function(); // this is how to call your function
 return var // returns the end result of the function and ends it
+(function () { alert('hello'); }) // anonymous function
+// arrow functions
+textBox.addEventListener('keydown', (event) => console.log(`You pressed "${event.key}".`)); // anonymous arrow function
+let sum = (a, b) => a + b; // arrow function as function expression
+// default values
+// you can set a function's parameter's default value to something in case it is not called by simply declaring it with an equals:
+function showMessage(from, text = "no text given") { ... }; // a default value is given to "text"
+// in old functions JavaScript didn't support defaults values and so programmers but if statements or || statements inside the function to declare defaults
+// without a return value a function returns "undefined"
+return blah + blah; // always keep returns on one line, otherwise JS will insert a semicolon automatically
+// callback
+ask("Do you agree?", showOk, showCancel); // callback: passing a function as a variable to another function's parameter
 
+//common function names:
 
-// Built in Functions or Methods
+get...
+calc...
+create...
+check...
+
+// BUILT IN FUNCTIONS OR METHODS
 
 Boolean() // checks if value is falsy or truthy, returns TRUE or FALSE
 .length // counting up from 1
@@ -396,6 +474,18 @@ myRegex.test(myString); // returns true or false
 myString.match(myRegex); // returns the match
 myString.replace(myRegex, "replacement text") // search and replace. does accept a variable
 
+
+// INTERNATIONALIZATION
+
+Intl
+Intl.DateTimeFormat
+Intl.DisplayNames
+Intl.ListFormat
+Intl.Locale
+
+// ...
+
+
 // HTML
 
 <button onclick="activateLasers()"> Activate Lasers </button> // call a JS function in an event
@@ -418,4 +508,8 @@ var.style.display = "none" // modify a style directly, in this case, display
 const select = document.querySelector('select'); // select a form or item
 document.body.style.padding = '10px'; // update CSS
 html.style.backgroundColor = black;
+
+// rendering stuff:
+canvas // <canvas> element
+ctx
 
