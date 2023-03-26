@@ -4,6 +4,15 @@
 // polyfills provide the code for new methods and built in functions for older compatibility
 @ts-check // enable typescript like alerts in IDE, add to top of the file
 
+// CALL STACK
+// LIFO: Last In, First Out (the last read piece is the first to execute on the stack)
+// JavaScript is synchronous, or one threaded read top to bottom.
+// to do asynchronous code, like requests, JS uses an event loop
+
+// the event loop (in the browser):
+// the web browser, however, can do things concurrenltly, like clicks, a fetch request, or setTimeout()
+// and so tasks that take time are placed in a seperate queue called the callback queue or task queue and then are put back on the Call stack when ready
+
 // DATA TYPES
 
 // Number 
@@ -36,7 +45,6 @@ const sym1 = Symbol();
 
 typeof 0 // returns the type of a variable, number, whatever.
 typeof(0) // also valid, it's just regular paranthesis grouping however
-
 
 // VARIABLES
 // naming: letters, digits, $ and _ only, cannot start with a number, camelCase is commonly used, or all uppercase for consts, cast matters 
@@ -155,7 +163,7 @@ Number("0o11"); // 9 (hex)
 .toFixed(4) // fix to 4 decimal places
 .toString() // convert number to string
 
-// Strings
+// STRINGS
 // note: you can read, but not write to a string using bracket notation introduced as of ES2015
 
 let str = "hello" + var // use a + to concatanate strings
@@ -208,7 +216,8 @@ str.lastIndexOf() // returns index of last match
 
 .toString() // converts number to a string
 
-// Arrays
+// ARRAYS
+
 let arr = ['one', 2, 'three', true, false, undefined, null];  // array
 ... // spread operator/syntax. for copying everything in an array
 let arr = [...otherArray, 'optional addition']; // copy array, but only one dimensional arrays
@@ -440,6 +449,10 @@ let a = prompt("First Number?", 1); // prompt user for a number, defaulting to 1
 alert(+a); // show result of prompt and convert a to a number
 
 
+// INPUT
+prompt("text");
+let age = parseInt(prompt("Please enter your age"));
+
 // Regex
 /the/ // search for a string
 | // or
@@ -510,6 +523,14 @@ document.body.style.padding = '10px'; // update CSS
 html.style.backgroundColor = black;
 
 // rendering stuff:
-canvas // <canvas> element
+canvas // <canvas></canvas> element
 ctx
 
+// Errors
+// </></>
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors
+// ReferenceError: it's about a variable being undefined, unavailable, or unchangeable etc
+// SyntaxError: missing parenthesis, semicolon, quote mark for strings, curly brackets, or other type of code for a function
+// TypeError: consider the data type you are trying to use a method with, perhaps you mixed them up, or spelled it wrong
+//  - type issue, modifying a value that cannot be changed, or using a value in an inappropriate way
+// RangeError: a math / type issue

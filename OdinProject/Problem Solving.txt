@@ -1,0 +1,13 @@
+- understand the problem needing solved in plain English as if you could explain it to someone else
+
+- make a plan
+ - UI: does it need one, what will it look like, what functionality does it need?
+ - what inputs does the program have. will a user enter data or will you get data?
+ - what's the desired output?
+ - what are the steps necessary to return a desired output (subproblems, the algorithm)
+
+- pseudocode it using natural language
+    -divide out the subproblems
+
+- code it
+    - solve the smaller problems first
