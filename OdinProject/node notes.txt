@@ -1,0 +1,2 @@
+node - run the interactive JS console
+.quit  - exit

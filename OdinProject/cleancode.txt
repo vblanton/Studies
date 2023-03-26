@@ -1,0 +1,11 @@
+Indentation
+naming
+    use naming standards
+short lines
+add in semicolons even though JS doesn't require it
+comments
+    avoid commenting out code that should be deleted for too long
+    write code as if comments don't exist (readable)
+avoid long functions
+avoid indiscrimanate mixing of coding languages (css + JS)
+combine imports so there aren't too many
