@@ -234,7 +234,7 @@ arr.every() // method tests whether all elements in the array pass the test impl
 arr.forEach() // executes a provided function once for each array element.
 arr.filter() // call a function returning true or false on every item in an array and assign it to a new array
 arr.map() // do something to each element in the array and output a new array
-arr.reduce() // call a function that calculates something off each element in an array and output a single answer (number, etc)
+arr.reduce() // STUDY call a function that calculates something off each element in an array and output a single answer (number, etc)
 arr.trim() // remove whitespaces in array
 arr.split() // seperate string into an array of strings
 arr.split(" ") // seperate by spaces
