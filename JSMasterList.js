@@ -505,7 +505,46 @@ Intl.Locale
 // ...
 
 
-// HTML
+// HTML AND THE DOM
+
+// methods to target a div named "display":
+div.display
+.display
+#container > .display
+div#container > div.display
+firstElementChild
+lastElementChild
+element.previousElementSibling;
+
+element.querySelector(selector);
+element.querySelectorAll(selectors); // returns a nodelist, not an array, similar but missing some array functions, convert it to an array using the spread operator or Array.from()
+
+element.createElement('div'); // places a new element in memory (NOT into the DOM)
+parentNode.appendChild(childNode) // inserts it into the DOM
+parentNode.insertBefore(newNode, referenceNode) // inserts it into the DOM
+
+const container = document.querySelector('#container'); // assign to a variable
+console.dir(container.firstElementChild);     // assign to console output
+
+// editing an element
+
+div.style.color = 'blue';  
+div.style.cssText = 'color: blue; background: white;'; // add several style rules  
+div.setAttribute('style', 'color: blue; background: white;'); // also adds several rules
+
+// dealing with kebab-cased CSS rules within JavaScript:
+
+div.style.background-color // doesn't work - attempts to subtract color from div.style.background
+div.style.backgroundColor // accesses the div's background-color style
+div.style['background-color'] // also works
+div.style.cssText = "background-color: white;" // ok in a string
+
+// editing attributes:
+div.setAttribute('id', 'theDiv'); // change id  
+div.getAttribute('id');  // returns id
+div.removeAttribute('id');  // removes id
+
+// Other HTML and DOM:
 
 <button onclick="activateLasers()"> Activate Lasers </button> // call a JS function in an event
 
