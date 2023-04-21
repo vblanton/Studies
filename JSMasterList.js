@@ -526,23 +526,73 @@ parentNode.insertBefore(newNode, referenceNode) // inserts it into the DOM
 const container = document.querySelector('#container'); // assign to a variable
 console.dir(container.firstElementChild);     // assign to console output
 
-// editing an element
+// set, get, remove an element .. many ways to do it
+
+let div = document.querySelector('div'); // get a div
 
 div.style.color = 'blue';  
 div.style.cssText = 'color: blue; background: white;'; // add several style rules  
-div.setAttribute('style', 'color: blue; background: white;'); // also adds several rules
+div.setAttribute('style', 'color: blue; background: white;'); // also adds several rules, removing any existing rules
+divStyle.cssText = 'background-color:red;border:1px solid black;height:100px;width:100px;'; // add several style rules, removing any existing rules
+div.classList.add('foo'); // add a class
 
-// dealing with kebab-cased CSS rules within JavaScript:
-
-div.style.background-color // doesn't work - attempts to subtract color from div.style.background
-div.style.backgroundColor // accesses the div's background-color style
+divStyle.backgroundColor = 'red'; // accesses the div's background-color style, kebab-cased styles are converted to camelCase
+divStyle.setProperty('background-color','red'); // using the setProperty method
 div.style['background-color'] // also works
 div.style.cssText = "background-color: white;" // ok in a string
 
-// editing attributes:
+console.log(divStyle.backgroundColor);
+console.log(divStyle.getPropertyValue('background-color'));
+console.log(divStyle.cssText);
+console.log(div.getAttribute('style'));
+
+divStyle.backgroundColor = ''; // remove
+divStyle.removeProperty('background-color'); // remove
+divStyle.cssText = ''; // remove
+div.removeAttribute('style');
+
 div.setAttribute('id', 'theDiv'); // change id  
 div.getAttribute('id');  // returns id
 div.removeAttribute('id');  // removes id
+
+let div = document.querySelector('div'); // get the div
+console.log(window.getComputedStyle(div).backgroundColor); // get the computed style of the div
+
+
+// text nodes, properties and methods
+
+var textHi = document.querySelector('p').firstChild
+console.log(textHi.constructor); //logs Text()
+console.log(textHi); //logs Text {textContent="hi", length=2, wholeText="hi", ...}
+
+console.log(Object.keys(text).sort()); // text own properties
+// there are also inherited properties which can be found by using a for/in loop
+
+
+// some notable text properties/methods:
+textContent
+splitText()
+appendData()
+deleteData()
+insertData()
+replaceData()
+subStringData()
+normalize()
+data
+document.createTextNode()
+
+
+var textNode = document.createTextNode('Hi'); // create a text node
+document.querySelector('div').appendChild(textNode); // add it to the DOM
+
+// or programmatically:
+var elementNode = document.createElement('p');
+var textNode = document.createTextNode('Hi');
+elementNode.appendChild(textNode);
+document.querySelector('div').appendChild(elementNode);
+
+console.log(document.querySelector('p').firstChild.data); //logs 'Hi,'
+console.log(document.querySelector('p').firstChild.nodeValue); //logs 'Hi,'
 
 // Other HTML and DOM:
 
