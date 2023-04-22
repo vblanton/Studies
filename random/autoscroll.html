@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Scroll Effect</title>
+<style></style>
+<script>
+// a function to scroll the page
+function scrollPage() {
+// get the current scroll position
+var scrollPos = window.pageYOffset;
+// get the height of the page
+var pageHeight = document.body.scrollHeight;
+// get the height of the window
+var windowHeight = window.innerHeight;
+// get the scroll position of the bottom of the page
+var scrollBottom = pageHeight - windowHeight;
+// if the scroll position is at the bottom of the page
+if (scrollPos == scrollBottom) {
+// scroll to the top of the page smoothly
+window.scrollTo(0, 0);}
+// if the scroll position is not at the bottom of the page
+else {
+// scroll down one pixel
+window.scrollBy(0, 1);
+}
+// call the scrollPage function every 10 milliseconds
+setTimeout(scrollPage, 10);
+}
+</script>
+</head>
+<body onload="scrollPage()">
+<p>Scroll Effect</p>
+<p>let's test it</p>
+<!-- some lorem ipsum -->
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae
+    consectetur nisl. Nulla facilisi. Nullam euismod, nisl a ultricies
+    consequat, nisl nisl aliquet nisl, eget aliquet nisl nisl eget
+    nisl. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi.
+    Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+    facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae
+    consectetur nisl. Nulla facilisi. Nullam euismod, nisl a ultricies
+    consequat, nisl nisl aliquet nisl, eget aliquet nisl nisl eget
+    nisl. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi.
+    Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+    facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla</p>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae
+    consectetur nisl. Nulla facilisi. Nullam euismod, nisl a ultricies
+    consequat, nisl nisl aliquet nisl, eget aliquet nisl nisl eget
+    nisl. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi.
+    Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+    facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla</p>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae
+    consectetur nisl. Nulla facilisi. Nullam euismod, nisl a ultricies
+    consequat, nisl nisl aliquet nisl, eget aliquet nisl nisl eget
+    nisl. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi.
+    Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+    facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla</p>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae
+    consectetur nisl. Nulla facilisi. Nullam euismod, nisl a ultricies
+    consequat, nisl nisl aliquet nisl, eget aliquet nisl nisl eget
+    nisl. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi.
+    Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+    facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla</p>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae
+    consectetur nisl. Nulla facilisi. Nullam euismod, nisl a ultricies
+    consequat, nisl nisl aliquet nisl, eget aliquet nisl nisl eget
+    nisl. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi.
+    Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+    facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla</p>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae
+    consectetur nisl. Nulla facilisi. Nullam euismod, nisl a ultricies
+    consequat, nisl nisl aliquet nisl, eget aliquet nisl nisl eget
+    nisl. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi.
+    Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla
+    facilisi. Nulla facilisi. Nulla facilisi. Nulla facilisi. Nulla</p>
+</body>
+</html>
