@@ -1,0 +1,58 @@
+<!-- HTML boilerplate -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+<body>
+    <h1>
+      THE TITLE OF YOUR WEBPAGE
+    </h1>
+    <div id="container"></div>
+    <button onclick="alert('Hello World')">Click Me</button><br>
+    <button id="btn">Click Me</button><br>
+    <button id="btn2">Click Me Too</button>
+</body>
+
+  <script>
+    const container = document.querySelector('#container');
+
+    const content = document.createElement('div');
+    content.classList.add('content');
+    content.style.border = '1px solid black';
+    content.textContent = 'This is the glorious text-content!';
+
+    const paragraph = document.createElement('p');
+    paragraph.style.color = 'red';
+    paragraph.textContent = 'Hey I’m red!';
+
+    content.appendChild(paragraph);
+    container.appendChild(content);
+
+    // better this way, but DOM element can only have one onclick property
+    const btn = document.querySelector('#btn');
+    btn.onclick = () => alert("Hello World");
+
+    // this allows multiple onclick events, can also be done in a named function
+    const btn2 = document.querySelector('#btn2');
+    btn2.addEventListener('click', () => {
+    alert("Hello World");
+    });
+
+    // // iterate through all buttons:
+    // // buttons is a node list. It looks and acts much like an array.
+    // const buttons = document.querySelectorAll('button');
+
+    // // we use the .forEach method to iterate through each button
+    // buttons.forEach((button) => {
+
+    // // and for each one we add a 'click' listener
+    // button.addEventListener('click', () => {
+    //     alert(button.id);
+    // });
+    // });
+
+
+  </script>

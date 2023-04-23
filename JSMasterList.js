@@ -507,6 +507,11 @@ Intl.Locale
 
 // HTML AND THE DOM
 
+// use defer to load the script after the page has loaded (at the end)
+<head>
+  <script src="js-file.js" defer></script> 
+</head>
+
 // methods to target a div named "display":
 div.display
 .display
@@ -550,6 +555,9 @@ divStyle.backgroundColor = ''; // remove
 divStyle.removeProperty('background-color'); // remove
 divStyle.cssText = ''; // remove
 div.removeAttribute('style');
+div.classList.remove('new'); // remove a class
+
+div.classList.toggle('active');  // toggle a class (add or remove it)
 
 div.setAttribute('id', 'theDiv'); // change id  
 div.getAttribute('id');  // returns id
@@ -560,6 +568,8 @@ console.log(window.getComputedStyle(div).backgroundColor); // get the computed s
 
 
 // text nodes, properties and methods
+
+div.textContent = 'Hello World!'     
 
 var textHi = document.querySelector('p').firstChild
 console.log(textHi.constructor); //logs Text()
@@ -593,6 +603,37 @@ document.querySelector('div').appendChild(elementNode);
 
 console.log(document.querySelector('p').firstChild.data); //logs 'Hi,'
 console.log(document.querySelector('p').firstChild.nodeValue); //logs 'Hi,'
+
+// adding HTML to the DOM
+
+div.innerHTML = '<span>Hello World!</span>';  // use .innerHTML sparingly, or not at all, for security concerns of XSS attacks. must either ensure no user input goes through an .innerHTML or escape out HTML and render it as a string
+
+// event listeners:
+
+click
+dblclick
+keydown
+keyup
+drag
+drop
+playing
+touchstart
+// more: https://www.w3schools.com/jsref/dom_obj_event.asp
+
+//3 example onlick methods:
+<button onclick="alert('Hello World')">Click Me</button> // inline event handler
+
+// better this way, but DOM element can only have one onclick property
+const btn = document.querySelector('#btn');
+btn.onclick = () => alert("Hello World");
+
+// this allows multiple onclick events, can also be done in a named function
+const btn = document.querySelector('#btn');
+btn.addEventListener('click', () => {
+alert("Hello World");
+});
+
+
 
 // Other HTML and DOM:
 
@@ -629,3 +670,10 @@ ctx
 // TypeError: consider the data type you are trying to use a method with, perhaps you mixed them up, or spelled it wrong
 //  - type issue, modifying a value that cannot be changed, or using a value in an inappropriate way
 // RangeError: a math / type issue
+
+// Security
+
+// XSS (Cross-Site Scripting) - a type of injection, in which malicious scripts are injected into otherwise benign and trusted websites
+.innerHTML // this must not be allowed to accept user input, as it can be used to inject malicious scripts, or otherwise must be escaped out of all HTML elements so it's a string
+// DOM-based XSS - a type of XSS that occurs when data is taken from the DOM and inserted into the DOM without proper validation or escaping
+// DOM clobbering - a type of XSS that occurs when an attacker can modify the attributes of an existing DOM element
