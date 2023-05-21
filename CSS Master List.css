@@ -1,0 +1,171 @@
+
+/* CSS Master List */
+
+
+.background {
+    background-image: url();
+    background-repeat: no-repeat;
+    background-position: 0%;
+    background-size: auto;
+    background-clip: border-box;
+    background-origin: padding-box;
+    background-color: aliceblue;
+    background-blend-mode: darken;
+    background-position-x: center;
+    background-position-y: bottom;
+    background-origin: border-box;
+    background-attachment: scroll;
+    backdrop-filter: blur(10px);
+    backface-visibility: hidden;
+}
+
+.text {
+    font: 100% "Open Sans", sans-serif;
+    font-size: 1.5em;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #000000;
+    text-decoration: dashed;
+    text-shadow: #000000;
+}
+
+.alignment {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.colors{
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    border-color: #000000;
+}
+
+.animations {
+transition: all 0.7s ease-in-out; 
+transform: scale(1.1);
+}
+
+
+
+/* CSS Master List from fCC */
+
+:root {
+    --variable-name:#333;
+    }
+    
+    * {
+      box-sizing:border-box;
+    }
+    
+    @media (max-width: 400px) {
+    }
+    
+    @media (max-width: 1199px) and (min-width: 769px) {
+    
+    }
+    
+    100vw;
+    100vh;
+    100rem;
+    100em;
+    
+    display: inline-block, inline, block, grid, inline-grid, flex;
+    position: fixed, relative, absolute;
+    text-transform: uppercase;
+    
+    display: grid;
+    column-gap: 2px;
+    row-gap: 2px;
+    gap: 1px; /** shorthand for both **/
+    
+    .item1 {
+      grid-column-start: 1;
+      grid-column-end: 3;
+    }
+    .item1 {
+      grid-row-start: 1;
+      grid-row-end: 3;
+    }
+    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    
+    object-fit: cover;
+    content: "";
+    
+    background: linear-gradient(45deg, rgb(118, 201, 255), rgb(247, 255, 222));
+    transform: skew(0deg, 44deg);
+    transform: rotate(45deg);
+    transition: transform 1s ease-in-out 0ms;
+    transform: scale(1.5);
+    
+    transform-origin: top left;
+    transform: rotate(130deg) scaleX(-1);
+    animation: 3s linear infinite wave;
+    
+    overflow: clip, hidden;
+    cursor: not-allowed;
+    
+    /* lists */
+    list-style-type:;
+    list-style-position:;
+    list-style: circle inside;
+    list-style: number lower-roman;
+    
+    
+    /*Animation*/
+    
+    @keyframes wave {
+      10% {
+        transform: rotate(110deg) scaleX(-1);
+      }
+      20% {
+        transform: rotate(130deg) scaleX(-1);
+      }
+      30% {
+        transform: rotate(110deg) scaleX(-1);
+      }
+      40% {
+        transform: rotate(130deg) scaleX(-1);
+      }
+    }
+    
+    @keyframes cabins {
+      0% {
+        transform: rotate(0deg);
+      }
+      25% {
+        background-color: yellow;
+      }
+      50% {
+        background-color: purple;
+      }
+      100% {
+        transform: rotate(-360deg);
+      }
+    }
+    animation-name: wheel;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    
+    animation: cabins 10s ease-in-out infinite;
+    
+    .cabin:nth-of-type(1) {
+    }
+    
+    :first
+    ::after
+    ::before
+    ::first-letter
+    ::first-line
+    :first-child
+    :first-of-type
+    
+    /** combining elements' styles: **/
+    #elementid, #elementother, #anotherone {}
+    

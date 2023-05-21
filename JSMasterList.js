@@ -709,3 +709,6 @@ ctx
 .innerHTML // this must not be allowed to accept user input, as it can be used to inject malicious scripts, or otherwise must be escaped out of all HTML elements so it's a string
 // DOM-based XSS - a type of XSS that occurs when data is taken from the DOM and inserted into the DOM without proper validation or escaping
 // DOM clobbering - a type of XSS that occurs when an attacker can modify the attributes of an existing DOM element
+
+// resources
+https://keycode.info // find the keycode of a key
