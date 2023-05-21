@@ -633,9 +633,41 @@ btn.addEventListener('click', () => {
 alert("Hello World");
 });
 
+// onclick as a function updating the DOM (it always just updates the DOM)
+<div id="container">
+    <button id="1">Click Me</button>
+    <button id="2">Click Me</button>
+    <button id="3">Click Me</button>
+</div>
+// buttons is a node list. It looks and acts much like an array.
+const buttons = document.querySelectorAll('button');
+buttons.forEach((button) => {
+  button.addEventListener('click', () => {
+    alert(button.id);
+  });
+});
 
+// ripples and bubbling. click events follow from biggest element to smallest down (body > div > div >p etc). bubbling reveals that hierarchy in reverse when referenced in a click
 
+// to stop bubbling, add in e.stopPropagation();
+// wrap it in an if statement to get a bubble upwards in the DOM
+function logText(e) {
+  console.log(this.classList.value);
+  e.stopPropagation();
+}
+
+// adding options to addEventListener;
+divs.forEach(div => div.addEventListener('click', logText, capture: true, // default is false, capture and stop the ripple/bubble
+  once: true // default is false. it means only allow the click listener to run once, then never again until refresh page (great for logins!)
+  { 
+
+  }))
 // Other HTML and DOM:
+
+// good resources:
+https://plainjs.com/javascript/ //examples
+http://domenlightenment.com/ // a whole book on JavaScript and DOMs
+
 
 <button onclick="activateLasers()"> Activate Lasers </button> // call a JS function in an event
 
