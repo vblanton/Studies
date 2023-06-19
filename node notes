@@ -1,0 +1,4 @@
+to create a package.json file:
+npm init
+to create one with default values:
+npm init -y
