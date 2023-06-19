@@ -1,0 +1,35 @@
+to create a package.json file:
+npm init
+
+to create one with default values:
+npm init -y
+
+list all packages installed in project:
+npm list
+
+show all versions of a package:
+npm view package-name versions
+
+install the latest major version of a package
+npm install package-name@latest
+
+install a minor version
+npm install package-name@^2.2
+
+install a patch version
+npm install package-name@~2.2
+
+
+the package lock json file will install everything to exactly what the authors used (versions)
+
+creates a lockfile for exact packages (not automatic):
+npm shrinkwrap
+
+remove a package but leave it in the json:
+npm uninstall package
+
+remove the package from the json file:
+npm uninstall package --save
+
+save something as a dev dependency:
+npm install package --save-dev

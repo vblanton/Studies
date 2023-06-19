@@ -1,0 +1,10 @@
+automatic lock file
+
+yarn add package
+yarn remove package
+
+details as to why a package was installed:
+yarn why package
+
+save something as a dev dependency
+yarn add package --dev
