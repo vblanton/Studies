@@ -1,0 +1,19 @@
+Set default branch name to main:
+    git config --global init.defaultBranch main
+
+make a new branch:
+    git branch <branch_name>
+
+switch to a branch:
+    git checkout <branch_name>
+
+combine a branch to the branch you are currently on
+    git merge <branch_name>
+
+delete a branch that has already been merged with main:
+    git branch -d <branch_name>
+
+delete a branch that hasn't been merged with main:
+    git branch -D <branch_name>
+
+
