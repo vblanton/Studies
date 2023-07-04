@@ -1,4 +1,4 @@
-// notes: fix null break behavior
+// notes: fix null break behavior so that it doesn't throw errors?
 
 function getComputerChoice(){
     let choice = Math.floor(Math.random() * 3);
@@ -15,7 +15,7 @@ function getComputerChoice(){
 function checkPrompt(input){
     if (input === null) {
         console.log('User cancelled the prompt.'); // Log the message
-        return false; // Exit the loop if the user cancels the prompt
+        return 'exit';
       }
     if(input.toLowerCase() === 'rock' || input.toLowerCase() === 'paper' || input.toLowerCase() === 'scissors'){
         return true;
@@ -27,10 +27,7 @@ function checkPrompt(input){
 function getPlayerChoice() {
     let choice = prompt('Rock, Paper, or Scissors?');
     while(!checkPrompt(choice)){
-        choice = prompt('Please enter Rock, Paper, or Scissors');
-        if (choice === null) {
-            break;
-        }
+        choice = prompt('Please enter Rock, Paper, or Scissors or press Esc to quit');
     }
     return choice;
 }
@@ -38,6 +35,10 @@ function getPlayerChoice() {
 function playRound(playerSelection, computerSelection){
     let player = playerSelection.toLowerCase();
     let computer = computerSelection;
+    if (player === "exit") {
+        console.log("Player quit")
+        return 'exit';
+    }
     if(player === computer){
         return 'Tie!';
     } else if(player === 'rock'){
@@ -68,9 +69,12 @@ function game() {
     let computerScore = 0;
     for(let i = 0; i < 5; i++){
         let result = playRound(getPlayerChoice(), getComputerChoice());
+        if(result.includes('exit')) {
+            break;
+        }
         if(result.includes('Win')){
             playerScore++;
-        } else{
+        } else if(result.includes('Lose')){
             computerScore++;
         }
         console.log(result);
@@ -80,7 +84,7 @@ function game() {
     } else if(playerScore < computerScore){
         console.log('You Lose ' + computerScore + ' out of 5 rounds :(');
     } else {
-        console.log('Tie! You tied 5 out 5 games!');
+        console.log('Tie!');
     }    
 }
 

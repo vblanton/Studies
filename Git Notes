@@ -28,7 +28,7 @@ list of (pushed) changes
     git log
 
 
-view all branches:
+view all branches and see which one you are on:
     git branch
 
 make a new branch:
