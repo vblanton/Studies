@@ -40,6 +40,10 @@ switch to a branch:
 combine a branch to the branch you are currently on
     git merge <branch_name>
 
+rename a branch
+    git branch -m old-name new-name
+    git branch -m new-name (while in it)
+
 delete a branch that has already been merged with main:
     git branch -d <branch_name>
 
