@@ -6,6 +6,7 @@ clone a repository:
 see the url of the repository on github
     git remote -v
 
+workflow:
 
 add something to staging
     git add filename.abc
@@ -14,9 +15,11 @@ add something to staging
 commit all changes
     git commit -m "commit description"
 
-upload/push all changes
+upload/push all changes. origin is the name of the remote repository, can be anything but default is origin at github
     git push origin main
     git push (will assume origin main)
+
+status:
 
 see all changed files
     git status
@@ -24,8 +27,7 @@ see all changed files
 list of (pushed) changes
     git log
 
-Set default branch name to main:
-    git config --global init.defaultBranch main
+
 
 make a new branch:
     git branch <branch_name>
@@ -42,4 +44,11 @@ delete a branch that has already been merged with main:
 delete a branch that hasn't been merged with main:
     git branch -D <branch_name>
 
+git settings:
+
+change default editor if you forget to add a message
+    git config --global core.editor "code --wait"
+
+Set default branch name to main:
+    git config --global init.defaultBranch main
 
