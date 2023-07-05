@@ -5,10 +5,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rock Paper Scissors</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 
 <body>
   <h1>Rock Paper Scissors</h1>
+  <h2>player score: <span id="pscore">0</span></h2>
+  <h2>computer score: <span id="cscore">0</span></h2>
+  <h3 id="result">
+    Let the Games Begin!<br>
+    <span style="font-style: italic;">Best out of 5 rounds</span>
+  </h3>
+  <button onclick="playRound('rock',getComputerChoice())">Rock</button>
+  <button onclick="playRound('paper',getComputerChoice())">Paper</button>
+  <button onclick="playRound('scissors',getComputerChoice())">Scissors</button>
+
   <script src="script.js"></script>
 </body>
 

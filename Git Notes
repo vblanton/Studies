@@ -1,3 +1,4 @@
+
 make a repository at github.com
 
 clone a repository:
@@ -5,6 +6,7 @@ clone a repository:
 
 see the url of the repository on github
     git remote -v
+
 
 workflow:
 
@@ -19,6 +21,7 @@ upload/push all changes. origin is the name of the remote repository, can be any
     git push origin main
     git push (will assume origin main)
 
+
 status:
 
 see all changed files
@@ -26,7 +29,6 @@ see all changed files
 
 list of (pushed) changes
     git log
-
 
 view all branches and see which one you are on:
     git branch
@@ -52,6 +54,7 @@ delete a branch that hasn't been merged with main:
 
 upload/push your new branch:
     git push origin <branch_name>
+
 
 git settings:
 

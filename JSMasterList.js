@@ -610,7 +610,7 @@ div.innerHTML = '<span>Hello World!</span>';  // use .innerHTML sparingly, or no
 
 // event listeners:
 
-click
+onclick
 dblclick
 keydown
 keyup
