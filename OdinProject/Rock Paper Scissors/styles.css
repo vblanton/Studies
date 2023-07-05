@@ -3,10 +3,38 @@ html {
 }
 
 h2 {
-    display: inline-block;
     margin: 20px;
 }
-button {
-    padding: 5px 10px;
-    margin: 10px;
+
+.avatar {
+    display: inline-block;
+}
+
+.avatar img {
+    max-width: 250px;
+    min-width: 250px;
+    padding: 2px;
+    border: 1px solid #0e19b4;
+    display: block;
+    margin: 20px 20px 0 20px;
+}
+
+.buttons img {
+    max-width: 200px;
+    margin: 20px;
+    vertical-align: top;
+}
+
+.buttons img:hover {
+    transition: 0.1s;
+    filter: invert(16%) sepia(99%) saturate(7498%) hue-rotate(241deg) brightness(70%) contrast(102%);
+}
+
+.buttons a:hover {
+    cursor: pointer;
+}
+
+.result {
+    font-style: italic;
+    font-size: 23px;
 }

@@ -1,3 +1,9 @@
+<!-- animate after clicking on your choice, fade out, fade in fists bouncing 3 times and then fade to selections-->
+<!-- offer more profile pics -->
+<!-- add more background / styling to complete it -->
+<!-- give each player a color border and color the fists accordingly -->
+<!-- optimize images -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,16 +16,24 @@
 
 <body>
   <h1>Rock Paper Scissors</h1>
-  <h2>player score: <span id="pscore">0</span></h2>
-  <h2>computer score: <span id="cscore">0</span></h2>
-  <h3 id="result">
-    Let the Games Begin!<br>
-    <span style="font-style: italic;">Best out of 5 rounds</span>
-  </h3>
-  <button onclick="playRound('rock',getComputerChoice())">Rock</button>
-  <button onclick="playRound('paper',getComputerChoice())">Paper</button>
-  <button onclick="playRound('scissors',getComputerChoice())">Scissors</button>
-
+  <div class="avatar">
+    <img src="images/human1.jpeg" alt="headshot of a gender neutral human"/>
+    <h2>your score: <span id="pscore">0</span></h2>
+  </div>
+  <div class="avatar">
+    <img src="images/robot.jpeg" alt="headshot of a gender neutral human"/>
+    <h2>computer score: <span id="cscore">0</span></h2>
+  </div>
+  <div class="result">
+    Best out of 5? <span id="winlose">You won!</span>
+  </div>
+  <div class="buttons">
+    <h2>Choose wisely:</h2>
+    <a onclick="playRound('rock',getComputerChoice())"><img src="images/rock.png" /></a>
+    <a onclick="playRound('paper',getComputerChoice())"><img style="padding-top: 20px;" src="images/paper.png" /></a>
+    <a onclick="playRound('scissors',getComputerChoice())"><img style="padding-top: 39px;" src="images/scissors.png" /></a>
+  </div>
+  
   <script src="script.js"></script>
 </body>
 
