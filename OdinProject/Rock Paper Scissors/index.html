@@ -17,21 +17,21 @@
 <body>
   <h1>Rock Paper Scissors</h1>
   <div class="avatar">
-    <img src="images/human1.jpeg" alt="headshot of a gender neutral human"/>
-    <h2>your score: <span id="pscore">0</span></h2>
+    <img class="human" src="images/human1.jpeg" alt="headshot of a gender neutral human"/>
+    <h2 style="margin-top: 0px;">your score: <span id="pscore">0</span></h2>
   </div>
   <div class="avatar">
-    <img src="images/robot.jpeg" alt="headshot of a gender neutral human"/>
-    <h2>computer score: <span id="cscore">0</span></h2>
+    <img class="robot" src="images/robot.jpeg" alt="headshot of a gender neutral human"/>
+    <h2 style="margin-top: 0px;">computer score: <span id="cscore">0</span></h2>
   </div>
-  <div class="result">
+  <div class="result" style="display:none;">
     Best out of 5? <span id="winlose">You won!</span>
   </div>
   <div class="buttons">
     <h2>Choose wisely:</h2>
-    <a onclick="playRound('rock',getComputerChoice())"><img src="images/rock.png" /></a>
-    <a onclick="playRound('paper',getComputerChoice())"><img style="padding-top: 20px;" src="images/paper.png" /></a>
-    <a onclick="playRound('scissors',getComputerChoice())"><img style="padding-top: 39px;" src="images/scissors.png" /></a>
+    <a onclick="playRound('rock',getComputerChoice())"><img class="bgcolor" src="images/rock2.png" /></a>
+    <a onclick="playRound('paper',getComputerChoice())"><img src="images/paper2.png" /></a>
+    <a onclick="playRound('scissors',getComputerChoice())"><img src="images/scissors2.png" /></a>
   </div>
   
   <script src="script.js"></script>

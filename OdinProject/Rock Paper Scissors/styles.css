@@ -1,5 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap');
+
 html {
     text-align: center;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 400;
+}
+
+h1 {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 46px;
+    letter-spacing: 1px;
 }
 
 h2 {
@@ -13,28 +24,55 @@ h2 {
 .avatar img {
     max-width: 250px;
     min-width: 250px;
-    padding: 2px;
-    border: 1px solid #0e19b4;
     display: block;
-    margin: 20px 20px 0 20px;
+    margin: 0px 20px 0 20px;
+    padding: 20px;
+}
+
+.avatar img.human:hover {
+    border: 10px solid #287709;
+    transition: 0.1s;
+    padding: 10px;
+}
+
+.avatar img.robot:hover {
+    border: 10px solid #0e19b4;
+    transition: 0.1s;
+    padding: 10px;
 }
 
 .buttons img {
-    max-width: 200px;
+    max-width: 150px;
+    height: 150px;          
     margin: 20px;
     vertical-align: top;
+    padding: 20px;
 }
 
 .buttons img:hover {
-    transition: 0.1s;
-    filter: invert(16%) sepia(99%) saturate(7498%) hue-rotate(241deg) brightness(70%) contrast(102%);
-}
-
-.buttons a:hover {
+    transition: 0.2s;
+    filter: invert(33%) sepia(15%) saturate(5530%) hue-rotate(70deg) brightness(95%) contrast(93%);
+    /* filter: invert(16%) sepia(99%) saturate(7498%) hue-rotate(241deg) brightness(70%) contrast(102%); */
+    border: 10px dashed black;
+    border-radius: 50%;
     cursor: pointer;
+    padding: 10px;
+    animation: spinAround 9s linear infinite;
+
 }
 
 .result {
     font-style: italic;
     font-size: 23px;
+}
+
+/* Animations */
+
+@keyframes spinAround {
+    from {
+        transform: rotate(0deg)
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
