@@ -1,7 +1,7 @@
-<!-- animate after clicking on your choice, fade out, fade in fists bouncing 3 times and then fade to selections-->
-<!-- offer more profile pics -->
-<!-- add more background / styling to complete it -->
-<!-- give each player a color border and color the fists accordingly -->
+<!-- animations: after clicking on your choice, fade out, fade in fists bouncing 3 times and then fade to selections-->
+<!-- offer more profile pics via  settings menu -->
+<!-- add dark more via settings -->
+<!-- add more background / styling to complete it dark and light theme-->
 <!-- optimize images -->
 
 <!DOCTYPE html>
@@ -17,12 +17,13 @@
 <body>
   <h1>Rock Paper Scissors</h1>
   <div class="avatar">
-    <img class="human" src="images/human1.jpeg" alt="headshot of a gender neutral human"/>
-    <h2 style="margin-top: 0px;">your score: <span id="pscore">0</span></h2>
+    <img  id="humanav" class="human" src="images/human1.jpeg" alt="headshot of a gender neutral human"/>
+    <div id="next">></div>
+    <div class="colorsquare green"><h2 style="margin-top: 0px;">your score: <span id="pscore">0</span></h2></div>
   </div>
   <div class="avatar">
     <img class="robot" src="images/robot.jpeg" alt="headshot of a gender neutral human"/>
-    <h2 style="margin-top: 0px;">computer score: <span id="cscore">0</span></h2>
+    <div class="colorsquare blue"><h2 style="margin-top: 0px;">computer score: <span id="cscore">0</span></h2></div>
   </div>
   <div class="result" style="display:none;">
     Best out of 5? <span id="winlose">You won!</span>

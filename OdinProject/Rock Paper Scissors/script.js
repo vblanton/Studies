@@ -3,6 +3,20 @@
 // global variables
 
 let games = 0;
+let avatar = 0;
+
+const humanav = document.getElementById("humanav");
+const next = document.getElementById("next");
+
+next.addEventListener("click", function() {
+  if (avatar == 0){
+    avatar = 1;
+    humanav.src = "images/human2.jpeg";
+  } else {
+    avatar = 0;
+    humanav.src = "images/human1.jpeg";
+  }
+});
 
 function getComputerChoice(){
     let choice = Math.floor(Math.random() * 3);
@@ -71,6 +85,7 @@ function playRound(playerSelection, computerSelection){
         }
     }
 }
+
 
 // function game() {
 //     let playerScore = 0;

@@ -4,7 +4,9 @@ html {
     text-align: center;
     font-family: 'Rajdhani', sans-serif;
     font-weight: 400;
+    /* max-width: 800px; */
 }
+
 
 h1 {
     font-family: 'Rajdhani', sans-serif;
@@ -29,7 +31,7 @@ h2 {
     padding: 20px;
 }
 
-.avatar img.human:hover {
+/* .avatar img.human:hover {
     border: 10px solid #287709;
     transition: 0.1s;
     padding: 10px;
@@ -39,6 +41,31 @@ h2 {
     border: 10px solid #0e19b4;
     transition: 0.1s;
     padding: 10px;
+} */
+
+#next {
+    position: absolute;
+    top: 210px;
+    left: 440px;
+    font-size: 100px;
+    color: black;
+}
+
+
+.colorsquare {
+    color: white;
+    width: 250px;
+    margin: 0 auto;
+    margin-top: -20px;
+}
+
+.colorsquare.green {
+    background-color:#287709;
+
+}
+
+.colorsquare.blue {
+    background-color:#0e19b4;
 }
 
 .buttons img {
