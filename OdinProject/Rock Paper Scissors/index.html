@@ -1,8 +1,10 @@
 <!-- animations: after clicking on your choice, fade out, fade in fists bouncing 3 times and then fade to selections-->
-<!-- offer more profile pics via  settings menu -->
-<!-- add dark more via settings -->
-<!-- add more background / styling to complete it dark and light theme-->
+<!-- finish menu items support -->
+<!-- add more background / styling -->
 <!-- optimize images -->
+<!-- optimize code based on ai suggestions -->
+<!-- add accessibility with help of ai -->
+<!-- mobile/touch support -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,26 +17,44 @@
 </head>
 
 <body>
+<div id="container">
   <h1>Rock Paper Scissors</h1>
+  <div id="menu">
+    <div id="menu-title">Menu <i id="menu-triangle" class="bi bi-caret-right"></i></div>
+    <div id="menu-list">
+      <ul>
+        <li>Reset Game</li>
+        <li>Dark Mode</li>
+        <li id="menu-profile-pic">Profile Pic: <span id="profile1" class="active-menu-item">1</span><span id="profile2">2</span><span id="profile3">3</span></li>
+        <li id="menu-language">Language: <span id="lang1" class="active-menu-item">EN</span><span id="lang2">ES</span><span id="lang3">RU</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <span class="menu">
+    
+  </span>
+  <br>
+  
   <div class="avatar">
-    <img  id="humanav" class="human" src="images/human1.jpeg" alt="headshot of a gender neutral human"/>
-    <div id="next">></div>
-    <div class="colorsquare green"><h2 style="margin-top: 0px;">your score: <span id="pscore">0</span></h2></div>
+    <img id="humanav" class="human" src="images/human1.jpeg" alt="headshot of a gender neutral human"/>
+    <div id="pscore" class="colorsquare green score">0</div>
   </div>
   <div class="avatar">
     <img class="robot" src="images/robot.jpeg" alt="headshot of a gender neutral human"/>
-    <div class="colorsquare blue"><h2 style="margin-top: 0px;">computer score: <span id="cscore">0</span></h2></div>
+    <div id="cscore" class="colorsquare blue score">0</div>
   </div>
   <div class="result" style="display:none;">
     Best out of 5? <span id="winlose">You won!</span>
   </div>
   <div class="buttons">
     <h2>Choose wisely:</h2>
-    <a onclick="playRound('rock',getComputerChoice())"><img class="bgcolor" src="images/rock2.png" /></a>
+    <a onclick="playRound('rock',getComputerChoice())"><img src="images/rock2.png" /></a>
     <a onclick="playRound('paper',getComputerChoice())"><img src="images/paper2.png" /></a>
     <a onclick="playRound('scissors',getComputerChoice())"><img src="images/scissors2.png" /></a>
   </div>
-  
+
+</div>
   <script src="script.js"></script>
 </body>
 

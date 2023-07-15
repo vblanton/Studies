@@ -1,21 +1,77 @@
-// notes: fix null break behavior so that it doesn't throw errors?
-
 // global variables
 
 let games = 0;
+
+// menu
+
+const menu = document.getElementById("menu");
+const menuTitle = document.getElementById("menu-title");
+const menuTriangle = document.getElementById("menu-triangle");
+const menuList = document.getElementById("menu-list");
+
+
+menuTitle.addEventListener("click", function() {
+    menuList.classList.add("show"); 
+});
+
+menu.addEventListener("mouseleave", function() {
+    menuList.classList.remove("show");
+})
+
+menuTitle.addEventListener("mouseover", function() {
+    menuTriangle.classList.toggle("bi-caret-right");
+    menuTriangle.classList.toggle("bi-caret-right-fill");
+});
+
+menuTitle.addEventListener("mouseout", function() {
+    menuTriangle.classList.toggle("bi-caret-right-fill");
+    menuTriangle.classList.toggle("bi-caret-right");
+});
+
+// menu avatar selection
+
 let avatar = 0;
+const menuProfilePic = document.getElementById("menu-profile-pic");
+const humanAvatar = document.getElementById("humanav");
 
-const humanav = document.getElementById("humanav");
-const next = document.getElementById("next");
-
-next.addEventListener("click", function() {
-  if (avatar == 0){
+menuProfilePic.addEventListener("click", function() {
+    if (avatar == 0){
     avatar = 1;
-    humanav.src = "images/human2.jpeg";
+    humanAvatar.src = "images/human2.jpeg";
+    document.getElementById("profile1").classList.toggle("active-menu-item");
+    document.getElementById("profile2").classList.toggle("active-menu-item");
+  } else if (avatar == 1){
+    avatar = 2;
+    humanAvatar.src = "images/human3.jpeg";
+    document.getElementById("profile2").classList.toggle("active-menu-item");
+    document.getElementById("profile3").classList.toggle("active-menu-item");
   } else {
     avatar = 0;
-    humanav.src = "images/human1.jpeg";
+    humanAvatar.src = "images/human1.jpeg";
+    document.getElementById("profile3").classList.toggle("active-menu-item");
+    document.getElementById("profile1").classList.toggle("active-menu-item");
   }
+});
+
+// menu lang selection
+
+let language = 0;
+const menuLanguage = document.getElementById("menu-language");
+
+menuLanguage.addEventListener("click", function() {
+    if (language == 0){
+        language = 1;
+        document.getElementById("lang1").classList.toggle("active-menu-item");
+        document.getElementById("lang2").classList.toggle("active-menu-item");
+      } else if (language == 1){
+        language = 2;
+        document.getElementById("lang2").classList.toggle("active-menu-item");
+        document.getElementById("lang3").classList.toggle("active-menu-item");
+      } else {
+        language = 0;
+        document.getElementById("lang3").classList.toggle("active-menu-item");
+        document.getElementById("lang1").classList.toggle("active-menu-item");
+      }
 });
 
 function getComputerChoice(){
@@ -29,27 +85,6 @@ function getComputerChoice(){
             return 'scissors'
     }
 }
-
-// function checkPrompt(input){
-//     if (input === null) {
-//         console.log('User cancelled the prompt.'); // Log the message
-//         return 'exit';
-//       }
-//     if(input.toLowerCase() === 'rock' || input.toLowerCase() === 'paper' || input.toLowerCase() === 'scissors'){
-//         return true;
-//     }
-// }
-
-// function getPlayerChoice() {
-//     let choice = prompt('Rock, Paper, or Scissors?');
-//     while(!checkPrompt(choice)){
-//         if (choice === null) {
-//             return 'exit'
-//         }
-//         choice = prompt('Please enter Rock, Paper, or Scissors or press Esc to quit');
-//     }
-//     return choice;
-// }
 
 function playRound(playerSelection, computerSelection){
     games++;
@@ -85,30 +120,3 @@ function playRound(playerSelection, computerSelection){
         }
     }
 }
-
-
-// function game() {
-//     let playerScore = 0;
-//     let computerScore = 0;
-//     // for(let i = 0; i < 5; i++){
-//     //     let result = playRound(getPlayerChoice(), getComputerChoice());
-//     //     if(result.includes('exit')) {
-//     //         break;
-//     //     }
-//     //     if(result.includes('Win')){
-//     //         playerScore++;
-//     //     } else if(result.includes('Lose')){
-//     //         computerScore++;
-//     //     }
-//     //     console.log(result);
-//     // }
-//     if(playerScore > computerScore){
-//         console.log('You Win ' + playerScore + ' out of 5 rounds!');
-//     } else if(playerScore < computerScore){
-//         console.log('You Lose ' + computerScore + ' out of 5 rounds :(');
-//     } else {
-//         console.log('Tie!');
-//     }    
-// }
-
-// game();
