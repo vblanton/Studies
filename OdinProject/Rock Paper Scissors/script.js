@@ -28,6 +28,15 @@ menuTitle.addEventListener("mouseout", function() {
     menuTriangle.classList.toggle("bi-caret-right");
 });
 
+// menu reset 
+
+const reset = document.getElementById("menu-reset");
+
+reset.addEventListener("click", function() {
+    pscore.innerHTML = "0";
+    cscore.innerHTML = "0";
+})
+
 // menu avatar selection
 
 let avatar = 0;
