@@ -18,40 +18,72 @@
 
 <body>
 <div id="container">
-  <h1>Rock Paper Scissors</h1>
+  <div id="title">
+    <h1>Rock Paper Scissors</h1>
+    <!-- <div id="emojis"><img src="images/rock2.png" /><img src="images/paper2.png" /><img src="images/scissors2.png" /></div> -->
+  </div>
+
   <div id="menu">
-    <div id="menu-title">Menu <i id="menu-triangle" class="bi bi-caret-right"></i></div>
+    <div id="menu-title">
+      <span class="en">Menu</span> 
+      <span class="es hidden">Menú</span> 
+      <span class="ru hidden">Меню</span> 
+      <i id="menu-triangle" class="bi bi-caret-right"></i></div>
     <div id="menu-list">
       <ul>
-        <li id="menu-reset">Reset Game</li>
-        <li>Dark Mode</li>
-        <li id="menu-profile-pic">Profile Pic: <span id="profile1" class="active-menu-item">1</span><span id="profile2">2</span><span id="profile3">3</span></li>
-        <li id="menu-language">Language: <span id="lang1" class="active-menu-item">EN</span><span id="lang2">ES</span><span id="lang3">RU</span>
+        <li id="menu-reset">
+          <span class="en">Reset Game</span>
+          <span class="es hidden">Reiniciar el Juego</span>
+          <span class="ru hidden">Переустановить</span>
+        </li>
+        <li>
+          <span class="en">Dark Mode</span>
+          <span class="es hidden">Modo Oscuro</span>
+          <span class="ru hidden">Темный Режим</span>
+        </li>
+        <li id="menu-profile-pic">
+          <span class="en">Profile Pic:</span>
+          <span class="es hidden">Foto de Perfil:</span>
+          <span class="ru hidden">Изображение Проф:</span>
+          <span id="profile1" class="active-menu-item">1</span><span id="profile2">2</span><span id="profile3">3</span>
+        </li>
+        <li id="menu-language">
+          <span class="en">Language:</span>
+          <span class="es hidden">Idioma:</span>
+          <span class="ru hidden">Язык:</span>
+          <span id="lang1" class="active-menu-item">EN</span><span id="lang2">ES</span><span id="lang3">RU</span>
+        </li>
+        <li id="menu-close" style="margin: 10px 0 0 0;">
+          <span class="en">Close Menu</span>
+          <span class="es hidden">Cerrar Menú</span>
+          <span class="ru hidden">Закрыть меню</span>
         </li>
       </ul>
     </div>
   </div>
-  <span class="menu">
-    
-  </span>
-  <br>
-  
-  <div class="avatar">
-    <img id="humanav" class="human" src="images/human1.jpeg" alt="headshot of a gender neutral human"/>
-    <div id="pscore" class="colorsquare green score">0</div>
-  </div>
-  <div class="avatar">
-    <img class="robot" src="images/robot.jpeg" alt="headshot of a gender neutral human"/>
-    <div id="cscore" class="colorsquare blue score">0</div>
-  </div>
-  <div class="result" style="display:none;">
-    Best out of 5? <span id="winlose">You won!</span>
-  </div>
-  <div class="buttons">
-    <h2>Choose wisely:</h2>
-    <a onclick="playRound('rock',getComputerChoice())"><img src="images/rock2.png" /></a>
-    <a onclick="playRound('paper',getComputerChoice())"><img src="images/paper2.png" /></a>
-    <a onclick="playRound('scissors',getComputerChoice())"><img src="images/scissors2.png" /></a>
+  <div id="game">
+    <div class="avatar">
+      <img id="humanav" class="human" src="images/human1.jpeg" alt="headshot of a gender neutral human"/>
+      <div id="pscore" class="colorsquare green score">0</div>
+    </div>
+    <div class="avatar">
+      <img class="robot" src="images/robot.jpeg" alt="headshot of a gender neutral human"/>
+      <div id="cscore" class="colorsquare blue score">0</div>
+    </div>
+    <div class="result" style="display:none;">
+      Best out of 5? <span id="winlose">You won!</span>
+    </div>
+    <div class="buttons">
+      <h2>
+        <span class="en">Choose wisely:</span>
+        <span class="es hidden">Elegir Sabiamente:</span>
+        <span class="ru hidden">Выбирай с умом:</span>
+      </h2>
+      
+      <a onclick="playRound('rock',getComputerChoice())"><img src="images/rock2.png" /></a>
+      <a onclick="playRound('paper',getComputerChoice())"><img src="images/paper2.png" /></a>
+      <a oncli1ck="playRound('scissors',getComputerChoice())"><img src="images/scissors2.png" /></a>
+    </div>
   </div>
 
 </div>

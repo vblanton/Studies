@@ -16,6 +16,7 @@ h1 {
     font-weight: 700;
     font-size: 46px;
     letter-spacing: 1px;
+    margin-bottom: 5px;
 }
 
 h2 {
@@ -28,8 +29,18 @@ h2 {
     margin: 0 auto;
 }
 
-/* menu */
+.hidden {
+    display: none;
+}
 
+/* title + menu */
+
+/* #title {
+} */
+
+/* #emojis img{
+    height: 60px;
+} */
 
 #menu {
     text-align: center;
@@ -41,11 +52,15 @@ h2 {
     font-weight: bold;
     font-size: 24px;
     text-decoration: none;
+    margin: 0 0 10px 0;
+    padding: 10px 0;
 }
 
 #menu-list {
     text-align: center;
     display: none;
+    padding: 0 0 10px 0;
+    margin: 0 0 10px 0;
 }
 
 #menu-list.show {
@@ -65,20 +80,23 @@ h2 {
     margin: 0 4px;
 }
 
-#menu span:hover{
-    text-decoration: underline;   
-}
-
-
 #menu span.active-menu-item {
     text-decoration: underline;
 }
 
 
+/* game css */
+
+#game {
+    border: 10px dashed #287709;
+    /* animation: fadeIn 1s linear; */
+}
+
 /* avatars */
 
 .avatar {
     display: inline-block;
+    padding-top: 10px;
 }
 
 .avatar img {
@@ -119,7 +137,6 @@ h2 {
 
 .colorsquare.green {
     background-color:#287709;
-
 }
 
 .colorsquare.blue {
@@ -129,6 +146,12 @@ h2 {
 .score {
     font-size: 30px;
     font-weight: bold;
+    height: 40px;
+}
+
+.scorePop {
+    animation: scorePop 1s linear;
+    transition: 1s;
 }
 
 /* game buttons */
@@ -161,6 +184,25 @@ h2 {
 }
 
 /* Animations */
+
+@keyframes scorePop {
+    from {
+        font-size: 36px;
+    }
+    to {
+        font-size: 30px;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        display: none;
+    }
+    to {
+        display:contents;
+    }
+}
+
 
 @keyframes spinAround {
     from {

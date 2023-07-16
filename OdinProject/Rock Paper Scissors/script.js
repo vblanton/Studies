@@ -8,15 +8,24 @@ const menu = document.getElementById("menu");
 const menuTitle = document.getElementById("menu-title");
 const menuTriangle = document.getElementById("menu-triangle");
 const menuList = document.getElementById("menu-list");
-
+const menuClose = document.getElementById("menu-close");
 
 menuTitle.addEventListener("click", function() {
-    menuList.classList.add("show"); 
+    menuList.classList.toggle("show"); 
 });
 
-menu.addEventListener("mouseleave", function() {
+menuClose.addEventListener("click", function() {
+    menuList.classList.remove("show");
+});
+
+game.addEventListener("click", function() {
     menuList.classList.remove("show");
 })
+
+title.addEventListener("click", function() {
+    menuList.classList.remove("show");
+})
+
 
 menuTitle.addEventListener("mouseover", function() {
     menuTriangle.classList.toggle("bi-caret-right");
@@ -66,22 +75,45 @@ menuProfilePic.addEventListener("click", function() {
 
 let language = 0;
 const menuLanguage = document.getElementById("menu-language");
+const langEn = document.getElementsByClassName("en");
+const langEs = document.getElementsByClassName("es");
+const langRu = document.getElementsByClassName("ru");
 
 menuLanguage.addEventListener("click", function() {
     if (language == 0){
         language = 1;
         document.getElementById("lang1").classList.toggle("active-menu-item");
         document.getElementById("lang2").classList.toggle("active-menu-item");
+        for (const item of langEn) {
+            item.classList.toggle('hidden');
+          }
+        for (const item of langEs) {
+            item.classList.toggle('hidden');
+          }
       } else if (language == 1){
         language = 2;
         document.getElementById("lang2").classList.toggle("active-menu-item");
         document.getElementById("lang3").classList.toggle("active-menu-item");
+        for (const item of langEs) {
+            item.classList.toggle('hidden');
+          }
+        for (const item of langRu) {
+            item.classList.toggle('hidden');
+          }
       } else {
         language = 0;
         document.getElementById("lang3").classList.toggle("active-menu-item");
         document.getElementById("lang1").classList.toggle("active-menu-item");
+        for (const item of langRu) {
+            item.classList.toggle('hidden');
+          }
+        for (const item of langEn) {
+            item.classList.toggle('hidden');
+          }
       }
 });
+
+// computer's choice
 
 function getComputerChoice(){
     let choice = Math.floor(Math.random() * 3);
@@ -94,6 +126,8 @@ function getComputerChoice(){
             return 'scissors'
     }
 }
+
+// play one round of the game
 
 function playRound(playerSelection, computerSelection){
     games++;
