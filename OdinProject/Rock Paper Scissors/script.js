@@ -129,37 +129,50 @@ function getComputerChoice(){
 
 // play one round of the game
 
+const pscore = document.getElementById("pscore");
+const cscore = document.getElementById("cscore");
+const result = document.getElementById("result");
+
+const rock = document.getElementById("rock");
+const paper = document.getElementById("paper");
+const scissors = document.getElementById("scissors");
+
 function playRound(playerSelection, computerSelection){
     games++;
     let player = playerSelection;
     let computer = computerSelection;
+    result.innerHTML = "";
+    if (player == "rock") {
+        paper.classList.add("paperGone");
+    }
+
     if(player === computer){
         pscore.innerHTML++;
         cscore.innerHTML++;
-        result.innerHTML == 'Tie!';
+        result.innerHTML = "Tie!";
     } else if(player === 'rock'){
         if(computer === 'paper'){
             cscore.innerHTML++
-            return 'You Lose! Paper beats Rock';
+            result.innerHTML = 'You Lose! Paper beats Rock';
         } else {
             pscore.innerHTML++;
-            return 'You Win! Rock beats Scissors';
+            result.innerHTML = 'You Win! Rock beats Scissors';
         }
     } else if(player === 'paper'){
         if(computer === 'scissors'){
             cscore.innerHTML++;
-            return 'You Lose! Scissors beats Paper';
+            result.innerHTML = 'You Lose! Scissors beats Paper';
         } else {
             pscore.innerHTML++;
-            return 'You Win! Paper beats Rock';
+            result.innerHTML = 'You Win! Paper beats Rock';
         }
     } else if(player === 'scissors'){
         if(computer === 'rock'){
             cscore.innerHTML++;
-            return 'You Lose! Rock beats Scissors';
+            result.innerHTML = 'You Lose! Rock beats Scissors';
         } else {
             pscore.innerHTML++;
-            return 'You Win! Scissors beats Paper';
+            result.innerHTML = 'You Win! Scissors beats Paper';
         }
     }
 }

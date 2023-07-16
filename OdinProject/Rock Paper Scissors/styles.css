@@ -33,6 +33,14 @@ h2 {
     display: none;
 }
 
+.light {
+    background: rgb(218, 218, 218);
+}
+
+.dark {
+    background: rgb(63, 63, 63);
+}
+
 /* title + menu */
 
 /* #title {
@@ -89,6 +97,7 @@ h2 {
 
 #game {
     border: 10px dashed #287709;
+    
     /* animation: fadeIn 1s linear; */
 }
 
@@ -176,14 +185,31 @@ h2 {
 
 }
 
+/* game animations */
+
+.paperGone {
+    animation: paperGone1 2s linear;
+}
+
 /* feedback/scores */
 
-.result {
+#result {
     font-style: italic;
     font-size: 23px;
+    height: 20px;
+    padding: 0 0 20px 0;
 }
 
 /* Animations */
+
+@keyframes paperGone1 {
+    from (
+        padding-top: 0px;
+    )
+    to {
+        padding-top: 40px;
+    }
+}
 
 @keyframes scorePop {
     from {

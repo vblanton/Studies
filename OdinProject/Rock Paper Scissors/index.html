@@ -16,7 +16,7 @@
   <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 
-<body>
+<body class="light">
 <div id="container">
   <div id="title">
     <h1>Rock Paper Scissors</h1>
@@ -70,9 +70,6 @@
       <img class="robot" src="images/robot.jpeg" alt="headshot of a gender neutral human"/>
       <div id="cscore" class="colorsquare blue score">0</div>
     </div>
-    <div class="result" style="display:none;">
-      Best out of 5? <span id="winlose">You won!</span>
-    </div>
     <div class="buttons">
       <h2>
         <span class="en">Choose wisely:</span>
@@ -80,10 +77,11 @@
         <span class="ru hidden">Выбирай с умом:</span>
       </h2>
       
-      <a onclick="playRound('rock',getComputerChoice())"><img src="images/rock2.png" /></a>
-      <a onclick="playRound('paper',getComputerChoice())"><img src="images/paper2.png" /></a>
-      <a oncli1ck="playRound('scissors',getComputerChoice())"><img src="images/scissors2.png" /></a>
+      <a id="rock" onclick="playRound('rock',getComputerChoice())"><img src="images/rock2.png" /></a>
+      <a id="paper" onclick="playRound('paper',getComputerChoice())"><img src="images/paper2.png" /></a>
+      <a id="scissors" onclick="playRound('scissors',getComputerChoice())"><img src="images/scissors2.png" /></a>
     </div>
+    <div id="result"></div>
   </div>
 
 </div>
