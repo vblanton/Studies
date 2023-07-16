@@ -187,8 +187,8 @@ h2 {
 
 /* game animations */
 
-.paperGone {
-    animation: paperGone1 2s linear;
+.paperDown {
+    animation: paperGone1 .5s linear;
 }
 
 /* feedback/scores */
@@ -203,11 +203,11 @@ h2 {
 /* Animations */
 
 @keyframes paperGone1 {
-    from (
-        padding-top: 0px;
-    )
+    from {
+    }
     to {
-        padding-top: 40px;
+        padding-top: 150px;
+        filter:opacity(0)
     }
 }
 

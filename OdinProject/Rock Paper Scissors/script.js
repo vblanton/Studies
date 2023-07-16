@@ -137,16 +137,18 @@ const rock = document.getElementById("rock");
 const paper = document.getElementById("paper");
 const scissors = document.getElementById("scissors");
 
+rock.addEventListener("click", function(){
+    paper.classList.toggle("paperDown");
+    setTimeout(1s);
+    paper.classList.toggle("paperDown");
+});
+
 function playRound(playerSelection, computerSelection){
     games++;
     let player = playerSelection;
     let computer = computerSelection;
     result.innerHTML = "";
-    if (player == "rock") {
-        paper.classList.add("paperGone");
-    }
-
-    if(player === computer){
+     if(player === computer){
         pscore.innerHTML++;
         cscore.innerHTML++;
         result.innerHTML = "Tie!";
