@@ -1,10 +1,7 @@
-<!-- animations: after clicking on your choice, fade out, fade in fists bouncing 3 times and then fade to selections-->
-<!-- finish menu items support -->
-<!-- add more background / styling -->
+<!-- complete styling, animations, dark mode -->
 <!-- optimize images -->
-<!-- optimize code based on ai suggestions -->
-<!-- add accessibility with help of ai -->
-<!-- mobile/touch support -->
+<!-- check accessibility with tools -->
+<!-- responsive support -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,13 +11,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rock Paper Scissors</title>
   <link rel="stylesheet" type="text/css" href="styles.css">
+
+  <meta name="description" content="A rock paper scissors game">
+  <meta name="keywords" content="rock, paper, scissors, game">
+  <meta name="author" content="Vladislav Blanton">
+
 </head>
 
 <body class="light">
 <div id="container">
   <div id="title">
     <h1>Rock Paper Scissors</h1>
-    <!-- <div id="emojis"><img src="images/rock2.png" /><img src="images/paper2.png" /><img src="images/scissors2.png" /></div> -->
   </div>
 
   <div id="menu">
@@ -32,15 +33,15 @@
     <div id="menu-list">
       <ul>
         <li id="menu-reset">
-          <span class="en">Reset Game</span>
-          <span class="es hidden">Reiniciar el Juego</span>
-          <span class="ru hidden">Переустановить</span>
+          <span class="en">Reset Score</span>
+          <span class="es hidden">Restablecer Puntaje</span>
+          <span class="ru hidden">Сбросить Счет</span>
         </li>
-        <li>
+        <!-- <li>
           <span class="en">Dark Mode</span>
           <span class="es hidden">Modo Oscuro</span>
           <span class="ru hidden">Темный Режим</span>
-        </li>
+        </li> -->
         <li id="menu-profile-pic">
           <span class="en">Profile Pic:</span>
           <span class="es hidden">Foto de Perfil:</span>
@@ -58,17 +59,18 @@
           <span class="es hidden">Cerrar Menú</span>
           <span class="ru hidden">Закрыть меню</span>
         </li>
+        <p style="font: 12px; font-style: italic;color: dimgray;">version 7.23</p>
       </ul>
     </div>
   </div>
   <div id="game">
     <div class="avatar">
-      <img id="humanav" class="human" src="images/human1.jpeg" alt="headshot of a gender neutral human"/>
-      <div id="pscore" class="colorsquare green score">0</div>
+      <img id="humanav" class="human" src="images/human1.jpeg" alt="profile pic of player"/>
+      <div id="pscore" class="colorsquare green score" aria-label="player score">0</div>
     </div>
     <div class="avatar">
-      <img class="robot" src="images/robot.jpeg" alt="headshot of a gender neutral human"/>
-      <div id="cscore" class="colorsquare blue score">0</div>
+      <img class="robot" src="images/robot.jpeg" alt="profile pic of robot opponent"/>
+      <div id="cscore" class="colorsquare blue score" aria-label="opponent score">0</div>
     </div>
     <div class="buttons">
       <h2>
@@ -77,9 +79,9 @@
         <span class="ru hidden">Выбирай с умом:</span>
       </h2>
       
-      <a onclick="playRound('rock',getComputerChoice())"><img id="rock" src="images/rock2.png" /></a>
-      <a onclick="playRound('paper',getComputerChoice())"><img id="paper" src="images/paper2.png" /></a>
-      <a onclick="playRound('scissors',getComputerChoice())"><img id="scissors" src="images/scissors2.png" /></a>
+      <a onclick="playRound('rock',getComputerChoice())"><img id="rock" src="images/rock2.png" alt="rock"/></a>
+      <a onclick="playRound('paper',getComputerChoice())"><img id="paper" src="images/paper2.png" alt="paper"/></a>
+      <a onclick="playRound('scissors',getComputerChoice())"><img id="scissors" src="images/scissors2.png" alt="scissors"/></a>
     </div>
     <div id="result"></div>
   </div>

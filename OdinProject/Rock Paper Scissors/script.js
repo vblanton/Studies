@@ -139,7 +139,7 @@ const scissors = document.getElementById("scissors");
 
 rock.addEventListener("click", function(){
     paper.classList.toggle("paperDown");
-    setTimeout(1s);
+    setTimeout(1);
     paper.classList.toggle("paperDown");
 });
 
