@@ -454,6 +454,8 @@ Function() // use in place of eval() for safer conversion of string to number
 let a = prompt("First Number?", 1); // prompt user for a number, defaulting to 1?
 alert(+a); // show result of prompt and convert a to a number
 
+arguments[i] // access the list of arguments passed to a function (use from within the function)
+
 
 // INPUT
 prompt("text");
@@ -703,12 +705,18 @@ ctx
 //  - type issue, modifying a value that cannot be changed, or using a value in an inappropriate way
 // RangeError: a math / type issue
 
-// Security
+// Security and Warnings
 
 // XSS (Cross-Site Scripting) - a type of injection, in which malicious scripts are injected into otherwise benign and trusted websites
 .innerHTML // this must not be allowed to accept user input, as it can be used to inject malicious scripts, or otherwise must be escaped out of all HTML elements so it's a string
 // DOM-based XSS - a type of XSS that occurs when data is taken from the DOM and inserted into the DOM without proper validation or escaping
 // DOM clobbering - a type of XSS that occurs when an attacker can modify the attributes of an existing DOM element
+
+// eval()
+// evaluates a string as code. Very dangerous and too easy to hack. XSS attack. do not use for any code
+
+// using a new Function() to evaluate a string
+// dangerous for XSS reasons
 
 // resources
 https://keycode.info // find the keycode of a key
