@@ -46,6 +46,53 @@ transform: scale(1.1);
 }
 
 
+/* flexbox */
+
+.flexbox {
+display: flex;
+/* enables flex container, group items by adding a flex container within a flex container */
+justify-content: center;
+/* horizontal alignment: flex-start, center, flex-end, space-around, space-between, space-evenly */
+align-items: center;
+/* vertical aignment: center, flex-start, flex-end, stretch, baseline */
+flex-wrap: wrap;
+/* wrap, rather than runing outside the layout */
+flex-direction: column;
+/* or row (default), row-reverse, column-reverse, makes justify-content and align items work inversely */
+order: 1;
+order: -1;
+/* change the order of a specific flex item in the flex container */
+margin-left: auto;
+/* use this to pad out all the extra space in a certain direction */
+gap: 5px;
+/* gap between items, like margin for each item */
+
+flex-grow: 1;
+/* 1x relative to other items and space available in the container, larger number means grow thay many times more than other items, use whole numbers */
+flex-shrink: 1;
+/* 1x shrink factor (relative to other items, so larger number means shrink that much more thatn the number of the other times. use whole numbers) */
+flex-basis: 0;
+/* initial main size of a flex item, can use pixels here for instance, for rows, it is width, for columns it is height */
+
+/* speed/space at which to grow or flex within the page individually */
+flex: 1;
+flex: 1 1 0;
+/* flex: is shorthand for flex-grow: 1 (growth factor), flex-shrink: 1 (shrink factor), flex-basis: 0. (initial size)*/
+/*  1 1 0 */
+flex: 2;
+/* 2 1 0, any number will always be "number 1 0" */
+flex: auto;
+/* 1 1 auto */
+flex: initial;
+/* 0 1 auto (the initial values) */
+flex: none;
+/* 0 0 auto or fully inflexible, similar to initial but items are not allowed to shrink */
+
+
+
+}
+
+
 
 /* CSS Master List from fCC */
 
