@@ -57,7 +57,6 @@ fee_payer: Publickey, // Pays transaction fee
 ...}
 signers: Array<Uint8Array>, // Signed versions of this transactions (can be single or multi co-signers)
 }
-}
 
 Unity client:
 
@@ -68,3 +67,26 @@ reading data on chain is done via RPC w/ data returned via websocket.
 
 Writing data:
 transaction necessary, distributed through the network of validators and RPCs track status.
+
+Part Two:
+
+Tiny adventure 2 includes logic for a Chest w/ a password
+
+When you close a program, you will never be able to use that ID again, so do not close main net programs which a bunch of people are using already.
+when closing a program, however, you get back the SOL for rent.
+
+You can always send SOL, but to remove it, you need to sign the transaction
+
+8 bytes is the minimum rent amount for an account w/ Anchor
+
+Running a local Rust IDE is faster than via the online IDE
+
+IDL in Rust is an Interface Definition Language, essentially a JSON definition for interacting with a Rust program
+
+Save SOL in the program's PDA and remove SOL from the PDA via cpi_content instructions by subracting the lamports (some code example in video) at 53:25)
+
+Interacting with SPL tokens
+Create, transfer in, and transfer out is reviewed in the video at 56:00
+
+Local Setup:
+instructions at the anchor installations docs: rust, solana cli, yarn, anchor
