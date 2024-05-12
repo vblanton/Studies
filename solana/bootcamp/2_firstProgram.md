@@ -90,3 +90,75 @@ Create, transfer in, and transfer out is reviewed in the video at 56:00
 
 Local Setup:
 instructions at the anchor installations docs: rust, solana cli, yarn, anchor
+anchor build
+solana balance [-ud|-ul|-um]
+-ud is devnet
+-ul is local
+-um is mainnet
+
+wallet = local wallet json file
+
+solana address // your address, to transfer sol into
+solana airdrop # // request solana to be airdropped to your wallet, but there is a limit of 4 SOL per day on devnet that will be airdropped
+solana airdrop 2 -ud // request 2 solana from devnet to be airdropped
+
+VSCode addons
+Rust analyzer is great for looking over Rust programs
+Better Toml // formats toml files in a nicer way
+Error Lens // nicer error formatting
+Github Copilot // great for writing tests, comments, simple code loops
+crates // shows you which dependencies are out of date
+
+Code LLDB // rust debugger
+Prettier // formatting
+VSCode-Pets // very important
+
+Support options:
+solana.stackexchange.com
+ChatGPT / Gemini / LLMs
+
+Local Setup example
+
+cd program
+yarn i
+anchor build
+anchor test
+solana-test-validator // starts a local validator on your machine
+anchor deploy
+cd app
+yarn dev
+
+NextJS is fine for front end dev
+
+Recommendations on learning about Rust on youtube
+how to do borrow checks, enums, option types
+
+Burner Key is for if you want a fallback wallet, for instance on devnet, that is used for the game if not logged in
+
+Unity Game Engine
+
+Unity is C# based
+
+Garbles Unity SDK
+github.com/garbles-labs/Solana.Unity-SDK
+github.com/solana-developers/solana-game-starter-kits
+
+You can do everything in Unity as you can do JavaScript, export to different platforms, consoles, WebGL
+on mobile the supported wallet is Phantom, Mobile wallet adapter coming
+
+Porting Anchor to C# and Unity
+code generation tool by bmresearch
+github.com/garbles-labs/Solana.Unity.Anchor
+
+dotnet tool install Solana.Unity.Anchor.Tool
+convert IDL to C# like this:
+dotnet anchorgen -i idl/file.json -o src/PogramCode.cs
+
+More resources:
+Lumia online
+github.com/lumiaonline/lumiaonline
+Rock Paper Scissors w/ interesting solution for hidden data on chain:
+github.com/kevinrodriguez-io/bonk-paper-scissors
+multiplayer community game where players vote on moves:
+github.com/nelsontky/web3-plays-pokemon
+Solana Cookbook: solanacookbook.com/gaming/intro.html
